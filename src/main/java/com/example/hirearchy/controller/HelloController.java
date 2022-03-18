@@ -1,5 +1,6 @@
-package com.example.hirearchy;
+package com.example.hirearchy.controller;
 
+import com.example.hirearchy.model.PGSQL;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 

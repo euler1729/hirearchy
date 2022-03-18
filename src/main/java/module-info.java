@@ -14,4 +14,8 @@ module com.example.hirearchy {
 
     opens com.example.hirearchy to javafx.fxml;
     exports com.example.hirearchy;
+    exports com.example.hirearchy.model;
+    opens com.example.hirearchy.model to javafx.fxml;
+    exports com.example.hirearchy.controller;
+    opens com.example.hirearchy.controller to javafx.fxml;
 }

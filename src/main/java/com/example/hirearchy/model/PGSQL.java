@@ -1,4 +1,4 @@
-package com.example.hirearchy;
+package com.example.hirearchy.model;
 import java.sql.*;
 public class PGSQL {
     static String name = "mahmud";
@@ -12,8 +12,15 @@ public class PGSQL {
             connection = DriverManager.getConnection(url,name,password);
             connection.setAutoCommit(false);
             statement = connection.createStatement();
-            String insert = "INSERT INTO login (id,email,hash) VALUES('28f721ad-2665-4a2a-b4c5-76ced2acb466','mahmud1@gmail.com','afadfasf')";
-            statement.executeUpdate(insert);
+//            String insert = "INSERT INTO login (id,email,hash) VALUES('28f721ad-2665-4a2a-b4c5-76ced2acb466','mahmud1@gmail.com','afadfasf')";
+//            statement.executeUpdate(insert);
+            String query = "SELECT * FROM login;";
+            ResultSet qry =  statement.executeQuery(query);
+            while(qry.next()){
+                System.out.println(qry.getString("id")
+                        +" "+qry.getString("email")
+                        +" "+qry.getString("hash"));
+            }
             statement.close();
             connection.commit();
             connection.close();
