@@ -9,6 +9,7 @@ public class HelloController {
 
     @FXML
     protected void onHelloButtonClick() {
+        PGSQL.Connect();
         welcomeText.setText("Welcome to Hire-Archy");
     }
 }
