@@ -1,7 +1,6 @@
 package com.example.hirearchy.controller;
 
 public class Person {
-    // info about the users
     private String name;
     private String contact_no;
     private String email;
@@ -17,13 +16,55 @@ public class Person {
         this.password = password;
         this.location = location;
     }
-
-
-    // edit profile.
-    // return true if done successfully, false if there's error.
-    boolean edit_profile(){
-
-        return true;
+////⭐️⭐⭐️⭐️️⭐️Getters and Setters⭐️⭐️⭐️⭐️/////////////
+    public String getName() {
+        return name;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getContact_no() {
+        return contact_no;
+    }
+
+    public void setContact_no(String contact_no) {
+        this.contact_no = contact_no;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getProfession() {
+        return profession;
+    }
+
+    public void setProfession(String profession) {
+        this.profession = profession;
+    }
+
+    public int getLocation() {
+        return location;
+    }
+
+    public void setLocation(int location) {
+        this.location = location;
+    }
+
+
 
 }

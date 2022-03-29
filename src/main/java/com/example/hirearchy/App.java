@@ -1,5 +1,6 @@
 package com.example.hirearchy;
 
+import com.example.hirearchy.controller.Person;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -15,6 +16,11 @@ public class App extends Application {
         stage.setTitle("Home");
         stage.setScene(scene);
         stage.show();
+
+        String profession;
+        Person person;
+
+
     }
 
     public static void main(String[] args) {
