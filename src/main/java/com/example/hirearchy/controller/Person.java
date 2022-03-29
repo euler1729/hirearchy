@@ -8,7 +8,15 @@ public class Person {
     private String profession;
     private String password;
     private int location;
-    //
+
+    public Person(String name, String contact_no, String email, String profession, String password, int location) {
+        this.name = name;
+        this.contact_no = contact_no;
+        this.email = email;
+        this.profession = profession;
+        this.password = password;
+        this.location = location;
+    }
 
 
     // edit profile.
@@ -17,18 +25,5 @@ public class Person {
 
         return true;
     }
-}
-
-class Customer extends Person{
-
-    // search option for customers
-    boolean query(){
-
-        return true;
-    }
-}
-
-
-class Worker extends Person{
 
 }
