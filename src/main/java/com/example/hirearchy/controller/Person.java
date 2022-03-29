@@ -3,12 +3,12 @@ package com.example.hirearchy.controller;
 public class Person {
     private String name;
     private String contact_no;
-    private String email;
-    private String profession;
+    private String email;    
     private String password;
+    private int profession;
     private int location;
 
-    public Person(String name, String contact_no, String email, String profession, String password, int location) {
+    public Person(String name, String contact_no, String email, int profession, String password, int location) {
         this.name = name;
         this.contact_no = contact_no;
         this.email = email;
@@ -49,11 +49,11 @@ public class Person {
         this.email = email;
     }
 
-    public String getProfession() {
+    public int getProfession() {
         return profession;
     }
 
-    public void setProfession(String profession) {
+    public void setProfession(int profession) {
         this.profession = profession;
     }
 
