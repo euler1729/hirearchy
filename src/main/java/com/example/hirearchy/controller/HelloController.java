@@ -12,9 +12,10 @@ public class HelloController {
 
     @FXML
     protected void onHelloButtonClick(){
-        Person user = new Person("abc", "516551","fasad@gmail.com",0,"dsafa",1);
+        Person user = new Person("abc", "516551","fardin@gmail.com",0,"dsafa",1);
         try{
-            PGSQL.insertRecord(user);
+            boolean authenticated = PGSQL.authenticate("fardin@gmail.com","dsafa");
+            System.out.println(authenticated);
         }catch (Exception exp){
             System.out.println(exp);
         }
