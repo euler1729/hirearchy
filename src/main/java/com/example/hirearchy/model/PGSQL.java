@@ -5,12 +5,13 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 public class PGSQL {
-    static String db_user = "mahmud";
-    static String db_password = "mufidul@111";
-    static String db_url = "jdbc:postgresql://127.0.0.1:5432/hirearchy";
 
-    public static Connection Connect(){
+
+    private static Connection Connect(){
         Connection connection=null;
+        String db_user = "mahmud";
+        String db_password = "mufidul@111";
+        String db_url = "jdbc:postgresql://127.0.0.1:5432/hirearchy";
         try{
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(db_url,db_user,db_password);
@@ -22,7 +23,7 @@ public class PGSQL {
         System.out.println("connected!!!");
         return connection;
     }
-    boolean insert(DB_Operations op) throws SQLException {
+    protected boolean insert(DB_Operations op) throws SQLException {
         Connection connection = Connect();
         if(connection==null){
             System.out.println("Connection error");
@@ -35,14 +36,14 @@ public class PGSQL {
                     "VALUES (?,?,?,?,?,?,?,?);";
 
             PreparedStatement statement = connection.prepareStatement(insert);
-            statement.setObject(1, id);
+            statement.setObject(1, op.getUuid());
             statement.setString(2, op.getEmail());
             statement.setString(3, op.getPassword());
             statement.setString(4, op.getName());
             statement.setString(5, op.getContact());
             statement.setObject(6, op.getLocation());
             statement.setObject(7, op.getProfession());
-            statement.setDate(8, Date.valueOf(date));
+            statement.setDate(8, Date.valueOf(op.getJoined()));
 
             System.out.println(statement);
             statement.executeUpdate();
@@ -54,7 +55,7 @@ public class PGSQL {
         }
         return true;
     }
-    boolean authenticate(String email, String password) throws SQLException {
+    protected static boolean authenticate(String email, String password) throws SQLException {
         Connection connection = Connect();
         int count = 0;
         try{
@@ -76,6 +77,24 @@ public class PGSQL {
         }
         connection.close();
         return count>0;
+    }
+    protected static ResultSet Query(String qry) throws SQLException{
+        Connection connection = Connect();
+        ResultSet resultSet = null;
+        Statement statement = null;
+        try{
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(qry);
+            statement.close();
+        }catch (Exception exp){
+            System.out.println(exp);
+            connection.rollback();
+            connection.close();
+            return resultSet;
+        }
+        connection.rollback();
+        connection.close();
+        return  resultSet;
     }
 
 }
