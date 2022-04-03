@@ -17,8 +17,8 @@
             <TextField prefHeight="28.0" prefWidth="326.0" promptText="Name" />
             <TextField prefHeight="28.0" prefWidth="326.0" promptText="Contact No." />
             <TextField prefHeight="28.0" prefWidth="326.0" promptText="Email" />
-            <ComboBox prefHeight="28.0" prefWidth="326.0" promptText="Register as" />
-            <ComboBox prefHeight="28.0" prefWidth="326.0" promptText="Location" />
+            <ComboBox fx:id="RegisterAsDropdown" prefHeight="28.0" prefWidth="326.0" promptText="Register as" />
+            <ComboBox fx:id="LocationDropdown" prefHeight="28.0" prefWidth="326.0" promptText="Location" />
             <TextField prefHeight="28.0" prefWidth="326.0" promptText="Password" />
             <TextField prefHeight="28.0" prefWidth="326.0" promptText="Re-enter Password" />
          </children>
