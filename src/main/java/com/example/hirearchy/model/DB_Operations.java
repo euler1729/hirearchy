@@ -20,6 +20,9 @@ public class DB_Operations extends PGSQL{
     LocalDate joined;
 
     //Constructors
+    public DB_Operations(){
+
+    }
     private DB_Operations(Customer customer) {
         this.uuid = UUID.randomUUID();
         this.name = customer.getName();
