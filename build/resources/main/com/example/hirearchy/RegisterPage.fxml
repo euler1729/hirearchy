@@ -10,17 +10,17 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #A9A9A9;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hirearchy.controller.RegisterAndLoginPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #A9A9A9;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox layoutX="137.0" layoutY="101.0" prefHeight="198.0" prefWidth="326.0">
          <children>
-            <TextField fx:id="NameTextField" prefHeight="28.0" prefWidth="326.0" promptText="Name" />
-            <TextField fx:id="ContactNoTextField" prefHeight="28.0" prefWidth="326.0" promptText="Contact No." />
-            <TextField fx:id="EmailTextField" prefHeight="28.0" prefWidth="326.0" promptText="Email" />
-            <ComboBox fx:id="RegisterAsDropdown" prefHeight="28.0" prefWidth="326.0" promptText="Register as" />
-            <ComboBox fx:id="LocationDropdown" prefHeight="28.0" prefWidth="326.0" promptText="Location" />
-            <TextField fx:id="PasswordTextField" prefHeight="28.0" prefWidth="326.0" promptText="Password" />
-            <TextField fx:id="RePasswordTextField" prefHeight="28.0" prefWidth="326.0" promptText="Re-enter Password" />
+            <TextField prefHeight="28.0" prefWidth="326.0" promptText="Name" />
+            <TextField prefHeight="28.0" prefWidth="326.0" promptText="Contact No." />
+            <TextField prefHeight="28.0" prefWidth="326.0" promptText="Email" />
+            <ComboBox prefHeight="28.0" prefWidth="326.0" promptText="Register as" />
+            <ComboBox prefHeight="28.0" prefWidth="326.0" promptText="Location" />
+            <TextField prefHeight="28.0" prefWidth="326.0" promptText="Password" />
+            <TextField prefHeight="28.0" prefWidth="326.0" promptText="Re-enter Password" />
          </children>
       </VBox>
       <Text fill="#497abf" layoutX="234.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to HireArchy!" textAlignment="CENTER" wrappingWidth="150.4000000000001">
@@ -28,8 +28,8 @@
             <Font name="Arial Bold" size="22.0" />
          </font>
       </Text>
-      <Text layoutX="190.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Already got an account?" wrappingWidth="200.4000000000001" />
-      <Button layoutX="350.0" layoutY="348.0" mnemonicParsing="false" onAction="#RegisterToLoginPage" text="Login" textFill="#e13f3f">
+      <Text layoutX="140.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Already got an account?" wrappingWidth="150.4000000000001" />
+      <Button layoutX="277.0" layoutY="348.0" mnemonicParsing="false" text="Login" textFill="#e13f3f">
          <contextMenu>
             <ContextMenu>
               <items>
@@ -38,7 +38,7 @@
             </ContextMenu>
          </contextMenu>
       </Button>
-      <Button layoutX="244.0" layoutY="299.0" mnemonicParsing="false" onAction="#RegisterButton" prefHeight="26.0" prefWidth="110.0" text="Register" textAlignment="RIGHT" textFill="#c91919">
+      <Button layoutX="244.0" layoutY="299.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" text="Register" textAlignment="RIGHT" textFill="#c91919">
          <font>
             <Font size="18.0" />
          </font>

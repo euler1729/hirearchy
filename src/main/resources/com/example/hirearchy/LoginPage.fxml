@@ -8,21 +8,21 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hirearchy.controller.RegisterAndLoginPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #A9A9A9;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane layoutX="131.0" layoutY="104.0" prefHeight="253.0" prefWidth="338.0">
          <children>
             <TextField layoutX="1.0" layoutY="46.0" prefHeight="42.0" prefWidth="338.0" promptText="Email address" style="-fx-background-color: #ffffff;" />
             <ButtonBar layoutX="1.0" layoutY="157.0" prefHeight="54.0" prefWidth="338.0">
               <buttons>
-                <Button layoutX="10.0" layoutY="10.0" minWidth="79.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="85.0" text="Login" />
+                <Button mnemonicParsing="false" text="Login" />
               </buttons>
             </ButtonBar>
             <PasswordField layoutY="103.0" prefHeight="42.0" prefWidth="338.0" promptText="Password" style="-fx-background-color: #ffffff;" />
+            <Button layoutX="177.0" layoutY="227.0" mnemonicParsing="false" text="Register" />
          </children>
       </Pane>
-      <TextField layoutX="131.0" layoutY="327.0" prefHeight="26.0" prefWidth="174.0" />
-      <Button layoutX="313.0" layoutY="328.0" mnemonicParsing="false" onAction="#LoginToRegisterPage" text="Register" />
-      <Text fill="#9c1d1d" layoutX="143.0" layoutY="347.0" strokeType="OUTSIDE" strokeWidth="0.0" text="already have an account?" />
+      <TextField layoutX="131.0" layoutY="327.0" prefHeight="26.0" prefWidth="174.0" style="-fx-background-color: #A9A9A9;" />
+      <Text fill="#9c1d1d" layoutX="160.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="already have an account?" />
    </children>
 </AnchorPane>
