@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hirearchy.controller.RegisterAndLoginPageController">
+   <children>
+      <Pane layoutX="131.0" layoutY="104.0" prefHeight="253.0" prefWidth="338.0">
+         <children>
+            <TextField layoutX="1.0" layoutY="46.0" prefHeight="42.0" prefWidth="338.0" promptText="Email address" style="-fx-background-color: #ffffff;" />
+            <ButtonBar layoutX="1.0" layoutY="157.0" prefHeight="54.0" prefWidth="338.0">
+              <buttons>
+                <Button layoutX="10.0" layoutY="10.0" minWidth="79.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="85.0" text="Login" />
+              </buttons>
+            </ButtonBar>
+            <PasswordField layoutY="103.0" prefHeight="42.0" prefWidth="338.0" promptText="Password" style="-fx-background-color: #ffffff;" />
+         </children>
+      </Pane>
+      <TextField layoutX="131.0" layoutY="327.0" prefHeight="26.0" prefWidth="174.0" />
+      <Button layoutX="313.0" layoutY="328.0" mnemonicParsing="false" onAction="#LoginToRegisterPage" text="Register" />
+      <Text fill="#9c1d1d" layoutX="143.0" layoutY="347.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account?" />
+   </children>
+</AnchorPane>
