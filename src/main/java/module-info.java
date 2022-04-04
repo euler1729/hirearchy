@@ -11,6 +11,7 @@ module com.example.hirearchy {
     requires eu.hansolo.tilesfx;
     requires java.sql;
     requires org.postgresql.jdbc;
+    requires org.jetbrains.annotations;
 
     opens com.example.hirearchy to javafx.fxml;
     exports com.example.hirearchy;

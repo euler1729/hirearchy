@@ -1,5 +1,6 @@
 package com.example.hirearchy.controller;
 
+import com.example.hirearchy.model.DB_Operations;
 import com.example.hirearchy.model.PGSQL;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -12,9 +13,11 @@ public class HelloController {
 
     @FXML
     protected void onHelloButtonClick(){
-        Person user = new Person("abc", "516551","fasad@gmail.com",0,"dsafa",1);
+        Customer user = new Customer("abc", "516551","fasad@gmail.com",0,"dsafa",1);
         try{
-            PGSQL.insertRecord(user);
+            boolean authenticated = DB_Operations.auth("fardin@gmail.com","dsaffa");
+            System.out.println(authenticated);
+//            PGSQL.insertRecord(user);
         }catch (Exception exp){
             System.out.println(exp);
         }
