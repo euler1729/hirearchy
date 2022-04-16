@@ -1,11 +1,9 @@
 package com.example.hirearchy.controller;
 
+import com.example.hirearchy.model.Customer;
 import com.example.hirearchy.model.DB_Operations;
-import com.example.hirearchy.model.PGSQL;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-
-import java.sql.SQLException;
 
 public class HelloController {
     @FXML

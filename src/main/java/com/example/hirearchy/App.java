@@ -1,6 +1,6 @@
 package com.example.hirearchy;
 
-import com.example.hirearchy.controller.Person;
+import com.example.hirearchy.model.Person;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

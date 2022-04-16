@@ -1,8 +1,5 @@
 package com.example.hirearchy.model;
 
-import com.example.hirearchy.controller.Customer;
-import com.example.hirearchy.controller.Worker;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;

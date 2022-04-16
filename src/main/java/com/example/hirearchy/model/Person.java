@@ -1,6 +1,6 @@
-package com.example.hirearchy.controller;
+package com.example.hirearchy.model;
 
-public class Person {
+public abstract class Person {
     private String name;
     private String contact_no;
     private String email;    
@@ -64,7 +64,13 @@ public class Person {
     public void setLocation(int location) {
         this.location = location;
     }
+//  Methods
+    public boolean editProfile(){
 
+    }
+    public boolean showProfile(){
+
+    }
 
 
 }

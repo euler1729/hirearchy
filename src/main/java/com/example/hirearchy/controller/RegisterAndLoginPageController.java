@@ -1,7 +1,10 @@
 package com.example.hirearchy.controller;
 
 import com.example.hirearchy.App;
+import com.example.hirearchy.model.Customer;
 import com.example.hirearchy.model.DB_Operations;
+import com.example.hirearchy.model.Person;
+import com.example.hirearchy.model.Worker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
