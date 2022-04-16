@@ -27,7 +27,7 @@ public class RegisterAndLoginPageController implements Initializable {
     private Parent root;
 
     public void RegisterToLoginPage(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("LoginPage.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setTitle("Login to Hirearchy");

@@ -4,14 +4,18 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public class PGSQL {
+public abstract class PGSQL {
 
 
-    private static Connection Connect(){
+    static Connection Connect(){
         Connection connection=null;
-        String db_user = "mahmud";
-        String db_password = "mufidul@111";
-        String db_url = "jdbc:postgresql://127.0.0.1:5432/hirearchy";
+//        String db_user = "mahmud";
+//        String db_password = "mufidul@111";
+//        String db_url = "jdbc:postgresql://127.0.0.1:5432/hirearchy";
+        String db_url = "jdbc:postgresql://ec2-52-21-136-176.compute-1.amazonaws.com:5432/dflk0e7s9ngvop";
+        String db_password = "1ee242de16f2c68eb8554092654d4b4e574a408d37f63747ed5e05d8e52717ce";
+        String db_user = "wkprnsntpruzxx";
+//        String url = "postgres://wkprnsntpruzxx:1ee242de16f2c68eb8554092654d4b4e574a408d37f63747ed5e05d8e52717ce@ec2-52-21-136-176.compute-1.amazonaws.com:5432/dflk0e7s9ngvop";
         try{
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(db_url,db_user,db_password);

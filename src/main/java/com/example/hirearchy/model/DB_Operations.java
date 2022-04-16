@@ -120,4 +120,7 @@ public class DB_Operations extends PGSQL{
             return null;
         }
     }
+    public static void db_connect(){
+        Connect();
+    }
 }
