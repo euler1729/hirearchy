@@ -1,5 +1,6 @@
 package com.example.hirearchy;
 
+import com.example.hirearchy.model.DB_Operations;
 import com.example.hirearchy.model.Person;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,11 +17,7 @@ public class App extends Application {
         stage.setTitle("Home");
         stage.setScene(scene);
         stage.show();
-
-        String profession;
-        Person person;
-
-
+        DB_Operations.db_connect();
     }
 
     public static void main(String[] args) {

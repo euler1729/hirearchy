@@ -6,9 +6,10 @@ import java.util.UUID;
 
 public abstract class PGSQL {
 
+    public static Connection connection=null;
 
-    static Connection Connect(){
-        Connection connection=null;
+    static void Connect(){
+
 //        String db_user = "mahmud";
 //        String db_password = "mufidul@111";
 //        String db_url = "jdbc:postgresql://127.0.0.1:5432/hirearchy";
@@ -25,14 +26,10 @@ public abstract class PGSQL {
             System.exit(0);
         }
         System.out.println("connected!!!");
-        return connection;
     }
     protected boolean insert(DB_Operations op) throws SQLException {
-        Connection connection = Connect();
-        if(connection==null){
-            System.out.println("Connection error");
-            return false;
-        }
+        if(connection==null) Connect();
+
         try{
             UUID id = UUID.randomUUID();
             LocalDate date = LocalDate.now();
@@ -60,7 +57,7 @@ public abstract class PGSQL {
         return true;
     }
     protected static boolean authenticate(String email, String password) throws SQLException {
-        Connection connection = Connect();
+        if(connection==null) Connect();
         int count = 0;
         try{
             String qry = "SELECT * FROM users WHERE email=\'"+email+"\' AND hash=\'"+password+"\'";
@@ -83,7 +80,7 @@ public abstract class PGSQL {
         return count>0;
     }
     protected static ResultSet Query(String qry) throws SQLException{
-        Connection connection = Connect();
+        if(connection==null) Connect();
         ResultSet resultSet = null;
         Statement statement = null;
         try{

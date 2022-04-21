@@ -65,12 +65,7 @@ public abstract class Person {
         this.location = location;
     }
 //  Methods
-    public boolean editProfile(){
-
-    }
-    public boolean showProfile(){
-
-    }
-
+    public abstract boolean editProfile();
+    public abstract boolean showProfile();
 
 }

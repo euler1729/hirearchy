@@ -9,5 +9,13 @@ public abstract class Customer extends Person {
                     int profession, String password, int location) {
         super(name, contact_no, email, profession, password, location);
     }
+    public String showHiringHistory(){
+
+        return "";
+    }
+    public String showReview(){
+
+        return "";
+    }
 
 }
