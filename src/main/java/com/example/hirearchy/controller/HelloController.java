@@ -11,7 +11,17 @@ public class HelloController {
 
     @FXML
     protected void onHelloButtonClick(){
-        Customer user = new Customer("abc", "516551","fasad@gmail.com",0,"dsafa",1);
+        Customer user = new Customer("abc", "516551", "fasad@gmail.com", 0, "dsafa", 1) {
+            @Override
+            public boolean editProfile() {
+                return false;
+            }
+
+            @Override
+            public boolean showProfile() {
+                return false;
+            }
+        };
         try{
 //            boolean authenticated = DB_Operations.auth("fardin@gmail.com","dsaffa");
 //            System.out.println(authenticated);

@@ -17,7 +17,7 @@ public class App extends Application {
         stage.setTitle("Home");
         stage.setScene(scene);
         stage.show();
-        DB_Operations.db_connect();
+//        DB_Operations.db_connect();
     }
 
     public static void main(String[] args) {

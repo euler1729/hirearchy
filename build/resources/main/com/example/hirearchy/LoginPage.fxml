@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #A9A9A9;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #A9A9A9;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hirearchy.controller.RegisterAndLoginPageController">
    <children>
       <Pane layoutX="131.0" layoutY="104.0" prefHeight="253.0" prefWidth="338.0">
          <children>
@@ -19,7 +19,7 @@
               </buttons>
             </ButtonBar>
             <PasswordField layoutY="103.0" prefHeight="42.0" prefWidth="338.0" promptText="Password" style="-fx-background-color: #ffffff;" />
-            <Button layoutX="177.0" layoutY="227.0" mnemonicParsing="false" text="Register" />
+            <Button layoutX="177.0" layoutY="227.0" mnemonicParsing="false" onAction="#LoginToRegisterPage" text="Register" />
          </children>
       </Pane>
       <TextField layoutX="131.0" layoutY="327.0" prefHeight="26.0" prefWidth="174.0" style="-fx-background-color: #A9A9A9;" />

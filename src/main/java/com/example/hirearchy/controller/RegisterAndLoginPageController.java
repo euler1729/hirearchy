@@ -30,7 +30,7 @@ public class RegisterAndLoginPageController implements Initializable {
     private Parent root;
 
     public void RegisterToLoginPage(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("LoginPage.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setTitle("Login to Hirearchy");
@@ -90,12 +90,22 @@ public class RegisterAndLoginPageController implements Initializable {
 
     public void RegisterButton(ActionEvent event){
         try{
-            info1 = new Person( NameTextField.getText(),
-                                ContactNoTextField.getText(),
-                                EmailTextField.getText(),
-                                0,
-                                PasswordTextField.getText(),
-                                0);
+            info1 = new Person(NameTextField.getText(),
+                    ContactNoTextField.getText(),
+                    EmailTextField.getText(),
+                    0,
+                    PasswordTextField.getText(),
+                    0) {
+                @Override
+                public boolean editProfile() {
+                    return false;
+                }
+
+                @Override
+                public boolean showProfile() {
+                    return false;
+                }
+            };
 
             // Check if password is matched with retyped password
 //            ---
