@@ -60,7 +60,7 @@ public class RegisterAndLoginPageController implements Initializable {
     ObservableList<String> LocationsList = FXCollections.observableArrayList("Mirpur",
             "Gabtoli", "Shyamoli",
             "Dhanmondi", "Gulshan",
-            "Banani", "Mohammadpur", "Nilkhet", "Banasree", "Kamalapur", "Khilgaon", "Farmgate", "Shahbag");
+            "Banani", "Mohammadpur", "Nilkhet", "Banasri", "Kamalapur", "Khilgaon", "Farmgate", "Shahbag");
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -83,40 +83,52 @@ public class RegisterAndLoginPageController implements Initializable {
     @FXML
     private TextField RePasswordTextField;
 
-    Person info1;
-    RegularCustomer customer1;
+    RegularCustomer rc;
+    CorporateCustomer cc;
+    FullTimeWorker ftw;
+    PartTimeWorker ptw;
 
     public void RegisterButton(ActionEvent event){
         try{
-
-            customer1 = new RegularCustomer(
-                    NameTextField.getText(),
+            rc = new RegularCustomer(NameTextField.getText(),
                     ContactNoTextField.getText(),
                     EmailTextField.getText(),
                     0,
                     PasswordTextField.getText(),
-                    0) {
-                @Override
-                public boolean editProfile() {
-                    return false;
-                }
+                    0);
 
-                @Override
-                public boolean showProfile() {
-                    return false;
-                }
-            };
+            cc = new CorporateCustomer(NameTextField.getText(),
+                    ContactNoTextField.getText(),
+                    EmailTextField.getText(),
+                    0,
+                    PasswordTextField.getText(),
+                    0);
 
+            ftw = new FullTimeWorker(NameTextField.getText(),
+                    ContactNoTextField.getText(),
+                    EmailTextField.getText(),
+                    0,
+                    PasswordTextField.getText(),
+                    0);
+
+            ptw = new PartTimeWorker(NameTextField.getText(),
+                    ContactNoTextField.getText(),
+                    EmailTextField.getText(),
+                    0,
+                    PasswordTextField.getText(),
+                    0);
             // Check if password is matched with retyped password
 //            ---
 
             boolean done;
 
-            int occupation = 0; // change later
+            int prof = 0; // change later
+
             DB_Operations entry = new DB_Operations();
-            done = entry.insertRecord(customer1);
-//            if(occupation == 0)done = entry.insertRecord((Customer) info1);
-//            else done = entry.insertRecord((Worker) info1);
+            if(prof == 0)done = entry.insertRecord(rc);
+            else if(prof == 1)done = entry.insertRecord(cc);
+            else if(prof == 2)done = entry.insertRecord(ftw);
+            else done = entry.insertRecord(ptw);
 
             if(done){
                 System.out.println("Done");
