@@ -20,7 +20,7 @@ public class DB_Operations extends PGSQL{
     public DB_Operations(){
 
     }
-    private DB_Operations(Customer customer) {
+    private<T extends Person> DB_Operations(T customer) {
         this.uuid = UUID.randomUUID();
         this.name = customer.getName();
         this.contact = customer.getContact_no();
@@ -74,7 +74,7 @@ public class DB_Operations extends PGSQL{
         return joined;
     }
 
-    public boolean insertRecord(Customer customer){
+    public <T extends Person> boolean insertRecord(T customer){
         try{
             DB_Operations op = new DB_Operations(customer);
             return insert(op);
@@ -83,15 +83,7 @@ public class DB_Operations extends PGSQL{
             return false;
         }
     }
-    public boolean insertRecord(Worker worker){
-        try{
-            DB_Operations op = new DB_Operations(worker);
-            return insert(op);
-        }catch (Exception exp){
-            System.out.println(exp);
-            return false;
-        }
-    }
+
     public static boolean auth(String email, String password) throws SQLException {
         return authenticate(email, password);
     }

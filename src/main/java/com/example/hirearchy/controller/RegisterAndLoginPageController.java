@@ -63,7 +63,7 @@ public class RegisterAndLoginPageController implements Initializable {
     ObservableList<String> LocationsList = FXCollections.observableArrayList("Mirpur",
             "Gabtoli", "Shyamoli",
             "Dhanmondi", "Gulshan",
-            "Banani", "Mohammadpur", "Nilkhet", "Banasri", "Kamalapur", "Khilgaon", "Farmgate", "Shahbag");
+            "Banani", "Mohammadpur", "Nilkhet", "Banassree", "Kamalapur", "Khilgaon", "Farmgate", "Shahbag");
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
