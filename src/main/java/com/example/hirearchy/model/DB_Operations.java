@@ -18,7 +18,6 @@ public class DB_Operations extends PGSQL{
 
     //Constructors
     public DB_Operations(){
-
     }
     private<T extends Person> DB_Operations(T customer) {
         this.uuid = UUID.randomUUID();
@@ -28,16 +27,6 @@ public class DB_Operations extends PGSQL{
         this.profession = customer.getProfession();
         this.location = customer.getLocation();
         this.password = customer.getPassword();
-        this.joined = LocalDate.now();
-    }
-    private DB_Operations(Worker worker) {
-        this.uuid = UUID.randomUUID();
-        this.name = worker.getName();
-        this.contact = worker.getContact_no();
-        this.email = worker.getEmail();
-        this.profession = worker.getProfession();
-        this.location = worker.getLocation();
-        this.password = worker.getPassword();
         this.joined = LocalDate.now();
     }
 

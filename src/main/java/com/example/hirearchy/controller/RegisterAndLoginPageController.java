@@ -1,10 +1,7 @@
 package com.example.hirearchy.controller;
 
 import com.example.hirearchy.App;
-import com.example.hirearchy.model.Customer;
-import com.example.hirearchy.model.DB_Operations;
-import com.example.hirearchy.model.Person;
-import com.example.hirearchy.model.Worker;
+import com.example.hirearchy.model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -63,7 +60,7 @@ public class RegisterAndLoginPageController implements Initializable {
     ObservableList<String> LocationsList = FXCollections.observableArrayList("Mirpur",
             "Gabtoli", "Shyamoli",
             "Dhanmondi", "Gulshan",
-            "Banani", "Mohammadpur", "Nilkhet", "Banassree", "Kamalapur", "Khilgaon", "Farmgate", "Shahbag");
+            "Banani", "Mohammadpur", "Nilkhet", "Banasree", "Kamalapur", "Khilgaon", "Farmgate", "Shahbag");
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -87,10 +84,13 @@ public class RegisterAndLoginPageController implements Initializable {
     private TextField RePasswordTextField;
 
     Person info1;
+    RegularCustomer customer1;
 
     public void RegisterButton(ActionEvent event){
         try{
-            info1 = new Person(NameTextField.getText(),
+
+            customer1 = new RegularCustomer(
+                    NameTextField.getText(),
                     ContactNoTextField.getText(),
                     EmailTextField.getText(),
                     0,
@@ -114,8 +114,9 @@ public class RegisterAndLoginPageController implements Initializable {
 
             int occupation = 0; // change later
             DB_Operations entry = new DB_Operations();
-            if(occupation == 0)done = entry.insertRecord((Customer) info1);
-            else done = entry.insertRecord((Worker) info1);
+            done = entry.insertRecord(customer1);
+//            if(occupation == 0)done = entry.insertRecord((Customer) info1);
+//            else done = entry.insertRecord((Worker) info1);
 
             if(done == true){
                 System.out.println("Done");
