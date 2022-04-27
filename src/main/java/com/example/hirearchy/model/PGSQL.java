@@ -56,28 +56,27 @@ public abstract class PGSQL {
         }
         return true;
     }
-    protected static boolean authenticate(String email, String password) throws SQLException {
+    protected static ResultSet authenticate(String email, String password) throws SQLException {
         if(connection==null) Connect();
-        int count = 0;
+//        int count = 0;
+        ResultSet resultSet = null;
         try{
             String qry = "SELECT * FROM user_info WHERE email=\'"+email+"\' AND hash=\'"+password+"\'";
             System.out.println(qry);
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(qry);
+            resultSet = statement.executeQuery(qry);
 
-            while(resultSet.next()) {
-                System.out.println(resultSet.getString("email") + " " + resultSet.getString("hash"));
-                ++count;
-            }
-            System.out.println(count);
+//            while(resultSet.next()) {
+//                System.out.println(resultSet.getString("email") + " " + resultSet.getString("hash"));
+//                ++count;
+//            }
+//            System.out.println(count);
             statement.close();
         }catch(Exception exp) {
-            connection.close();
             System.out.println(exp);
-            return false;
+            return null;
         }
-        connection.close();
-        return count>0;
+        return resultSet;
     }
     protected static ResultSet Query(String qry) throws SQLException{
         if(connection==null) Connect();
@@ -90,11 +89,11 @@ public abstract class PGSQL {
         }catch (Exception exp){
             System.out.println(exp);
             connection.rollback();
-            connection.close();
+//            connection.close();
             return resultSet;
         }
         connection.rollback();
-        connection.close();
+//        connection.close();
         return  resultSet;
     }
 

@@ -118,7 +118,7 @@ public class RegisterAndLoginPageController implements Initializable {
 //            if(occupation == 0)done = entry.insertRecord((Customer) info1);
 //            else done = entry.insertRecord((Worker) info1);
 
-            if(done == true){
+            if(done){
                 System.out.println("Done");
             }
             else {
