@@ -18,9 +18,8 @@ public class DB_Operations extends PGSQL{
 
     //Constructors
     public DB_Operations(){
-
     }
-    private DB_Operations(Customer customer) {
+    private<T extends Person> DB_Operations(T customer) {
         this.uuid = UUID.randomUUID();
         this.name = customer.getName();
         this.contact = customer.getContact_no();
@@ -28,16 +27,6 @@ public class DB_Operations extends PGSQL{
         this.profession = customer.getProfession();
         this.location = customer.getLocation();
         this.password = customer.getPassword();
-        this.joined = LocalDate.now();
-    }
-    private DB_Operations(Worker worker) {
-        this.uuid = UUID.randomUUID();
-        this.name = worker.getName();
-        this.contact = worker.getContact_no();
-        this.email = worker.getEmail();
-        this.profession = worker.getProfession();
-        this.location = worker.getLocation();
-        this.password = worker.getPassword();
         this.joined = LocalDate.now();
     }
 
@@ -74,7 +63,7 @@ public class DB_Operations extends PGSQL{
         return joined;
     }
 
-    public boolean insertRecord(Customer customer){
+    public <T extends Person> boolean insertRecord(T customer){
         try{
             DB_Operations op = new DB_Operations(customer);
             return insert(op);
@@ -83,15 +72,7 @@ public class DB_Operations extends PGSQL{
             return false;
         }
     }
-    public boolean insertRecord(Worker worker){
-        try{
-            DB_Operations op = new DB_Operations(worker);
-            return insert(op);
-        }catch (Exception exp){
-            System.out.println(exp);
-            return false;
-        }
-    }
+
     public static boolean auth(String email, String password) throws SQLException {
         return authenticate(email, password);
     }

@@ -33,7 +33,7 @@ public abstract class PGSQL {
         try{
             UUID id = UUID.randomUUID();
             LocalDate date = LocalDate.now();
-            String insert = "INSERT INTO users (id,email,hash,name,contact,location,profession,joined) " +
+            String insert = "INSERT INTO user_info (id,email,hash,name,contact,location,profession,joined) " +
                     "VALUES (?,?,?,?,?,?,?,?);";
 
             PreparedStatement statement = connection.prepareStatement(insert);
@@ -60,7 +60,7 @@ public abstract class PGSQL {
         if(connection==null) Connect();
         int count = 0;
         try{
-            String qry = "SELECT * FROM users WHERE email=\'"+email+"\' AND hash=\'"+password+"\'";
+            String qry = "SELECT * FROM user_info WHERE email=\'"+email+"\' AND hash=\'"+password+"\'";
             System.out.println(qry);
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(qry);
