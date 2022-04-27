@@ -1,10 +1,7 @@
 package com.example.hirearchy.controller;
 
 import com.example.hirearchy.App;
-import com.example.hirearchy.model.Customer;
-import com.example.hirearchy.model.DB_Operations;
-import com.example.hirearchy.model.Person;
-import com.example.hirearchy.model.Worker;
+import com.example.hirearchy.model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -86,36 +83,52 @@ public class RegisterAndLoginPageController implements Initializable {
     @FXML
     private TextField RePasswordTextField;
 
-    Person info1;
+    RegularCustomer rc;
+    CorporateCustomer cc;
+    FullTimeWorker ftw;
+    PartTimeWorker ptw;
 
     public void RegisterButton(ActionEvent event){
         try{
-            info1 = new Person(NameTextField.getText(),
+            rc = new RegularCustomer(NameTextField.getText(),
                     ContactNoTextField.getText(),
                     EmailTextField.getText(),
                     0,
                     PasswordTextField.getText(),
-                    0) {
-                @Override
-                public boolean editProfile() {
-                    return false;
-                }
+                    0);
 
-                @Override
-                public boolean showProfile() {
-                    return false;
-                }
-            };
+            cc = new CorporateCustomer(NameTextField.getText(),
+                    ContactNoTextField.getText(),
+                    EmailTextField.getText(),
+                    0,
+                    PasswordTextField.getText(),
+                    0);
+
+            ftw = new FullTimeWorker(NameTextField.getText(),
+                    ContactNoTextField.getText(),
+                    EmailTextField.getText(),
+                    0,
+                    PasswordTextField.getText(),
+                    0);
+
+            ptw = new PartTimeWorker(NameTextField.getText(),
+                    ContactNoTextField.getText(),
+                    EmailTextField.getText(),
+                    0,
+                    PasswordTextField.getText(),
+                    0);
 
             // Check if password is matched with retyped password
 //            ---
 
             boolean done;
 
-            int occupation = 0; // change later
+            int prof = 0; // change later
             DB_Operations entry = new DB_Operations();
-            if(occupation == 0)done = entry.insertRecord((Customer) info1);
-            else done = entry.insertRecord((Worker) info1);
+            if(prof == 0)done = entry.insertRecord(rc);
+            else if(prof == 1)done = entry.insertRecord(cc);
+            else if(prof == 2)done = entry.insertRecord(ftw);
+            else done = entry.insertRecord(ptw);
 
             if(done == true){
                 System.out.println("Done");
@@ -123,7 +136,6 @@ public class RegisterAndLoginPageController implements Initializable {
             else {
                 System.out.println("Error");
             }
-
         }
         catch (Exception e){
             System.out.println(e.getMessage());
