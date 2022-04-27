@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.controlsfx.control.action.Action;
 
 import java.io.IOException;
 import java.net.URL;
@@ -137,6 +138,22 @@ public class RegisterAndLoginPageController implements Initializable {
                 System.out.println("Error");
             }
 
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void loginButton(ActionEvent event){
+        try{
+            DB_Operations obj = DB_Operations.auth(EmailTextField.getText(),
+                                PasswordTextField.getText());
+            if(obj == null){
+                // show error message
+            }
+            else {
+                // go to homepage
+            }
         }
         catch (Exception e){
             System.out.println(e.getMessage());
