@@ -73,7 +73,7 @@ public class DB_Operations extends PGSQL{
         }
     }
 
-    public static boolean auth(String email, String password) throws SQLException {
+    public static Object auth(String email, String password) throws SQLException {
         return authenticate(email, password);
     }
     public static ResultSet search(String profession, String location){
