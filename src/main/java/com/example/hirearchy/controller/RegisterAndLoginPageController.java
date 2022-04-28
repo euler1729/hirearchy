@@ -36,13 +36,18 @@ public class RegisterAndLoginPageController implements Initializable {
         stage.show();
     }
 
-    public void LoginToRegisterPage(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("RegisterPage.fxml"));
-        scene = new Scene(fxmlLoader.load());
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setTitle("Register to Hirearchy");
-        stage.setScene(scene);
-        stage.show();
+    public void LoginToRegisterPage(ActionEvent event) {
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("RegisterPage.fxml"));
+            scene = new Scene(fxmlLoader.load());
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.setTitle("Register to Hirearchy");
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
 
@@ -150,9 +155,17 @@ public class RegisterAndLoginPageController implements Initializable {
                                                    PasswordTextField.getText());
             if(obj==null){
                 //show a popup window/message saying "Wrong Credentials"
+                System.out.println("wrong credentials");
             }
             else{
+                System.out.println("working");
 //                return obj;
+                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Customer.fxml"));
+                scene = new Scene(fxmlLoader.load());
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                stage.setTitle("Welcome Home");
+                stage.setScene(scene);
+                stage.show();
             }
         }
         catch (Exception e){
