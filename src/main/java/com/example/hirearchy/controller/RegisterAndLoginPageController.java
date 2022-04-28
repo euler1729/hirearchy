@@ -148,14 +148,11 @@ public class RegisterAndLoginPageController implements Initializable {
         try{
             DB_Operations obj = DB_Operations.auth(EmailTextField.getText(),
                                                    PasswordTextField.getText());
-            if(obj == null){
-                // show error message
+            if(obj==null){
+                //show a popup window/message saying "Wrong Credentials"
             }
-            else {
-                System.out.println("logged in");
-                //before going homepage, have to fetch data to show data
-                // for worker/customer
-                // go to homepage
+            else{
+//                return obj;
             }
         }
         catch (Exception e){
