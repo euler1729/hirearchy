@@ -147,11 +147,14 @@ public class RegisterAndLoginPageController implements Initializable {
     public void loginButton(ActionEvent event){
         try{
             DB_Operations obj = DB_Operations.auth(EmailTextField.getText(),
-                                PasswordTextField.getText());
+                                                   PasswordTextField.getText());
             if(obj == null){
                 // show error message
             }
             else {
+                System.out.println("logged in");
+                //before going homepage, have to fetch data to show data
+                // for worker/customer
                 // go to homepage
             }
         }

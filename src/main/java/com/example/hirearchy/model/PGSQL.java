@@ -66,10 +66,11 @@ public abstract class PGSQL {
             Statement statement = connection.createStatement();
             resultSet = statement.executeQuery(qry);
 
-//            while(resultSet.next()) {
+            while(resultSet.next()) {
+                System.out.println(resultSet.getString("name")+" "+resultSet.getInt("profession"));
 //                System.out.println(resultSet.getString("email") + " " + resultSet.getString("hash"));
 //                ++count;
-//            }
+            }
 //            System.out.println(count);
             statement.close();
         }catch(Exception exp) {
