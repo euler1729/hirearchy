@@ -39,7 +39,7 @@
             </ContextMenu>
          </contextMenu>
       </Button>
-      <Button layoutX="244.0" layoutY="299.0" mnemonicParsing="false" onAction="#RegisterButton" prefHeight="26.0" prefWidth="110.0" text="Register" textAlignment="RIGHT" textFill="#c91919">
+      <Button layoutX="244.0" layoutY="299.0" mnemonicParsing="false" onAction="#onRegisterButtonClick" prefHeight="26.0" prefWidth="110.0" text="Register" textAlignment="RIGHT" textFill="#c91919">
          <font>
             <Font size="18.0" />
          </font>

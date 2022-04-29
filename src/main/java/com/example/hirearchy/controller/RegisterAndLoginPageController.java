@@ -20,7 +20,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static com.example.hirearchy.controller.HomePageController.showHomePage;
+import static com.example.hirearchy.controller.HomePageController.showCustomerHomePage;
+import static com.example.hirearchy.controller.HomePageController.showWorkerHomePage;
 
 public class RegisterAndLoginPageController implements Initializable {
 
@@ -66,7 +67,7 @@ public class RegisterAndLoginPageController implements Initializable {
     ObservableList<String> LocationsList = FXCollections.observableArrayList("Mirpur",
             "Gabtoli", "Shyamoli",
             "Dhanmondi", "Gulshan",
-            "Banani", "Mohammadpur", "Nilkhet", "Banasri", "Kamalapur", "Khilgaon", "Farmgate", "Shahbag");
+            "Banani", "Mohammadpur", "Nilkhet", "Kamalapur", "Khilgaon", "Farmgate", "Shahbag");
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -138,6 +139,13 @@ public class RegisterAndLoginPageController implements Initializable {
 
             if(done){
                 System.out.println("Done");
+
+                if(prof <= 1){
+                    showCustomerHomePage(event);
+                }
+                else {
+                    showWorkerHomePage(event);
+                }
             }
             else {
                 System.out.println("Error");
@@ -176,7 +184,7 @@ public class RegisterAndLoginPageController implements Initializable {
                     //Create Object for profession 0(maybe PartTime Worker)
                     //And show suitable page for that user
                 }
-                showHomePage(event);
+                showCustomerHomePage(event);
             }
         }
         catch (Exception e){

@@ -16,9 +16,23 @@ import java.util.ResourceBundle;
 
 public class HomePageController implements Initializable {
 
-    public static void showHomePage(ActionEvent event){
+    public static void showCustomerHomePage(ActionEvent event){
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Customer.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("Welcome Home");
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void showWorkerHomePage(ActionEvent event){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Worker.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setTitle("Welcome Home");
