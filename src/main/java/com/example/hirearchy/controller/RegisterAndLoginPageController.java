@@ -20,11 +20,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static com.example.hirearchy.controller.HomePageController.showHomePage;
+
 public class RegisterAndLoginPageController implements Initializable {
 
     // Scene transition
     private Stage stage;
-    private Scene scene;
     private Parent root;
 
     public void RegisterToLoginPage(ActionEvent event) throws IOException {
@@ -39,7 +40,7 @@ public class RegisterAndLoginPageController implements Initializable {
     public void LoginToRegisterPage(ActionEvent event) {
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("RegisterPage.fxml"));
-            scene = new Scene(fxmlLoader.load());
+            Scene scene = new Scene(fxmlLoader.load());
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             stage.setTitle("Register to Hirearchy");
             stage.setScene(scene);
@@ -49,7 +50,6 @@ public class RegisterAndLoginPageController implements Initializable {
             System.out.println(e.getMessage());
         }
     }
-
 
 
     // dropdown options for register as
@@ -94,7 +94,7 @@ public class RegisterAndLoginPageController implements Initializable {
     FullTimeWorker ftw;
     PartTimeWorker ptw;
 
-    public void RegisterButton(ActionEvent event){
+    public void onRegisterButtonClick(ActionEvent event){
         try{
             rc = new RegularCustomer(NameTextField.getText(),
                     ContactNoTextField.getText(),
@@ -149,27 +149,38 @@ public class RegisterAndLoginPageController implements Initializable {
         }
     }
 
-    public void loginButton(ActionEvent event){
+    public void onLoginButtonClick(ActionEvent event){
         try{
-            DB_Operations obj = DB_Operations.auth(EmailTextField.getText(),
-                                                   PasswordTextField.getText());
+            DB_Operations obj = new DB_Operations();
+            obj = obj.auth(EmailTextField.getText(),
+                    PasswordTextField.getText());
             if(obj==null){
                 //show a popup window/message saying "Wrong Credentials"
                 System.out.println("wrong credentials");
             }
             else{
                 System.out.println("working");
-//                return obj;
-                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Customer.fxml"));
-                scene = new Scene(fxmlLoader.load());
-                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                stage.setTitle("Welcome Home");
-                stage.setScene(scene);
-                stage.show();
+                if(obj.getProfession()==0){
+                    //Create Object for profession 0(maybe Corporate Customer)
+                    //And show suitable page for that user
+                }
+                else if(obj.getProfession()==1){
+                    //Create Object for profession 0(maybe Regular Customer)
+                    //And show suitable page for that user
+                }
+                else if(obj.getProfession()>20 && obj.getProfession()<30){
+                    //Create Object for profession 0(maybe Fulltime Worker)
+                    //And show suitable page for that user
+                }
+                else if(obj.getProfession()>=30){
+                    //Create Object for profession 0(maybe PartTime Worker)
+                    //And show suitable page for that user
+                }
+                showHomePage(event);
             }
         }
         catch (Exception e){
-            System.out.println(e.getMessage());
+            System.out.println(e);
         }
     }
 }

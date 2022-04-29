@@ -11,12 +11,11 @@ public abstract class PGSQL {
     static void Connect(){
 
 //        String db_user = "mahmud";
-//        String db_password = "mufidul@111";
+//        String db_password = "***************";
 //        String db_url = "jdbc:postgresql://127.0.0.1:5432/hirearchy";
         String db_url = "jdbc:postgresql://ec2-52-21-136-176.compute-1.amazonaws.com:5432/dflk0e7s9ngvop";
         String db_password = "1ee242de16f2c68eb8554092654d4b4e574a408d37f63747ed5e05d8e52717ce";
         String db_user = "wkprnsntpruzxx";
-//        String url = "postgres://wkprnsntpruzxx:1ee242de16f2c68eb8554092654d4b4e574a408d37f63747ed5e05d8e52717ce@ec2-52-21-136-176.compute-1.amazonaws.com:5432/dflk0e7s9ngvop";
         try{
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(db_url,db_user,db_password);
@@ -58,21 +57,12 @@ public abstract class PGSQL {
     }
     protected static ResultSet authenticate(String email, String password) throws SQLException {
         if(connection==null) Connect();
-//        int count = 0;
         ResultSet resultSet = null;
         try{
             String qry = "SELECT * FROM user_info WHERE email=\'"+email+"\' AND hash=\'"+password+"\'";
             System.out.println(qry);
             Statement statement = connection.createStatement();
             resultSet = statement.executeQuery(qry);
-
-            while(resultSet.next()) {
-                System.out.println(resultSet.getString("name")+" "+resultSet.getInt("profession"));
-//                System.out.println(resultSet.getString("email") + " " + resultSet.getString("hash"));
-//                ++count;
-            }
-//            System.out.println(count);
-            statement.close();
         }catch(Exception exp) {
             System.out.println(exp);
             return null;
@@ -86,16 +76,13 @@ public abstract class PGSQL {
         try{
             statement = connection.createStatement();
             resultSet = statement.executeQuery(qry);
-            statement.close();
+            return resultSet;
         }catch (Exception exp){
             System.out.println(exp);
-            connection.rollback();
-//            connection.close();
-            return resultSet;
+            assert statement != null;
+            statement.close();
+            return null;
         }
-        connection.rollback();
-//        connection.close();
-        return  resultSet;
     }
 
 }

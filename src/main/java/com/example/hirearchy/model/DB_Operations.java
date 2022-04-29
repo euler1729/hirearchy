@@ -106,16 +106,19 @@ public class DB_Operations extends PGSQL{
         }
     }
 
-    public static DB_Operations auth(String email, String password) throws SQLException {
+    public DB_Operations auth(String email, String password) throws SQLException {
         ResultSet resultSet = authenticate(email,password);
         if(resultSet==null) return  null;
         DB_Operations info = new DB_Operations();
-        info.setName(resultSet.getString("name"));
-        info.setEmail(resultSet.getString("email"));
-        info.setContact(resultSet.getString("contact"));
-        info.setLocation(resultSet.getInt("location"));
-        info.setProfession(resultSet.getInt("profession"));
-        info.setJoined(resultSet.getDate("joined").toLocalDate());
+        while(resultSet.next()) {
+            info.setName(resultSet.getString("name"));
+            info.setEmail(resultSet.getString("email"));
+            info.setContact(resultSet.getString("contact"));
+            info.setLocation(resultSet.getInt("location"));
+            info.setProfession(resultSet.getInt("profession"));
+            info.setJoined(resultSet.getDate("joined").toLocalDate());
+            System.out.println(info.getName()+" "+info.getContact()+" "+info.getEmail());
+        }
         return info;
     }
     public static ResultSet search(String profession, String location){
