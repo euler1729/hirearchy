@@ -33,6 +33,8 @@ open module com.example.merged.module {
     exports org.checkerframework.dataflow.qual;
     exports org.checkerframework.framework.qual;
     exports org.checkerframework.framework.util;
+    exports org.intellij.lang.annotations;
+    exports org.jetbrains.annotations;
     exports org.postgresql;
     exports org.postgresql.copy;
     exports org.postgresql.core;
