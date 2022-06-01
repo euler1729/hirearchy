@@ -1,8 +1,6 @@
 package com.example.hirearchy.model;
 
-import com.example.hirearchy.controller.Customer;
-import com.example.hirearchy.controller.Worker;
-
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -21,9 +19,8 @@ public class DB_Operations extends PGSQL{
 
     //Constructors
     public DB_Operations(){
-
     }
-    private DB_Operations(Customer customer) {
+    private<T extends Person> DB_Operations(T customer) {
         this.uuid = UUID.randomUUID();
         this.name = customer.getName();
         this.contact = customer.getContact_no();
@@ -31,16 +28,6 @@ public class DB_Operations extends PGSQL{
         this.profession = customer.getProfession();
         this.location = customer.getLocation();
         this.password = customer.getPassword();
-        this.joined = LocalDate.now();
-    }
-    private DB_Operations(Worker worker) {
-        this.uuid = UUID.randomUUID();
-        this.name = worker.getName();
-        this.contact = worker.getContact_no();
-        this.email = worker.getEmail();
-        this.profession = worker.getProfession();
-        this.location = worker.getLocation();
-        this.password = worker.getPassword();
         this.joined = LocalDate.now();
     }
 
@@ -77,7 +64,39 @@ public class DB_Operations extends PGSQL{
         return joined;
     }
 
-    public boolean insertRecord(Customer customer){
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setProfession(int profession) {
+        this.profession = profession;
+    }
+
+    public void setLocation(int location) {
+        this.location = location;
+    }
+
+    public void setJoined(LocalDate joined) {
+        this.joined = joined;
+    }
+
+    public <T extends Person> boolean insertRecord(T customer){
         try{
             DB_Operations op = new DB_Operations(customer);
             return insert(op);
@@ -86,17 +105,21 @@ public class DB_Operations extends PGSQL{
             return false;
         }
     }
-    public boolean insertRecord(Worker worker){
-        try{
-            DB_Operations op = new DB_Operations(worker);
-            return insert(op);
-        }catch (Exception exp){
-            System.out.println(exp);
-            return false;
+
+    public DB_Operations auth(String email, String password) throws SQLException {
+        ResultSet resultSet = authenticate(email,password);
+        if(resultSet==null) return  null;
+        DB_Operations info = new DB_Operations();
+        while(resultSet.next()) {
+            info.setName(resultSet.getString("name"));
+            info.setEmail(resultSet.getString("email"));
+            info.setContact(resultSet.getString("contact"));
+            info.setLocation(resultSet.getInt("location"));
+            info.setProfession(resultSet.getInt("profession"));
+            info.setJoined(resultSet.getDate("joined").toLocalDate());
+            System.out.println(info.getName()+" "+info.getContact()+" "+info.getEmail());
         }
-    }
-    public static boolean auth(String email, String password) throws SQLException {
-        return authenticate(email, password);
+        return info;
     }
     public static ResultSet search(String profession, String location){
         String qry = "SELECT name, profession, location, contact FROM users WHERE " +
@@ -119,5 +142,8 @@ public class DB_Operations extends PGSQL{
             System.out.println(exp);
             return null;
         }
+    }
+    public static void db_connect(){
+        Connect();
     }
 }

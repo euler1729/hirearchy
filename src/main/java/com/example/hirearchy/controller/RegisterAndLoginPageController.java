@@ -1,7 +1,7 @@
 package com.example.hirearchy.controller;
 
 import com.example.hirearchy.App;
-import com.example.hirearchy.model.DB_Operations;
+import com.example.hirearchy.model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,16 +14,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.controlsfx.control.action.Action;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static com.example.hirearchy.controller.HomePageController.showCustomerHomePage;
+import static com.example.hirearchy.controller.HomePageController.showWorkerHomePage;
+
 public class RegisterAndLoginPageController implements Initializable {
 
     // Scene transition
     private Stage stage;
-    private Scene scene;
     private Parent root;
 
     public void RegisterToLoginPage(ActionEvent event) throws IOException {
@@ -35,15 +38,19 @@ public class RegisterAndLoginPageController implements Initializable {
         stage.show();
     }
 
-    public void LoginToRegisterPage(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("RegisterPage.fxml"));
-        scene = new Scene(fxmlLoader.load());
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setTitle("Register to Hirearchy");
-        stage.setScene(scene);
-        stage.show();
+    public void LoginToRegisterPage(ActionEvent event) {
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("RegisterPage.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.setTitle("Register to Hirearchy");
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
-
 
 
     // dropdown options for register as
@@ -60,7 +67,7 @@ public class RegisterAndLoginPageController implements Initializable {
     ObservableList<String> LocationsList = FXCollections.observableArrayList("Mirpur",
             "Gabtoli", "Shyamoli",
             "Dhanmondi", "Gulshan",
-            "Banani", "Mohammadpur", "Nilkhet", "Banasri", "Kamalapur", "Khilgaon", "Farmgate", "Shahbag");
+            "Banani", "Mohammadpur", "Nilkhet", "Kamalapur", "Khilgaon", "Farmgate", "Shahbag");
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -83,29 +90,62 @@ public class RegisterAndLoginPageController implements Initializable {
     @FXML
     private TextField RePasswordTextField;
 
-    Person info1;
+    RegularCustomer rc;
+    CorporateCustomer cc;
+    FullTimeWorker ftw;
+    PartTimeWorker ptw;
 
-    public void RegisterButton(ActionEvent event){
+    public void onRegisterButtonClick(ActionEvent event){
         try{
-            info1 = new Person( NameTextField.getText(),
-                                ContactNoTextField.getText(),
-                                EmailTextField.getText(),
-                                0,
-                                PasswordTextField.getText(),
-                                0);
+            rc = new RegularCustomer(NameTextField.getText(),
+                    ContactNoTextField.getText(),
+                    EmailTextField.getText(),
+                    0,
+                    PasswordTextField.getText(),
+                    0);
 
+            cc = new CorporateCustomer(NameTextField.getText(),
+                    ContactNoTextField.getText(),
+                    EmailTextField.getText(),
+                    0,
+                    PasswordTextField.getText(),
+                    0);
+
+            ftw = new FullTimeWorker(NameTextField.getText(),
+                    ContactNoTextField.getText(),
+                    EmailTextField.getText(),
+                    0,
+                    PasswordTextField.getText(),
+                    0);
+
+            ptw = new PartTimeWorker(NameTextField.getText(),
+                    ContactNoTextField.getText(),
+                    EmailTextField.getText(),
+                    0,
+                    PasswordTextField.getText(),
+                    0);
             // Check if password is matched with retyped password
 //            ---
 
             boolean done;
 
-            int occupation = 0; // change later
-            DB_Operations entry = new DB_Operations();
-            if(occupation == 0)done = entry.insertRecord((Customer) info1);
-            else done = entry.insertRecord((Worker) info1);
+            int prof = 0; // change later
 
-            if(done == true){
+            DB_Operations entry = new DB_Operations();
+            if(prof == 0)done = entry.insertRecord(rc);
+            else if(prof == 1)done = entry.insertRecord(cc);
+            else if(prof == 2)done = entry.insertRecord(ftw);
+            else done = entry.insertRecord(ptw);
+
+            if(done){
                 System.out.println("Done");
+
+                if(prof <= 1){
+                    showCustomerHomePage(event);
+                }
+                else {
+                    showWorkerHomePage(event);
+                }
             }
             else {
                 System.out.println("Error");
@@ -114,6 +154,41 @@ public class RegisterAndLoginPageController implements Initializable {
         }
         catch (Exception e){
             System.out.println(e.getMessage());
+        }
+    }
+
+    public void onLoginButtonClick(ActionEvent event){
+        try{
+            DB_Operations obj = new DB_Operations();
+            obj = obj.auth(EmailTextField.getText(),
+                    PasswordTextField.getText());
+            if(obj==null){
+                //show a popup window/message saying "Wrong Credentials"
+                System.out.println("wrong credentials");
+            }
+            else{
+                System.out.println("working");
+                if(obj.getProfession()==0){
+                    //Create Object for profession 0(maybe Corporate Customer)
+                    //And show suitable page for that user
+                }
+                else if(obj.getProfession()==1){
+                    //Create Object for profession 0(maybe Regular Customer)
+                    //And show suitable page for that user
+                }
+                else if(obj.getProfession()>20 && obj.getProfession()<30){
+                    //Create Object for profession 0(maybe Fulltime Worker)
+                    //And show suitable page for that user
+                }
+                else if(obj.getProfession()>=30){
+                    //Create Object for profession 0(maybe PartTime Worker)
+                    //And show suitable page for that user
+                }
+                showCustomerHomePage(event);
+            }
+        }
+        catch (Exception e){
+            System.out.println(e);
         }
     }
 }
