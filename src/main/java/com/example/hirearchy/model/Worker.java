@@ -1,7 +1,5 @@
 package com.example.hirearchy.model;
 
-import com.example.hirearchy.model.Person;
-
 public abstract class Worker extends Person {
     private String experience;
     private double rating;

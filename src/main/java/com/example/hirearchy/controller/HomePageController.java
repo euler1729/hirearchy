@@ -1,5 +1,4 @@
 package com.example.hirearchy.controller;
-
 import com.example.hirearchy.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;

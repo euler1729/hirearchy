@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -29,13 +30,17 @@ public class RegisterAndLoginPageController implements Initializable {
     private Stage stage;
     private Parent root;
 
-    public void RegisterToLoginPage(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("LoginPage.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setTitle("Login to Hirearchy");
-        stage.setScene(scene);
-        stage.show();
+    public void RegisterToLoginPage(ActionEvent event){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("LoginPage.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("Login to Hirearchy");
+            stage.setScene(scene);
+            stage.show();
+        }catch (Exception e){
+            e.getStackTrace();
+        }
     }
 
     public void LoginToRegisterPage(ActionEvent event) {
@@ -48,26 +53,41 @@ public class RegisterAndLoginPageController implements Initializable {
             stage.show();
         }
         catch (Exception e){
-            System.out.println(e.getMessage());
+            e.getStackTrace();
         }
     }
 
 
     // dropdown options for register as
-
     @FXML
     public ComboBox<String> RegisterAsDropdown = new ComboBox<>();
     @FXML
     public ComboBox<String> LocationDropdown = new ComboBox<>();
 
-    ObservableList<String> RegisterAsOptionsList = FXCollections.observableArrayList("Customer",
-                                                                                    "Electrician", "Plumber",
-                                                                                    "Painter", "Driver",
-                                                                                    "Mechanic");
-    ObservableList<String> LocationsList = FXCollections.observableArrayList("Mirpur",
-            "Gabtoli", "Shyamoli",
-            "Dhanmondi", "Gulshan",
-            "Banani", "Mohammadpur", "Nilkhet", "Kamalapur", "Khilgaon", "Farmgate", "Shahbag");
+    ObservableList<String> RegisterAsOptionsList = FXCollections.observableArrayList(
+            "Customer",
+            "Driver",
+            "Electrician",
+            "Mechanic",
+            "Plumber",
+            "Painter"
+    );
+
+    ObservableList<String> LocationsList = FXCollections.observableArrayList(
+            "Banani",
+            "Banasree",
+            "Dhanmondi",
+            "Farmgate",
+            "Gabtoli",
+            "Gulshan",
+            "Kamalapur",
+            "Khilgaon",
+            "Mirpur",
+            "Mohammadpur",
+            "Nilkhet",
+            "Shahbag",
+            "Shyamoli"
+    );
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -162,8 +182,12 @@ public class RegisterAndLoginPageController implements Initializable {
             DB_Operations obj = new DB_Operations();
             obj = obj.auth(EmailTextField.getText(),
                     PasswordTextField.getText());
-            if(obj==null){
+            if(obj.getName()==null || obj.getEmail()==null){
                 //show a popup window/message saying "Wrong Credentials"
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Login Failed");
+                alert.setContentText("Wrong Credentials.\n Invalid email/password.");
+                alert.show();
                 System.out.println("wrong credentials");
             }
             else{

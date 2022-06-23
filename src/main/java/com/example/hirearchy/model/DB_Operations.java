@@ -117,8 +117,12 @@ public class DB_Operations extends PGSQL{
             info.setLocation(resultSet.getInt("location"));
             info.setProfession(resultSet.getInt("profession"));
             info.setJoined(resultSet.getDate("joined").toLocalDate());
+            if(info.getName()==null || info.getEmail()==null){
+                return null;
+            }
             System.out.println(info.getName()+" "+info.getContact()+" "+info.getEmail());
         }
+//        System.out.println(info.getName()+" "+info.getContact()+" "+info.getEmail());
         return info;
     }
     public static ResultSet search(String profession, String location){
