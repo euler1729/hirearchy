@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Locale;
 import java.util.UUID;
 
 public class DB_Operations extends PGSQL{
@@ -24,7 +25,7 @@ public class DB_Operations extends PGSQL{
         this.uuid = UUID.randomUUID();
         this.name = customer.getName();
         this.contact = customer.getContact_no();
-        this.email = customer.getEmail();
+        this.email = customer.getEmail().toLowerCase();
         this.profession = customer.getProfession();
         this.location = customer.getLocation();
         this.password = customer.getPassword();
@@ -73,7 +74,7 @@ public class DB_Operations extends PGSQL{
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email = email.toLowerCase();
     }
 
     public void setContact(String contact) {
@@ -107,7 +108,7 @@ public class DB_Operations extends PGSQL{
     }
 
     public DB_Operations auth(String email, String password) throws SQLException {
-        ResultSet resultSet = authenticate(email,password);
+        ResultSet resultSet = authenticate(email.toLowerCase(),password);
         if(resultSet==null) return  null;
         DB_Operations info = new DB_Operations();
         while(resultSet.next()) {

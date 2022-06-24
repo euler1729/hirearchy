@@ -20,6 +20,8 @@ import org.controlsfx.control.action.Action;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static com.example.hirearchy.controller.HomePageController.showCustomerHomePage;
 import static com.example.hirearchy.controller.HomePageController.showWorkerHomePage;
@@ -114,9 +116,19 @@ public class RegisterAndLoginPageController implements Initializable {
     CorporateCustomer cc;
     FullTimeWorker ftw;
     PartTimeWorker ptw;
+    boolean validateForm(){
+        return true;
+    }
+    boolean validateForm(String mail, String password){
+        if(mail==null || password==null)return false;
+        Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(mail);
+        return matcher.find();
+    }
 
     public void onRegisterButtonClick(ActionEvent event){
         try{
+
             rc = new RegularCustomer(NameTextField.getText(),
                     ContactNoTextField.getText(),
                     EmailTextField.getText(),
@@ -176,18 +188,24 @@ public class RegisterAndLoginPageController implements Initializable {
             System.out.println(e.getMessage());
         }
     }
-
+    void createAlert(String [] message){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(message[0]);
+        alert.setContentText(message[1]);
+        alert.show();
+    }
     public void onLoginButtonClick(ActionEvent event){
         try{
+            if(validateForm(EmailTextField.getText(), PasswordTextField.getText())==false){
+                createAlert(new String[]{"Login Failed!", "Wrong Credentials!"});
+                return;
+            }
             DB_Operations obj = new DB_Operations();
             obj = obj.auth(EmailTextField.getText(),
                     PasswordTextField.getText());
             if(obj.getName()==null || obj.getEmail()==null){
                 //show a popup window/message saying "Wrong Credentials"
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Login Failed");
-                alert.setContentText("Wrong Credentials.\n Invalid email/password.");
-                alert.show();
+
                 System.out.println("wrong credentials");
             }
             else{
