@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C0C0C0;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hirearchy.controller.HomePageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C0C0C0;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hirearchy.controller.sideBarController">
    <children>
       <TableView layoutX="116.0" layoutY="150.0" prefHeight="200.0" prefWidth="402.0">
         <columns>
@@ -39,27 +39,27 @@
                </font>
             </TextField>
             <TextField layoutY="320.0" prefHeight="80.0" prefWidth="95.0" />
-            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="95.0" text="Hire">
+            <Button mnemonicParsing="false" onAction="#onHireButtonClick" prefHeight="80.0" prefWidth="95.0" text="Hire">
                <font>
                   <Font size="17.0" />
                </font>
             </Button>
-            <Button layoutY="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="95.0" text="Profile">
+            <Button layoutY="80.0" mnemonicParsing="false" onAction="#onProfileButtonClick" prefHeight="80.0" prefWidth="95.0" text="Profile">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button layoutY="160.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="95.0" text="FAQ">
+            <Button layoutY="160.0" mnemonicParsing="false" onAction="#onFaqButtonClick" prefHeight="80.0" prefWidth="95.0" text="FAQ">
                <font>
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button layoutX="-1.0" layoutY="240.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="95.0" text="About">
+            <Button layoutX="-1.0" layoutY="240.0" mnemonicParsing="false" onAction="#onAboutButtonClick" prefHeight="80.0" prefWidth="95.0" text="About">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button layoutX="-1.0" layoutY="320.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="95.0" text="Logout">
+            <Button layoutX="-1.0" layoutY="320.0" mnemonicParsing="false" onAction="#onLogoutButtonClick" prefHeight="80.0" prefWidth="95.0" text="Logout">
                <font>
                   <Font size="18.0" />
                </font>
