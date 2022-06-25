@@ -19,19 +19,55 @@ import org.controlsfx.control.action.Action;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.example.hirearchy.controller.HomePageController.showCustomerHomePage;
-import static com.example.hirearchy.controller.HomePageController.showWorkerHomePage;
+//import static com.example.hirearchy.controller.HomePageController.showCustomerHomePage;
+//import static com.example.hirearchy.controller.HomePageController.showWorkerHomePage;
+import static com.example.hirearchy.model.Person.locationArr;
+import static com.example.hirearchy.model.Person.professionArr;
 
 public class RegisterAndLoginPageController implements Initializable {
-
     // Scene transition
     private Stage stage;
     private Parent root;
 
+    // dropdown options for register as
+    @FXML
+    public ComboBox<String> RegisterAsDropdown = new ComboBox<>();
+    @FXML
+    public ComboBox<String> LocationDropdown = new ComboBox<>();
+    //Register and getting info
+    @FXML
+    private TextField NameTextField;
+    @FXML
+    private TextField ContactNoTextField;
+    @FXML
+    private TextField EmailTextField;
+    @FXML
+    private TextField PasswordTextField;
+    @FXML
+    private TextField RePasswordTextField;
+
+    //DropDown Lists
+    ObservableList<String> RegisterAsOptionsList = FXCollections.observableArrayList();
+    ObservableList<String> LocationsList = FXCollections.observableArrayList();
+
+    RegularCustomer rc;
+    CorporateCustomer cc;
+    FullTimeWorker ftw;
+    PartTimeWorker ptw;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        RegisterAsOptionsList.addAll(Arrays.asList(professionArr));
+        LocationsList.addAll(Arrays.asList(locationArr));
+        RegisterAsDropdown.setItems(RegisterAsOptionsList);
+        LocationDropdown.setItems(LocationsList);
+    }
+    //Routing to Login Page
     public void RegisterToLoginPage(ActionEvent event){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("LoginPage.fxml"));
@@ -44,7 +80,7 @@ public class RegisterAndLoginPageController implements Initializable {
             e.getStackTrace();
         }
     }
-
+    //Routing to Register Page
     public void LoginToRegisterPage(ActionEvent event) {
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("RegisterPage.fxml"));
@@ -58,64 +94,7 @@ public class RegisterAndLoginPageController implements Initializable {
             e.getStackTrace();
         }
     }
-
-
-    // dropdown options for register as
-    @FXML
-    public ComboBox<String> RegisterAsDropdown = new ComboBox<>();
-    @FXML
-    public ComboBox<String> LocationDropdown = new ComboBox<>();
-
-    ObservableList<String> RegisterAsOptionsList = FXCollections.observableArrayList(
-            "Customer",
-            "Driver",
-            "Electrician",
-            "Mechanic",
-            "Plumber",
-            "Painter"
-    );
-
-    ObservableList<String> LocationsList = FXCollections.observableArrayList(
-            "Banani",
-            "Banasree",
-            "Dhanmondi",
-            "Farmgate",
-            "Gabtoli",
-            "Gulshan",
-            "Kamalapur",
-            "Khilgaon",
-            "Mirpur",
-            "Mohammadpur",
-            "Nilkhet",
-            "Shahbag",
-            "Shyamoli"
-    );
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        RegisterAsDropdown.setItems(RegisterAsOptionsList);
-        LocationDropdown.setItems(LocationsList);
-    }
-
-
-
-    //Register and getting info
-
-    @FXML
-    private TextField NameTextField;
-    @FXML
-    private TextField ContactNoTextField;
-    @FXML
-    private TextField EmailTextField;
-    @FXML
-    private TextField PasswordTextField;
-    @FXML
-    private TextField RePasswordTextField;
-
-    RegularCustomer rc;
-    CorporateCustomer cc;
-    FullTimeWorker ftw;
-    PartTimeWorker ptw;
+    //Form Validation
     boolean validateForm(){
         return true;
     }
@@ -125,7 +104,15 @@ public class RegisterAndLoginPageController implements Initializable {
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(mail);
         return matcher.find();
     }
+    //Alert Popup creator
+    void createAlert(String [] message){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(message[0]);
+        alert.setContentText(message[1]);
+        alert.show();
+    }
 
+    //Button for Requesting Registration
     public void onRegisterButtonClick(ActionEvent event){
         try{
 
@@ -173,10 +160,12 @@ public class RegisterAndLoginPageController implements Initializable {
                 System.out.println("Done");
 
                 if(prof <= 1){
-                    showCustomerHomePage(event);
+                    HomePageController homeForCustomer = new HomePageController();
+                    homeForCustomer.showCustomerHomePage(event);
                 }
                 else {
-                    showWorkerHomePage(event);
+                    HomePageController homeForCustomer = new HomePageController();
+                    homeForCustomer.showCustomerHomePage(event);
                 }
             }
             else {
@@ -188,16 +177,11 @@ public class RegisterAndLoginPageController implements Initializable {
             System.out.println(e.getMessage());
         }
     }
-    void createAlert(String [] message){
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(message[0]);
-        alert.setContentText(message[1]);
-        alert.show();
-    }
+    //Button for request to Login
     public void onLoginButtonClick(ActionEvent event){
         try{
             if(validateForm(EmailTextField.getText(), PasswordTextField.getText())==false){
-                createAlert(new String[]{"Login Failed!", "Wrong Credentials!"});
+                createAlert(new String[]{"Login Failed!", "Wrong Credentials! or wrong format of email/empty password field."});
                 return;
             }
             DB_Operations obj = new DB_Operations();
@@ -205,7 +189,7 @@ public class RegisterAndLoginPageController implements Initializable {
                     PasswordTextField.getText());
             if(obj.getName()==null || obj.getEmail()==null){
                 //show a popup window/message saying "Wrong Credentials"
-
+                createAlert(new String[]{"Login Failed!", "Wrong Credentials!"});
                 System.out.println("wrong credentials");
             }
             else{
@@ -213,6 +197,8 @@ public class RegisterAndLoginPageController implements Initializable {
                 if(obj.getProfession()==0){
                     //Create Object for profession 0(maybe Corporate Customer)
                     //And show suitable page for that user
+                    HomePageController homeForCustomer = new HomePageController();
+                    homeForCustomer.showCustomerHomePage(event);
                 }
                 else if(obj.getProfession()==1){
                     //Create Object for profession 0(maybe Regular Customer)
@@ -226,7 +212,7 @@ public class RegisterAndLoginPageController implements Initializable {
                     //Create Object for profession 0(maybe PartTime Worker)
                     //And show suitable page for that user
                 }
-                showCustomerHomePage(event);
+//                showCustomerHomePage(event);
             }
         }
         catch (Exception e){

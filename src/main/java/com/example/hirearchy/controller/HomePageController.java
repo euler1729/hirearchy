@@ -1,21 +1,42 @@
 package com.example.hirearchy.controller;
 import com.example.hirearchy.App;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
-import java.util.EventObject;
+import java.util.Arrays;
 import java.util.ResourceBundle;
+
+import static com.example.hirearchy.model.Person.professionArr;
 
 public class HomePageController implements Initializable {
 
-    public static void showCustomerHomePage(ActionEvent event){
+    @FXML
+    public ComboBox<String> LocationDropDown = new ComboBox<>();
+    @FXML
+    public ComboBox<String> ProfessionDropDown = new ComboBox<>();
+    //Query condition field
+    ObservableList<String> LocationsList = FXCollections.observableArrayList();
+    ObservableList<String> ProfessionList = FXCollections.observableArrayList();
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        LocationsList.addAll(Arrays.asList(professionArr));
+        ProfessionList.addAll(Arrays.asList(professionArr));
+        LocationDropDown.setItems(LocationsList);
+        ProfessionDropDown.setItems(ProfessionList);
+    }
+
+    public void showCustomerHomePage(ActionEvent event){
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Customer.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
@@ -29,7 +50,7 @@ public class HomePageController implements Initializable {
         }
     }
 
-    public static void showWorkerHomePage(ActionEvent event){
+    public void showWorkerHomePage(ActionEvent event){
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Worker.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
@@ -43,8 +64,4 @@ public class HomePageController implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
 }
