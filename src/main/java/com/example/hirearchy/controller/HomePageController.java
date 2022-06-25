@@ -15,9 +15,11 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
-import static com.example.hirearchy.model.Person.professionArr;
+import static com.example.hirearchy.controller.RegisterAndLoginPageController.locationArr;
+import static com.example.hirearchy.controller.RegisterAndLoginPageController.professionArr;
 
-public class HomePageController implements Initializable {
+
+public class HomePageController implements Initializable{
 
     @FXML
     public ComboBox<String> LocationDropDown = new ComboBox<>();
@@ -30,7 +32,7 @@ public class HomePageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        LocationsList.addAll(Arrays.asList(professionArr));
+        LocationsList.addAll(Arrays.asList(locationArr));
         ProfessionList.addAll(Arrays.asList(professionArr));
         LocationDropDown.setItems(LocationsList);
         ProfessionDropDown.setItems(ProfessionList);

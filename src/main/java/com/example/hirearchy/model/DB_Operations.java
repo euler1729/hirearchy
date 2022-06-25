@@ -20,15 +20,23 @@ public class DB_Operations extends PGSQL{
 
     //Constructors
     public DB_Operations(){
+        this.uuid = null;
+        this.name = null;
+        this.contact = null;
+        this.email = null;
+        this.profession = -1;
+        this.location = -1;
+        this.password = null;
+        this.joined = null;
     }
-    private<T extends Person> DB_Operations(T customer) {
+    private<T extends Person> DB_Operations(T user) {
         this.uuid = UUID.randomUUID();
-        this.name = customer.getName();
-        this.contact = customer.getContact_no();
-        this.email = customer.getEmail().toLowerCase();
-        this.profession = customer.getProfession();
-        this.location = customer.getLocation();
-        this.password = customer.getPassword();
+        this.name = user.getName();
+        this.contact = user.getContact_no();
+        this.email = user.getEmail().toLowerCase();
+        this.profession = user.getProfession();
+        this.location = user.getLocation();
+        this.password = user.getPassword();
         this.joined = LocalDate.now();
     }
 
@@ -108,9 +116,14 @@ public class DB_Operations extends PGSQL{
     }
 
     public DB_Operations auth(String email, String password) throws SQLException {
+
         ResultSet resultSet = authenticate(email.toLowerCase(),password);
-        if(resultSet==null) return  null;
+        if(resultSet==null) {
+            return null;
+        }
+
         DB_Operations info = new DB_Operations();
+
         while(resultSet.next()) {
             info.setName(resultSet.getString("name"));
             info.setEmail(resultSet.getString("email"));
@@ -118,17 +131,17 @@ public class DB_Operations extends PGSQL{
             info.setLocation(resultSet.getInt("location"));
             info.setProfession(resultSet.getInt("profession"));
             info.setJoined(resultSet.getDate("joined").toLocalDate());
-            if(info.getName()==null || info.getEmail()==null){
+            if(info.getName()==null || info.getEmail()==null||info.getContact()==null){
                 return null;
             }
-            System.out.println(info.getName()+" "+info.getContact()+" "+info.getEmail());
+//            System.out.println(info.getName()+" "+info.getContact()+" "+info.getEmail());
         }
 //        System.out.println(info.getName()+" "+info.getContact()+" "+info.getEmail());
         return info;
     }
-    public static ResultSet search(String profession, String location){
+    public ResultSet search(int profession, int location){
         String qry = "SELECT name, profession, location, contact FROM users WHERE " +
-                    "profession="+profession+" AND location="+location;
+                    "profession="+profession+" OR location="+location;
         System.out.println(qry);
         try{
             return Query(qry);
@@ -137,7 +150,7 @@ public class DB_Operations extends PGSQL{
             return null;
         }
     }
-    public static ResultSet search(String profession){
+    public ResultSet search(int profession){
         String qry = "SELECT name, profession, location, contact FROM users WHERE " +
                 "profession="+profession;
         System.out.println(qry);
