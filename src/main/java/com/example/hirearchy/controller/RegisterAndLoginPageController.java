@@ -15,19 +15,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.controlsfx.control.action.Action;
-
-import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-//import static com.example.hirearchy.controller.HomePageController.showCustomerHomePage;
-//import static com.example.hirearchy.controller.HomePageController.showWorkerHomePage;
-import static com.example.hirearchy.model.Person.locationArr;
-import static com.example.hirearchy.model.Person.professionArr;
+import static com.example.hirearchy.model.Person.*;
 
 public class RegisterAndLoginPageController implements Initializable {
     // Scene transition
@@ -55,10 +50,11 @@ public class RegisterAndLoginPageController implements Initializable {
     ObservableList<String> RegisterAsOptionsList = FXCollections.observableArrayList();
     ObservableList<String> LocationsList = FXCollections.observableArrayList();
 
-    RegularCustomer rc;
-    CorporateCustomer cc;
-    FullTimeWorker ftw;
-    PartTimeWorker ptw;
+    //User Object
+    public RegularCustomer regularCustomer;
+    public CorporateCustomer corporateCustomer;
+    public FullTimeWorker fullTimeWorker;
+    public PartTimeWorker partTimeWorker;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -67,6 +63,7 @@ public class RegisterAndLoginPageController implements Initializable {
         RegisterAsDropdown.setItems(RegisterAsOptionsList);
         LocationDropdown.setItems(LocationsList);
     }
+
     //Routing to Login Page
     public void RegisterToLoginPage(ActionEvent event){
         try {
@@ -94,82 +91,82 @@ public class RegisterAndLoginPageController implements Initializable {
             e.getStackTrace();
         }
     }
-    //Form Validation
-    boolean validateForm(){
-        return true;
+
+    //Created Alert for Error Handling
+    void createAlert(String [] message){
+        //Alert Popup creator
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(message[0]);
+        alert.setContentText(message[1]);
+        alert.show();
     }
+    //Form Validation
     boolean validateForm(String mail, String password){
         if(mail==null || password==null)return false;
         Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(mail);
         return matcher.find();
     }
-    //Alert Popup creator
-    void createAlert(String [] message){
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(message[0]);
-        alert.setContentText(message[1]);
-        alert.show();
+    boolean validateForm(){
+        if(!PasswordTextField.getText().equals(RePasswordTextField.getText())){
+            createAlert(new String[]{"Invalid Input","Passwords doesn't matches!"});
+            return false;
+        }
+        if(NameTextField.getText().length()<3 || ContactNoTextField.getText().length()<3 || EmailTextField.getText().length()<3){
+            createAlert(new String[]{"Invalid Input","No Input Field Can be empty!"});
+            return false;
+        }
+        if(RegisterAsDropdown.getValue()==null || LocationDropdown.getValue()==null){
+            createAlert(new String[]{"Invalid Input","RegisterAs/Location can't be empty."});
+            return false;
+        }
+        if(!validateForm(EmailTextField.getText(),PasswordTextField.getText())){
+            createAlert(new String[]{"Invalid Input", "Invalid Email/Password Format!"});
+            return false;
+        };
+        return true;
     }
 
     //Button for Requesting Registration
     public void onRegisterButtonClick(ActionEvent event){
         try{
+            boolean valid = validateForm();
+            boolean done = true;
+            if(valid){
+                DB_Operations entry = new DB_Operations();
+                String name = NameTextField.getText();
+                String contact = ContactNoTextField.getText();
+                String email = EmailTextField.getText();
+                int profession = professionMap.get(RegisterAsDropdown.getValue());
+                int location = locationMap.get(LocationDropdown.getValue());
+                String password = PasswordTextField.getText();
 
-            rc = new RegularCustomer(NameTextField.getText(),
-                    ContactNoTextField.getText(),
-                    EmailTextField.getText(),
-                    0,
-                    PasswordTextField.getText(),
-                    0);
-
-            cc = new CorporateCustomer(NameTextField.getText(),
-                    ContactNoTextField.getText(),
-                    EmailTextField.getText(),
-                    0,
-                    PasswordTextField.getText(),
-                    0);
-
-            ftw = new FullTimeWorker(NameTextField.getText(),
-                    ContactNoTextField.getText(),
-                    EmailTextField.getText(),
-                    0,
-                    PasswordTextField.getText(),
-                    0);
-
-            ptw = new PartTimeWorker(NameTextField.getText(),
-                    ContactNoTextField.getText(),
-                    EmailTextField.getText(),
-                    0,
-                    PasswordTextField.getText(),
-                    0);
-            // Check if password is matched with retyped password
-//            ---
-
-            boolean done;
-
-            int prof = 0; // change later
-
-            DB_Operations entry = new DB_Operations();
-            if(prof == 0)done = entry.insertRecord(rc);
-            else if(prof == 1)done = entry.insertRecord(cc);
-            else if(prof == 2)done = entry.insertRecord(ftw);
-            else done = entry.insertRecord(ptw);
-
-            if(done){
-                System.out.println("Done");
-
-                if(prof <= 1){
-                    HomePageController homeForCustomer = new HomePageController();
-                    homeForCustomer.showCustomerHomePage(event);
+                if(profession==0){
+                    corporateCustomer = new CorporateCustomer(name,contact,email,profession,password,location);
+                    done = entry.insertRecord(corporateCustomer);
+                }
+                else if(profession==1){
+                    regularCustomer = new RegularCustomer(name,contact,email,profession,password,location);
+                    done = entry.insertRecord(regularCustomer);
                 }
                 else {
-                    HomePageController homeForCustomer = new HomePageController();
-                    homeForCustomer.showCustomerHomePage(event);
+                    fullTimeWorker = new FullTimeWorker(name, contact, email, profession, password, location);
+                    done = entry.insertRecord(fullTimeWorker);
                 }
-            }
-            else {
-                System.out.println("Error");
+                if(done){
+                    System.out.println("Done");
+                    if(profession<2){
+                        HomePageController homeForCustomer = new HomePageController();
+                        homeForCustomer.showCustomerHomePage(event);
+                    }
+                    else {
+                        HomePageController homeForCustomer = new HomePageController();
+                        homeForCustomer.showWorkerHomePage(event);
+                    }
+                }
+                else {
+                    createAlert(new String[]{"Invalid Registration.","User may already exist."});
+                }
             }
 
         }
@@ -181,7 +178,6 @@ public class RegisterAndLoginPageController implements Initializable {
     public void onLoginButtonClick(ActionEvent event){
         try{
             if(validateForm(EmailTextField.getText(), PasswordTextField.getText())==false){
-                createAlert(new String[]{"Login Failed!", "Wrong Credentials! or wrong format of email/empty password field."});
                 return;
             }
             DB_Operations obj = new DB_Operations();

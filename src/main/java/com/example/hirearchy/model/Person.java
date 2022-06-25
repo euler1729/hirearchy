@@ -10,7 +10,8 @@ public abstract class Person {
     private int profession;
     private int location;
     public static String [] professionArr = {
-            "Customer",
+            "Corporate Customer",
+            "Regular Customer",
             "Driver",
             "Electrician",
             "Mechanic",
