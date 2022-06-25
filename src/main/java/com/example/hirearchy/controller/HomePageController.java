@@ -19,24 +19,7 @@ import static com.example.hirearchy.controller.RegisterAndLoginPageController.lo
 import static com.example.hirearchy.controller.RegisterAndLoginPageController.professionArr;
 
 
-public class HomePageController implements Initializable{
-
-    @FXML
-    public ComboBox<String> LocationDropDown = new ComboBox<>();
-    @FXML
-    public ComboBox<String> ProfessionDropDown = new ComboBox<>();
-    //Query condition field
-    ObservableList<String> LocationsList = FXCollections.observableArrayList();
-    ObservableList<String> ProfessionList = FXCollections.observableArrayList();
-
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        LocationsList.addAll(Arrays.asList(locationArr));
-        ProfessionList.addAll(Arrays.asList(professionArr));
-        LocationDropDown.setItems(LocationsList);
-        ProfessionDropDown.setItems(ProfessionList);
-    }
+public class HomePageController {
 
     public void showCustomerHomePage(ActionEvent event){
         try{

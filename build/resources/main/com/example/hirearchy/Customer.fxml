@@ -18,7 +18,7 @@
             <TableColumn prefWidth="115.20001220703125" text="Location" />
         </columns>
       </TableView>
-      <ComboBox fx:id="LocationDropDown" layoutX="285.0" layoutY="64.0" prefHeight="26.0" prefWidth="106.0" promptText="Location" />
+      <ComboBox fx:id="LocationDropDown1" layoutX="285.0" layoutY="64.0" prefHeight="26.0" prefWidth="106.0" promptText="Location" />
       <Button layoutX="446.0" layoutY="65.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="73.0" text="Search" />
       <AnchorPane layoutY="-1.0" prefHeight="400.0" prefWidth="95.0" style="-fx-background-color: #A9A9A9;">
          <children>
@@ -66,6 +66,6 @@
             </Button>
          </children>
       </AnchorPane>
-      <ComboBox fx:id="ProfessionDropDown" layoutX="116.0" layoutY="64.0" prefWidth="150.0" promptText="Looking for?" />
+      <ComboBox fx:id="ProfessionDropDown1" layoutX="116.0" layoutY="64.0" prefWidth="150.0" promptText="Looking for?" />
    </children>
 </AnchorPane>

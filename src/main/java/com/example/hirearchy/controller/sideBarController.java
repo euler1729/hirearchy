@@ -1,16 +1,71 @@
 package com.example.hirearchy.controller;
 
 import com.example.hirearchy.App;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.Arrays;
+import java.util.ResourceBundle;
 
-public class sideBarController {
+import static com.example.hirearchy.controller.RegisterAndLoginPageController.locationArr;
+import static com.example.hirearchy.controller.RegisterAndLoginPageController.professionArr;
+
+public class sideBarController implements Initializable {
+
+//    public static String [] professionArr1 = {
+//            "Corporate Customer",
+//            "Regular Customer",
+//            "Driver",
+//            "Electrician",
+//            "Mechanic",
+//            "Plumber",
+//            "Painter"
+//    };
+//    public static String [] locationArr1 = {
+//            "Banani",
+//            "Banasree",
+//            "Dhanmondi",
+//            "Farmgate",
+//            "Gabtoli",
+//            "Gulshan",
+//            "Kamalapur",
+//            "Khilgaon",
+//            "Mirpur",
+//            "Mohammadpur",
+//            "Nilkhet",
+//            "Shahbag",
+//            "Shyamoli"
+//    };
+
+    @FXML
+    public ComboBox<String> LocationDropDown1 = new ComboBox<>();
+    @FXML
+    public ComboBox<String> ProfessionDropDown1 = new ComboBox<>();
+    //Query condition field
+    ObservableList<String> LocationsList1 = FXCollections.observableArrayList();
+    ObservableList<String> ProfessionList1 = FXCollections.observableArrayList();
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        LocationsList1.addAll(Arrays.asList(locationArr));
+        ProfessionList1.addAll(Arrays.asList(professionArr));
+        LocationDropDown1.setItems(LocationsList1);
+        ProfessionDropDown1.setItems(ProfessionList1);
+    }
+
+
+
     private ActionEvent event;
 
     @FXML
