@@ -1,15 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hirearchy.controller.sideBarController">
-   <children>
-      <ButtonBar layoutX="156.0" layoutY="122.0" prefHeight="40.0" prefWidth="200.0">
-        <buttons>
-          <Button mnemonicParsing="false" onAction="#onHireButtonClick" text="About" />
-        </buttons>
-      </ButtonBar>
-   </children>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <ImageView fitHeight="113.0" fitWidth="169.0" layoutX="401.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../Images/about.jpg" />
+            </image>
+        </ImageView>
+        <AnchorPane layoutX="401.0" layoutY="163.0" prefHeight="164.0" prefWidth="169.0" style="-fx-background-color: #0001;">
+            <children>
+                <Text fill="#c11a1a" layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HOW WE WORK" wrappingWidth="114.223388671875">
+                    <font>
+                        <Font name="Impact" size="14.0" />
+                    </font>
+                </Text>
+                <TextArea disable="true" layoutX="13.0" layoutY="35.0" prefHeight="164.0" prefWidth="169.6" text="&#10;&#10;&#10;Our work is to find the right&#10;person for you. We connect&#10;the worker with the &#10;customer, using location&#10;and the need of yours." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <font>
+                        <Font size="10.0" />
+                    </font>
+                </TextArea>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="48.0" layoutY="100.0" />
+        <TextArea layoutX="63.0" layoutY="100.0" prefHeight="222.0" prefWidth="276.0" text="From the beginning of our journey that started&#10;in 2008, we have always cared about our users.&#10;We work to enhance job sectors for people &#10;who have a particular area of expertise, by &#10;connecting them to the people who are in dire&#10;need of help from them. We have always taken&#10;steps to pay the workers the right amount and&#10;to find the absolute right person for the &#10;customer. The amount of trust and support we&#10;get from our users is what gets us moving. &#10;&#10;" />
+        <Text layoutX="63.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ABOUT US">
+            <font>
+                <Font name="Impact" size="19.0" />
+            </font>
+        </Text>
+    </children>
 </AnchorPane>
