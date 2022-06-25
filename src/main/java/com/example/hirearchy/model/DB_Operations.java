@@ -1,9 +1,14 @@
 package com.example.hirearchy.model;
 
+import com.example.hirearchy.controller.WorkerController;
+
+import javax.xml.xpath.XPathEvaluationResult;
+import java.sql.Array;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.UUID;
 
@@ -161,6 +166,35 @@ public class DB_Operations extends PGSQL{
             return null;
         }
     }
+    public ArrayList<Worker> search_custom(int profession, int location){
+        ArrayList<Worker> worker = new ArrayList<>();
+        String qry = "SELECT * FROM user_info WHERE " +
+                "profession="+profession;
+        System.out.println(qry);
+        try{
+            ResultSet resultSet = Query(qry);
+            if(resultSet==null) return null;
+            while (resultSet.next()){
+                Worker info = new Worker(
+                        resultSet.getString("name"),
+                        resultSet.getString("contact"),
+                        resultSet.getString("email"),
+                        resultSet.getInt("profession"),
+                        "",
+                        resultSet.getInt("location")
+                );
+                worker.add(info);
+            }
+        }catch (Exception exp){
+            System.out.println(exp);
+            return null;
+        }
+        for(Worker w:worker){
+            System.out.println(w.getName());
+        }
+        return worker;
+    }
+
     public static void db_connect(){
         Connect();
     }

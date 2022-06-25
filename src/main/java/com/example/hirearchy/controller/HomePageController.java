@@ -11,12 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
-import java.net.URL;
-import java.util.Arrays;
-import java.util.ResourceBundle;
-
-import static com.example.hirearchy.controller.RegisterAndLoginPageController.locationArr;
-import static com.example.hirearchy.controller.RegisterAndLoginPageController.professionArr;
 
 
 public class HomePageController {

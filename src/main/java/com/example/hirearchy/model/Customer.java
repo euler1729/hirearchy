@@ -17,5 +17,5 @@ public abstract class Customer extends Person {
 
         return "";
     }
-
+    public abstract void searchWorker();
 }

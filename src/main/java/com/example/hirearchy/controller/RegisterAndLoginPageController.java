@@ -18,7 +18,6 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -90,8 +89,14 @@ public class RegisterAndLoginPageController implements Initializable {
     //User Object
     public RegularCustomer regularCustomer=null;
     public CorporateCustomer corporateCustomer=null;
-    public FullTimeWorker fullTimeWorker=null;
-    public PartTimeWorker partTimeWorker=null;
+
+
+    //Controller Object
+    public RegularCustomerController regularCustomerController = null;
+    public CorporateCustomer corporateCustomerController = null;
+    public WorkerController workerController = null;
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -139,10 +144,10 @@ public class RegisterAndLoginPageController implements Initializable {
     }
     //Form Validation
     boolean validateForm(String mail, String password){
-        if(mail==null || password==null)return false;
+        if(mail==null || password==null)return true;
         Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(mail);
-        return matcher.find();
+        return !matcher.find();
     }
     boolean validateForm(){
         if(!PasswordTextField.getText().equals(RePasswordTextField.getText())){
@@ -157,7 +162,7 @@ public class RegisterAndLoginPageController implements Initializable {
             createAlert(new String[]{"Invalid Input","RegisterAs/Location can't be empty."});
             return false;
         }
-        if(!validateForm(EmailTextField.getText(),PasswordTextField.getText())){
+        if(validateForm(EmailTextField.getText(), PasswordTextField.getText())){
             createAlert(new String[]{"Invalid Input", "Invalid Email/Password Format!"});
             return false;
         };
@@ -187,8 +192,8 @@ public class RegisterAndLoginPageController implements Initializable {
                     done = entry.insertRecord(regularCustomer);
                 }
                 else {
-                    fullTimeWorker = new FullTimeWorker(name, contact, email, profession, password, location);
-                    done = entry.insertRecord(fullTimeWorker);
+                    workerController = new WorkerController(name, contact, email, profession, password, location);
+                    done = entry.insertRecord(workerController);
                 }
                 if(done){
                     System.out.println("Done");
@@ -217,31 +222,30 @@ public class RegisterAndLoginPageController implements Initializable {
     //Button for request to Login
     public void onLoginButtonClick(ActionEvent event){
         try{
-            if(!validateForm(EmailTextField.getText(), PasswordTextField.getText())){
+            if(validateForm(EmailTextField.getText(), PasswordTextField.getText())){
                 createAlert(new String[]{"Error!","Wrong Credentials!\nPlease enter valid email & password."});
                 return;
             }
-            DB_Operations obj = new DB_Operations();
-            obj = obj.auth(EmailTextField.getText().toLowerCase(), PasswordTextField.getText());
-            if(obj.getName()==null || obj.getEmail()==null){
+            DB_Operations db = new DB_Operations();
+            db = db.auth(EmailTextField.getText().toLowerCase(), PasswordTextField.getText());
+            if(db.getName()==null || db.getEmail()==null){
                 createAlert(new String[]{"Login Failed!", "Wrong Credentials!"});
                 System.out.println("wrong credentials");
             }
             else{
                 System.out.println("working");
-                if(obj.getProfession()==0){
+                if(db.getProfession()==0){
                     HomePageController homeForCustomer = new HomePageController();
                     homeForCustomer.showCustomerHomePage(event);
                 }
-                else if(obj.getProfession()==1){
-                    //Create Object for profession 0(maybe Regular Customer)
-                    //And show suitable page for that user
+                else if(db.getProfession()==1){//For Regular
+                    regularCustomerController = new RegularCustomerController(db.getName(),db.getContact(),db.getEmail(),db.getProfession(),"",db.getLocation());
                 }
-                else if(obj.getProfession()>20 && obj.getProfession()<30){
+                else if(db.getProfession()>20 && db.getProfession()<30){
                     //Create Object for profession 0(maybe Fulltime Worker)
                     //And show suitable page for that user
                 }
-                else if(obj.getProfession()>=30){
+                else if(db.getProfession()>=30){
                     //Create Object for profession 0(maybe PartTime Worker)
                     //And show suitable page for that user
                 }

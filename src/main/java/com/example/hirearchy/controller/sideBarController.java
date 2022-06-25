@@ -1,6 +1,8 @@
 package com.example.hirearchy.controller;
 
 import com.example.hirearchy.App;
+import com.example.hirearchy.model.DB_Operations;
+import com.example.hirearchy.model.Worker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,6 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
@@ -21,31 +24,6 @@ import static com.example.hirearchy.controller.RegisterAndLoginPageController.lo
 import static com.example.hirearchy.controller.RegisterAndLoginPageController.professionArr;
 
 public class sideBarController implements Initializable {
-
-//    public static String [] professionArr1 = {
-//            "Corporate Customer",
-//            "Regular Customer",
-//            "Driver",
-//            "Electrician",
-//            "Mechanic",
-//            "Plumber",
-//            "Painter"
-//    };
-//    public static String [] locationArr1 = {
-//            "Banani",
-//            "Banasree",
-//            "Dhanmondi",
-//            "Farmgate",
-//            "Gabtoli",
-//            "Gulshan",
-//            "Kamalapur",
-//            "Khilgaon",
-//            "Mirpur",
-//            "Mohammadpur",
-//            "Nilkhet",
-//            "Shahbag",
-//            "Shyamoli"
-//    };
 
     @FXML
     public ComboBox<String> LocationDropDown1 = new ComboBox<>();
@@ -106,5 +84,10 @@ public class sideBarController implements Initializable {
         } catch(IOException e){
             e.getStackTrace();
         }
+    }
+
+    public void onRegularCustomerSearchButtonClick(ActionEvent event) {
+        DB_Operations db = new DB_Operations();
+        ArrayList<Worker> workers = db.search_custom(0,0);
     }
 }
