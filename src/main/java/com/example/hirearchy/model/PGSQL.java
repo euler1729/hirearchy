@@ -4,6 +4,7 @@ import com.example.hirearchy.controller.DB_Operations;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.UUID;
 
 import static com.example.hirearchy.controller.RegisterAndLoginPageController.professionArr;

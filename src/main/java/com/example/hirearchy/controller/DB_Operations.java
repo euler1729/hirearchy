@@ -1,20 +1,20 @@
 package com.example.hirearchy.controller;
 
-import com.example.hirearchy.model.Customer;
 import com.example.hirearchy.model.PGSQL;
 import com.example.hirearchy.model.Person;
 import com.example.hirearchy.model.Worker;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.math.BigInteger;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import static com.example.hirearchy.controller.RegisterAndLoginPageController.professionMap;
+
 public class DB_Operations extends PGSQL {
     //Variables
+    BigInteger id;
     UUID uuid;
     String name;
     String email;
@@ -23,6 +23,10 @@ public class DB_Operations extends PGSQL {
     int profession;
     int location;
     LocalDate joined;
+    Date date;
+    double monthly_rate;
+    double hourly_rate;
+
 
 
     //Constructors
@@ -48,6 +52,9 @@ public class DB_Operations extends PGSQL {
     }
 
     //Getters and Setters
+    public void setId(BigInteger id){this.id=id;}
+    public BigInteger getId(){return this.id;}
+
     public UUID getUuid() {
         return uuid;
     }
@@ -111,6 +118,31 @@ public class DB_Operations extends PGSQL {
     public void setJoined(LocalDate joined) {
         this.joined = joined;
     }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public double getMonthly_rate() {
+        return monthly_rate;
+    }
+
+    public void setMonthly_rate(double monthly_rate) {
+        this.monthly_rate = monthly_rate;
+    }
+
+    public double getHourly_rate() {
+        return hourly_rate;
+    }
+
+    public void setHourly_rate(double hourly_rate) {
+        this.hourly_rate = hourly_rate;
+    }
+
     //Registering new User
     public <T extends Person> boolean insertRecord(T customer){
         try{
@@ -239,7 +271,47 @@ public class DB_Operations extends PGSQL {
             e.printStackTrace();
         }
     }
-
+    public ArrayList<DB_Operations> get_worker_history(String email){
+        String qry = "SELECT customer_name,customer_email,date FROM history WHERE worker_email="+email;
+        System.out.println(qry);
+        ArrayList<DB_Operations> list = new ArrayList<>();
+        try{
+            ResultSet resultSet = Query(qry);
+            if(resultSet==null) return null;
+            while (resultSet.next()){
+                DB_Operations info = new DB_Operations();
+                info.setId(BigInteger.valueOf(resultSet.getInt("id")));
+                info.setName(resultSet.getString("customer_name"));
+                info.setEmail(resultSet.getString("customer_email"));
+                info.setDate(resultSet.getDate("date"));
+                list.add(info);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    public ArrayList<DB_Operations> get_customer_history(String email){
+        String qry = "SELECT worker_name,worker_email,worker_profession,date FROM history WHERE customer_email="+email;
+        System.out.println(qry);
+        ArrayList<DB_Operations> list = new ArrayList<>();
+        try{
+            ResultSet resultSet = Query(qry);
+            if(resultSet==null) return null;
+            while (resultSet.next()){
+                DB_Operations info = new DB_Operations();
+                info.setId(BigInteger.valueOf(resultSet.getInt("id")));
+                info.setName(resultSet.getString("worker_name"));
+                info.setEmail(resultSet.getString("worker_email"));
+                info.setProfession(professionMap.get(resultSet.getString("profession")));
+                info.setDate(resultSet.getDate("date"));
+                list.add(info);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
     public static void db_connect(){
         Connect();
     }
