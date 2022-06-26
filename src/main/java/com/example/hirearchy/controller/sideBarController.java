@@ -1,7 +1,6 @@
 package com.example.hirearchy.controller;
 
 import com.example.hirearchy.App;
-import com.example.hirearchy.model.DB_Operations;
 import com.example.hirearchy.model.Worker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,8 +35,10 @@ public class sideBarController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        for(int i=2; i<professionArr.length; ++i) {
+            ProfessionList1.add(professionArr[i]);
+        }
         LocationsList1.addAll(Arrays.asList(locationArr));
-        ProfessionList1.addAll(Arrays.asList(professionArr));
         LocationDropDown1.setItems(LocationsList1);
         ProfessionDropDown1.setItems(ProfessionList1);
     }
@@ -45,6 +46,21 @@ public class sideBarController implements Initializable {
 
 
     private ActionEvent event;
+
+    private void loadOption(String opt, ActionEvent event) {
+        Scene scene;
+        Stage stage;
+        FXMLLoader fxmlLoader;
+        try{
+            fxmlLoader = new FXMLLoader(App.class.getResource(opt + ".fxml"));
+            scene = new Scene(fxmlLoader.load());
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch(IOException e){
+            e.getStackTrace();
+        }
+    }
 
     @FXML
     private void onHireButtonClick (ActionEvent event){
@@ -69,21 +85,6 @@ public class sideBarController implements Initializable {
     @FXML
     private void onLogoutButtonClick(ActionEvent event){
         loadOption("LoginPage", event);
-    }
-
-    private void loadOption(String opt, ActionEvent event) {
-        Scene scene;
-        Stage stage;
-        FXMLLoader fxmlLoader;
-        try{
-            fxmlLoader = new FXMLLoader(App.class.getResource(opt + ".fxml"));
-            scene = new Scene(fxmlLoader.load());
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch(IOException e){
-            e.getStackTrace();
-        }
     }
 
     public void onRegularCustomerSearchButtonClick(ActionEvent event) {

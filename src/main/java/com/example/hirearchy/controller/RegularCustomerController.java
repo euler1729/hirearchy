@@ -1,6 +1,5 @@
 package com.example.hirearchy.controller;
 
-import com.example.hirearchy.model.DB_Operations;
 import com.example.hirearchy.model.RegularCustomer;
 import com.example.hirearchy.model.Worker;
 import javafx.event.ActionEvent;

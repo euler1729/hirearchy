@@ -93,7 +93,7 @@ public class RegisterAndLoginPageController implements Initializable {
 
     //Controller Object
     public RegularCustomerController regularCustomerController = null;
-    public CorporateCustomer corporateCustomerController = null;
+    public CorporateCustomerController corporateCustomerController = null;
     public WorkerController workerController = null;
 
 
@@ -234,22 +234,18 @@ public class RegisterAndLoginPageController implements Initializable {
             }
             else{
                 System.out.println("working");
-                if(db.getProfession()==0){
+                if(db.getProfession()==0){//For Corporate Customer
+                    corporateCustomerController = new CorporateCustomerController(db.getName(),db.getContact(),db.getEmail(),db.getProfession(),"",db.getLocation());
                     HomePageController homeForCustomer = new HomePageController();
                     homeForCustomer.showCustomerHomePage(event);
                 }
-                else if(db.getProfession()==1){//For Regular
+                else if(db.getProfession()==1){//For Regular Customer
                     regularCustomerController = new RegularCustomerController(db.getName(),db.getContact(),db.getEmail(),db.getProfession(),"",db.getLocation());
                 }
-                else if(db.getProfession()>20 && db.getProfession()<30){
-                    //Create Object for profession 0(maybe Fulltime Worker)
-                    //And show suitable page for that user
+                else{//For Worker
+                    workerController = new WorkerController(db.getName(),db.getContact(),db.getEmail(),db.getProfession(),"",db.getLocation());
                 }
-                else if(db.getProfession()>=30){
-                    //Create Object for profession 0(maybe PartTime Worker)
-                    //And show suitable page for that user
-                }
-//                showCustomerHomePage(event);
+
             }
         }
         catch (Exception e){

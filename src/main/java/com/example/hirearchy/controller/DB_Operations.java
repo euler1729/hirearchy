@@ -1,18 +1,18 @@
-package com.example.hirearchy.model;
+package com.example.hirearchy.controller;
 
-import com.example.hirearchy.controller.WorkerController;
+import com.example.hirearchy.model.PGSQL;
+import com.example.hirearchy.model.Person;
+import com.example.hirearchy.model.Worker;
 
-import javax.xml.xpath.XPathEvaluationResult;
-import java.sql.Array;
-import java.sql.Date;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.UUID;
 
-public class DB_Operations extends PGSQL{
+public class DB_Operations extends PGSQL {
     //Variables
     UUID uuid;
     String name;
@@ -22,6 +22,7 @@ public class DB_Operations extends PGSQL{
     int profession;
     int location;
     LocalDate joined;
+
 
     //Constructors
     public DB_Operations(){
@@ -109,7 +110,7 @@ public class DB_Operations extends PGSQL{
     public void setJoined(LocalDate joined) {
         this.joined = joined;
     }
-
+    //Registering new User
     public <T extends Person> boolean insertRecord(T customer){
         try{
             DB_Operations op = new DB_Operations(customer);
@@ -119,7 +120,7 @@ public class DB_Operations extends PGSQL{
             return false;
         }
     }
-
+    //Authentication while Logging-in
     public DB_Operations auth(String email, String password) throws SQLException {
 
         ResultSet resultSet = authenticate(email.toLowerCase(),password);
@@ -144,19 +145,20 @@ public class DB_Operations extends PGSQL{
 //        System.out.println(info.getName()+" "+info.getContact()+" "+info.getEmail());
         return info;
     }
+    //Query Methods
     public ResultSet search(int profession, int location){
-        String qry = "SELECT name, profession, location, contact FROM users WHERE " +
+        String qry = "SELECT name, profession, location, contact FROM user_info WHERE " +
                     "profession="+profession+" OR location="+location;
         System.out.println(qry);
         try{
             return Query(qry);
         }catch (Exception exp){
-            System.out.println(exp);
+            exp.getStackTrace();
             return null;
         }
     }
     public ResultSet search(int profession){
-        String qry = "SELECT name, profession, location, contact FROM users WHERE " +
+        String qry = "SELECT name, profession, location, contact FROM user_info WHERE " +
                 "profession="+profession;
         System.out.println(qry);
         try{
@@ -193,6 +195,33 @@ public class DB_Operations extends PGSQL{
             System.out.println(w.getName());
         }
         return worker;
+    }
+    //DB Update Methods
+    public String update_user_info(String email,String db_col, String value){
+        String upd = "UPDATE user_info SET " +
+                db_col + "=" + value + " WHERE email=" + email;
+        StringBuilder record = null;
+        try {
+            if (Update(upd)) {
+                String qry = "SELECT " + db_col + "FROM user_info WHERE email=" + email;
+                ResultSet resultSet = Query(qry);
+                record = new StringBuilder();
+                while (true) {
+                    assert resultSet != null;
+                    if (!resultSet.next()) break;
+                    if (db_col.equals("profession")) {
+                        record.append(resultSet.getInt("profession"));
+                    } else if (db_col.equals("location")) {
+                        record.append(resultSet.getInt("profession"));
+                    } else record.append(resultSet.getString(db_col));
+                }
+            }
+        } catch (SQLException e) {
+            e.getStackTrace();
+            return "";
+        }
+        assert record != null;
+        return record.toString();
     }
 
     public static void db_connect(){

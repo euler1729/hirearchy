@@ -1,5 +1,7 @@
 package com.example.hirearchy.model;
 
+import com.example.hirearchy.controller.DB_Operations;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.UUID;
@@ -8,7 +10,7 @@ public abstract class PGSQL {
 
     public static Connection connection=null;
 
-    static void Connect(){
+    protected static void Connect(){
 
 //        String db_user = "mahmud";
 //        String db_password = "***************";
@@ -50,7 +52,7 @@ public abstract class PGSQL {
             connection.commit();
         }catch (Exception exp){
             connection.rollback();
-            System.out.println(exp);
+            exp.getStackTrace();
             return false;
         }
         return true;
@@ -64,7 +66,7 @@ public abstract class PGSQL {
             Statement statement = connection.createStatement();
             resultSet = statement.executeQuery(qry);
         }catch(Exception exp) {
-            System.out.println(exp);
+            exp.getStackTrace();
             return null;
         }
         return resultSet;
@@ -78,11 +80,23 @@ public abstract class PGSQL {
             resultSet = statement.executeQuery(qry);
             return resultSet;
         }catch (Exception exp){
-            System.out.println(exp);
+            exp.getStackTrace();
             assert statement != null;
             statement.close();
             return null;
         }
     }
-
+    protected static boolean Update(String update) throws SQLException {
+        if(connection==null)Connect();
+        try{
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(update);
+            connection.commit();
+        }catch (SQLException e){
+            connection.rollback();
+            e.getStackTrace();
+            return false;
+        }
+        return true;
+    }
 }
