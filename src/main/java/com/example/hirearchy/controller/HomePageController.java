@@ -15,9 +15,14 @@ import javafx.stage.Stage;
 
 public class HomePageController {
 
-    public void showCustomerHomePage(ActionEvent event){
+    public void showCustomerHomePage(ActionEvent event, int type){
         try{
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Customer.fxml"));
+            FXMLLoader fxmlLoader;
+            String fxmlName;
+            if(type == 2)fxmlName = "Customer";
+            else fxmlName = "corporatecustomer";
+            fxmlLoader= new FXMLLoader(App.class.getResource(fxmlName + ".fxml"));
+//            else fxmlLoader = new FXMLLoader(App.class.getResource("corporatecustomer.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setTitle("Welcome Home");
@@ -26,6 +31,8 @@ public class HomePageController {
         }
         catch(Exception e){
             System.out.println(e.getMessage());
+            e.getStackTrace();
+            System.out.println("here");
         }
     }
 
