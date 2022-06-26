@@ -203,8 +203,8 @@ public class RegisterAndLoginPageController implements Initializable {
                         homeForCustomer.showCustomerHomePage(event);
                     }
                     else {
-                        HomePageController homeForCustomer = new HomePageController();
-                        homeForCustomer.showWorkerHomePage(event);
+                        HomePageController homeForWorker = new HomePageController();
+                        homeForWorker.showWorkerHomePage(event);
                     }
                 }
                 else {
@@ -242,9 +242,13 @@ public class RegisterAndLoginPageController implements Initializable {
                 }
                 else if(db.getProfession()==1){//For Regular Customer
                     regularCustomerController = new RegularCustomerController(db.getName(),db.getContact(),db.getEmail(),db.getProfession(),"",db.getLocation());
+                    HomePageController homeForCustomer = new HomePageController();
+                    homeForCustomer.showCustomerHomePage(event);
                 }
                 else{//For Worker
                     workerController = new WorkerController(db.getName(),db.getContact(),db.getEmail(),db.getProfession(),"",db.getLocation());
+                    HomePageController homeForWorker = new HomePageController();
+                    homeForWorker.showWorkerHomePage(event);
                 }
 
             }
