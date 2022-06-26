@@ -183,6 +183,7 @@ public class RegisterAndLoginPageController implements Initializable {
                 int location = locationMap.get(LocationDropdown.getValue());
                 String password = PasswordTextField.getText();
 
+
                 if(profession==0){
                     corporateCustomer = new CorporateCustomer(name,contact,email,profession,password,location);
                     done = entry.insertRecord(corporateCustomer);

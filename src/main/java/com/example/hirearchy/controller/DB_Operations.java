@@ -1,5 +1,6 @@
 package com.example.hirearchy.controller;
 
+import com.example.hirearchy.model.Customer;
 import com.example.hirearchy.model.PGSQL;
 import com.example.hirearchy.model.Person;
 import com.example.hirearchy.model.Worker;
@@ -137,6 +138,7 @@ public class DB_Operations extends PGSQL {
             info.setLocation(resultSet.getInt("location"));
             info.setProfession(resultSet.getInt("profession"));
             info.setJoined(resultSet.getDate("joined").toLocalDate());
+            info.setUuid(resultSet.getObject("id",java.util.UUID.class));
             if(info.getName()==null || info.getEmail()==null||info.getContact()==null){
                 return null;
             }
@@ -222,6 +224,20 @@ public class DB_Operations extends PGSQL {
         }
         assert record != null;
         return record.toString();
+    }
+    public<T extends Person> void insert_history(T custom, Worker wrkr){
+        DB_Operations customer = new DB_Operations();
+        customer.setName(custom.getName());
+        customer.setEmail(custom.getEmail());
+        DB_Operations worker = new DB_Operations();
+        worker.setName(wrkr.getName());
+        worker.setEmail(wrkr.getEmail());
+        worker.setProfession(wrkr.getProfession());
+        try{
+            Insert_history(customer,worker);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void db_connect(){
