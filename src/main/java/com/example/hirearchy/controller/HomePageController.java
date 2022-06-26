@@ -30,7 +30,7 @@ public class HomePageController {
 //            String fxmlName;
 //            if(type == 2)fxmlName = "Customer";
 //            else fxmlName = "Customer"; // change when corp. customer fxml fixed
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Customer.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Worker.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setTitle("Welcome Home");

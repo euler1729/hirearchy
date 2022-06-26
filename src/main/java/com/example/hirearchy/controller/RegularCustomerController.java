@@ -27,10 +27,10 @@ public class RegularCustomerController extends RegularCustomer implements Initia
     public RegularCustomerController(String name, String contact_no, String email, int profession, String password, int location) {
         super(name, contact_no, email, profession, password, location);
     }
-    public void onRegularCustomerSearchButtonClick(ActionEvent event){
-        DB_Operations db = new DB_Operations();
-        ArrayList<Worker> workers = db.search_custom(0,0);
-    }
+//    public void onRegularCustomerSearchButtonClick(ActionEvent event){
+//        DB_Operations db = new DB_Operations();
+//        ArrayList<Worker> workers = db.search_custom(0,0);
+//    }
 
     @FXML
     public ComboBox<String> LocationDropDown1 = new ComboBox<>();
@@ -72,12 +72,12 @@ public class RegularCustomerController extends RegularCustomer implements Initia
 
     @FXML
     private void onHireButtonClick (ActionEvent event){
-        loadOption("Customer", event);
+        loadOption("Worker", event);
     }
 
     @FXML
     private void onProfileButtonClick (ActionEvent event){
-        loadOption("regularcustomerprofile", event);
+        loadOption("workerprofile", event);
     }
 
     @FXML
