@@ -59,12 +59,12 @@ public class CorporateCustomerController extends Customer implements Initializab
 
     @FXML
     private void onHireButtonClick (ActionEvent event){
-        loadOption("corporatecustomer", event);
+        loadOption("Customer", event); // change when corp. customer fxml fixed
     }
 
     @FXML
     private void onProfileButtonClick (ActionEvent event){
-        loadOption("profile", event);
+        loadOption("corporatecustoer", event);
     }
 
     @FXML

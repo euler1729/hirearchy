@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C0C0C0;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hirearchy.controller.sideBarController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C0C0C0;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hirearchy.controller.WorkerHomeController">
     <children>
         <AnchorPane layoutY="-1.0" prefHeight="400.0" prefWidth="95.0" style="-fx-background-color: #A9A9A9;">
             <children>
@@ -22,7 +22,7 @@
                         <Font size="28.0" />
                     </font>
                 </TextField>
-                <Button layoutX="1.0" layoutY="50.0" mnemonicParsing="false" onAction="#onHireButtonClick" prefHeight="60.0" prefWidth="95.0" text="Hire">
+                <Button layoutX="1.0" layoutY="50.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="95.0" text="Hire">
                     <font>
                         <Font size="17.0" />
                     </font>
