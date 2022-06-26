@@ -11,30 +11,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
-import java.net.URL;
-import java.util.Arrays;
-import java.util.ResourceBundle;
-
-import static com.example.hirearchy.model.Person.professionArr;
-
-public class HomePageController implements Initializable {
-
-    @FXML
-    public ComboBox<String> LocationDropDown = new ComboBox<>();
-    @FXML
-    public ComboBox<String> ProfessionDropDown = new ComboBox<>();
-    //Query condition field
-    ObservableList<String> LocationsList = FXCollections.observableArrayList();
-    ObservableList<String> ProfessionList = FXCollections.observableArrayList();
 
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        LocationsList.addAll(Arrays.asList(professionArr));
-        ProfessionList.addAll(Arrays.asList(professionArr));
-        LocationDropDown.setItems(LocationsList);
-        ProfessionDropDown.setItems(ProfessionList);
-    }
+public class HomePageController {
 
     public void showCustomerHomePage(ActionEvent event){
         try{

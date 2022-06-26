@@ -15,4 +15,8 @@ public class RegularCustomer extends Customer{
         return false;
     }
 
+    @Override
+    public void searchWorker() {
+
+    }
 }

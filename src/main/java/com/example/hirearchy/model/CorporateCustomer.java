@@ -23,4 +23,9 @@ public class CorporateCustomer extends Customer{
 
         return "";
     }
+
+    @Override
+    public void searchWorker() {
+
+    }
 }

@@ -17,17 +17,53 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.net.URL;
 import java.util.Arrays;
-import java.util.Objects;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.example.hirearchy.model.Person.*;
 
 public class RegisterAndLoginPageController implements Initializable {
     // Scene transition
     private Stage stage;
     private Parent root;
+    public static String [] professionArr = {
+            "Corporate Customer",
+            "Regular Customer",
+            "Driver",
+            "Electrician",
+            "Mechanic",
+            "Plumber",
+            "Painter"
+    };
+    public static String [] locationArr = {
+            "Banani",
+            "Banasree",
+            "Dhanmondi",
+            "Farmgate",
+            "Gabtoli",
+            "Gulshan",
+            "Kamalapur",
+            "Khilgaon",
+            "Mirpur",
+            "Mohammadpur",
+            "Nilkhet",
+            "Shahbag",
+            "Shyamoli"
+    };
+
+    public static HashMap<String, Integer> professionMap = new HashMap<String, Integer>();
+    public static HashMap<String, Integer> locationMap = new HashMap<String, Integer>();
+    static{
+        for(int i=0; i<professionArr.length; ++i){
+            professionMap.put(professionArr[i],i);
+        }
+        for(int i=0; i<locationArr.length; ++i){
+            locationMap.put(locationArr[i],i);
+        }
+    }
+
+
 
     // dropdown options for register as
     @FXML
@@ -51,10 +87,16 @@ public class RegisterAndLoginPageController implements Initializable {
     ObservableList<String> LocationsList = FXCollections.observableArrayList();
 
     //User Object
-    public RegularCustomer regularCustomer;
-    public CorporateCustomer corporateCustomer;
-    public FullTimeWorker fullTimeWorker;
-    public PartTimeWorker partTimeWorker;
+    public RegularCustomer regularCustomer=null;
+    public CorporateCustomer corporateCustomer=null;
+
+
+    //Controller Object
+    public RegularCustomerController regularCustomerController = null;
+    public CorporateCustomerController corporateCustomerController = null;
+    public WorkerController workerController = null;
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -102,10 +144,10 @@ public class RegisterAndLoginPageController implements Initializable {
     }
     //Form Validation
     boolean validateForm(String mail, String password){
-        if(mail==null || password==null)return false;
+        if(mail==null || password==null)return true;
         Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(mail);
-        return matcher.find();
+        return !matcher.find();
     }
     boolean validateForm(){
         if(!PasswordTextField.getText().equals(RePasswordTextField.getText())){
@@ -120,7 +162,7 @@ public class RegisterAndLoginPageController implements Initializable {
             createAlert(new String[]{"Invalid Input","RegisterAs/Location can't be empty."});
             return false;
         }
-        if(!validateForm(EmailTextField.getText(),PasswordTextField.getText())){
+        if(validateForm(EmailTextField.getText(), PasswordTextField.getText())){
             createAlert(new String[]{"Invalid Input", "Invalid Email/Password Format!"});
             return false;
         };
@@ -131,12 +173,12 @@ public class RegisterAndLoginPageController implements Initializable {
     public void onRegisterButtonClick(ActionEvent event){
         try{
             boolean valid = validateForm();
-            boolean done = true;
             if(valid){
+                boolean done;
                 DB_Operations entry = new DB_Operations();
                 String name = NameTextField.getText();
                 String contact = ContactNoTextField.getText();
-                String email = EmailTextField.getText();
+                String email = EmailTextField.getText().toLowerCase();
                 int profession = professionMap.get(RegisterAsDropdown.getValue());
                 int location = locationMap.get(LocationDropdown.getValue());
                 String password = PasswordTextField.getText();
@@ -150,8 +192,8 @@ public class RegisterAndLoginPageController implements Initializable {
                     done = entry.insertRecord(regularCustomer);
                 }
                 else {
-                    fullTimeWorker = new FullTimeWorker(name, contact, email, profession, password, location);
-                    done = entry.insertRecord(fullTimeWorker);
+                    workerController = new WorkerController(name, contact, email, profession, password, location);
+                    done = entry.insertRecord(workerController);
                 }
                 if(done){
                     System.out.println("Done");
@@ -168,6 +210,9 @@ public class RegisterAndLoginPageController implements Initializable {
                     createAlert(new String[]{"Invalid Registration.","User may already exist."});
                 }
             }
+            else{
+                createAlert(new String[]{"Invalid Input.","Please Check Input and Try Again!"});
+            }
 
         }
         catch (Exception e){
@@ -177,38 +222,30 @@ public class RegisterAndLoginPageController implements Initializable {
     //Button for request to Login
     public void onLoginButtonClick(ActionEvent event){
         try{
-            if(validateForm(EmailTextField.getText(), PasswordTextField.getText())==false){
+            if(validateForm(EmailTextField.getText(), PasswordTextField.getText())){
+                createAlert(new String[]{"Error!","Wrong Credentials!\nPlease enter valid email & password."});
                 return;
             }
-            DB_Operations obj = new DB_Operations();
-            obj = obj.auth(EmailTextField.getText(),
-                    PasswordTextField.getText());
-            if(obj.getName()==null || obj.getEmail()==null){
-                //show a popup window/message saying "Wrong Credentials"
+            DB_Operations db = new DB_Operations();
+            db = db.auth(EmailTextField.getText().toLowerCase(), PasswordTextField.getText());
+            if(db.getName()==null || db.getEmail()==null){
                 createAlert(new String[]{"Login Failed!", "Wrong Credentials!"});
                 System.out.println("wrong credentials");
             }
             else{
                 System.out.println("working");
-                if(obj.getProfession()==0){
-                    //Create Object for profession 0(maybe Corporate Customer)
-                    //And show suitable page for that user
+                if(db.getProfession()==0){//For Corporate Customer
+                    corporateCustomerController = new CorporateCustomerController(db.getName(),db.getContact(),db.getEmail(),db.getProfession(),"",db.getLocation());
                     HomePageController homeForCustomer = new HomePageController();
                     homeForCustomer.showCustomerHomePage(event);
                 }
-                else if(obj.getProfession()==1){
-                    //Create Object for profession 0(maybe Regular Customer)
-                    //And show suitable page for that user
+                else if(db.getProfession()==1){//For Regular Customer
+                    regularCustomerController = new RegularCustomerController(db.getName(),db.getContact(),db.getEmail(),db.getProfession(),"",db.getLocation());
                 }
-                else if(obj.getProfession()>20 && obj.getProfession()<30){
-                    //Create Object for profession 0(maybe Fulltime Worker)
-                    //And show suitable page for that user
+                else{//For Worker
+                    workerController = new WorkerController(db.getName(),db.getContact(),db.getEmail(),db.getProfession(),"",db.getLocation());
                 }
-                else if(obj.getProfession()>=30){
-                    //Create Object for profession 0(maybe PartTime Worker)
-                    //And show suitable page for that user
-                }
-//                showCustomerHomePage(event);
+
             }
         }
         catch (Exception e){
