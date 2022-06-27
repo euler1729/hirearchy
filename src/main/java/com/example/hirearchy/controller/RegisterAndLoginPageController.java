@@ -135,7 +135,7 @@ public class RegisterAndLoginPageController implements Initializable {
     }
 
     //Created Alert for Error Handling
-    void createAlert(String [] message){
+    public static void createAlert(String [] message){
         //Alert Popup creator
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(message[0]);

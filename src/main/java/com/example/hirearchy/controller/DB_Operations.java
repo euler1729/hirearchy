@@ -205,7 +205,7 @@ public class DB_Operations extends PGSQL {
     public ArrayList<Worker> search_custom(int profession, int location){
         ArrayList<Worker> worker = new ArrayList<>();
         String qry = "SELECT * FROM user_info WHERE " +
-                "profession="+profession;
+                "profession="+profession+" AND location="+location;
         System.out.println(qry);
         try{
             ResultSet resultSet = Query(qry);

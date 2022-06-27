@@ -11,7 +11,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="474.0" prefWidth="657.0" style="-fx-background-color: #C0C0C0;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hirearchy.controller.RegularCustomerController">
    <children>
       <ComboBox fx:id="LocationDropDown1" layoutX="285.0" layoutY="64.0" prefHeight="26.0" prefWidth="106.0" promptText="Location" />
-      <Button layoutX="446.0" layoutY="65.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="73.0" text="Search" />
+      <Button fx:id="regularCustomerSearchButton" onAction="#onRegularCustomerSearchButtonClick" layoutX="446.0" layoutY="65.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="73.0" text="Search" />
       <AnchorPane layoutY="-1.0" prefHeight="400.0" prefWidth="95.0" style="-fx-background-color: #A9A9A9;">
          <TextField layoutX="-1.0" layoutY="240.0" prefHeight="80.0" prefWidth="95.0" />
          <TextField layoutX="-1.0" layoutY="160.0" prefHeight="80.0" prefWidth="95.0">

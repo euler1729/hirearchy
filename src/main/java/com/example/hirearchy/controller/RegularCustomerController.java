@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -24,15 +25,9 @@ import java.util.Arrays;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
-import static com.example.hirearchy.controller.RegisterAndLoginPageController.locationArr;
-import static com.example.hirearchy.controller.RegisterAndLoginPageController.professionArr;
+import static com.example.hirearchy.controller.RegisterAndLoginPageController.*;
 
 public class RegularCustomerController implements Initializable {
-
-//    public void onRegularCustomerSearchButtonClick(ActionEvent event){
-//        DB_Operations db = new DB_Operations();
-//        ArrayList<Worker> workers = db.search_custom(0,0);
-//    }
 
     mainController controller = new mainController();
 
@@ -45,29 +40,37 @@ public class RegularCustomerController implements Initializable {
     ObservableList<String> ProfessionList1 = FXCollections.observableArrayList();
 
     @FXML
-    private TableView<RegularCustomer> rcTable;
+    private TableView<Worker> rcTable;
 
 
     //table
 
     @FXML
-    private TableColumn<RegularCustomer, String> name;
+    private TableColumn<Worker, String> name;
 
     @FXML
-    private TableColumn<RegularCustomer, String> contact_no;
+    private TableColumn<Worker, String> contact_no;
 
     @FXML
-    private TableColumn<RegularCustomer, String> email;
+    private TableColumn<Worker, String> email;
 
     @FXML
-    private TableColumn<RegularCustomer, String> locat;
+    private TableColumn<Worker, String> locat;
 
-    ObservableList<RegularCustomer> rcList = FXCollections.observableArrayList(
-            new RegularCustomer("nafi", "01915311111", "n@yahoo.com", 4, "", 4),
-            new RegularCustomer("hafi", "01951541112", "a@yahoo.com", 1, "", 6),
-            new RegularCustomer("kafi", "01944111122", "b@yahoo.com", 0, "", 5)
-    );
 
+
+    ObservableList<Worker> rcList = FXCollections.observableArrayList();
+    public void onRegularCustomerSearchButtonClick(ActionEvent event) {
+        if(ProfessionDropDown1.getValue()==null && LocationDropDown1.getValue()==null){
+            createAlert(new String[]{"Invalid Input","Please Select Both Location and Profession."});
+            return;
+        }
+        DB_Operations db = new DB_Operations();
+        ArrayList<Worker> workers = db.search_custom(professionMap.get(ProfessionDropDown1.getValue()),locationMap.get(LocationDropDown1.getValue()));
+        for(Worker w:workers){
+            rcList.add(new Worker(w.getName(),w.getContact_no(),w.getEmail(),w.getProfession(),"",w.getLocation()));
+        }
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         for(int i=2; i<professionArr.length; ++i) {
@@ -78,10 +81,10 @@ public class RegularCustomerController implements Initializable {
         ProfessionDropDown1.setItems(ProfessionList1);
 
         //table
-        name.setCellValueFactory(new PropertyValueFactory<RegularCustomer, String>("name"));
-        contact_no.setCellValueFactory(new PropertyValueFactory<RegularCustomer, String>("contact_no"));
-        email.setCellValueFactory(new PropertyValueFactory<RegularCustomer, String>("email"));
-        locat.setCellValueFactory(new PropertyValueFactory<RegularCustomer, String>("location"));
+        name.setCellValueFactory(new PropertyValueFactory<Worker, String>("name"));
+        contact_no.setCellValueFactory(new PropertyValueFactory<Worker, String>("contact_no"));
+        email.setCellValueFactory(new PropertyValueFactory<Worker, String>("email"));
+        locat.setCellValueFactory(new PropertyValueFactory<Worker, String>("location"));
 
         rcTable.setItems(rcList);
     }
@@ -94,7 +97,7 @@ public class RegularCustomerController implements Initializable {
 
     @FXML
     private void onProfileButtonClick (ActionEvent event){
-        controller.loadOption("regular", event);
+        controller.loadOption("workerprofile", event);
     }
 
     @FXML
@@ -111,11 +114,5 @@ public class RegularCustomerController implements Initializable {
     private void onLogoutButtonClick(ActionEvent event){
         controller.loadOption("LoginPage", event);
     }
-
-//    public void onRegularCustomerSearchButtonClick(ActionEvent event) {
-//        DB_Operations db = new DB_Operations();
-//        ArrayList<Worker> workers = db.search_custom(0,0);
-//    }
-
 
 }
