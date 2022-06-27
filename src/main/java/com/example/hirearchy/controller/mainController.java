@@ -20,7 +20,7 @@ public class mainController {
         FXMLLoader fxmlLoader;
         try{
             fxmlLoader = new FXMLLoader(App.class.getResource(fileName + ".fxml"));
-            scene = new Scene(fxmlLoader.load(),720,640);
+            scene = new Scene(fxmlLoader.load(), 600, 500);
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setTitle(fileName);
             stage.setScene(scene);

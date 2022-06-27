@@ -48,7 +48,7 @@ public class CorporateCustomerController extends Customer implements Initializab
         FXMLLoader fxmlLoader;
         try{
             fxmlLoader = new FXMLLoader(App.class.getResource(opt + ".fxml"));
-            scene = new Scene(fxmlLoader.load());
+            scene = new Scene(fxmlLoader.load(), 600, 500);
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();

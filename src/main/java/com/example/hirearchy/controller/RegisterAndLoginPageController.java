@@ -110,7 +110,7 @@ public class RegisterAndLoginPageController implements Initializable {
     public void RegisterToLoginPage(ActionEvent event){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("LoginPage.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
+            Scene scene = new Scene(fxmlLoader.load(), 600, 500);
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setTitle("Login to Hirearchy");
             stage.setScene(scene);
@@ -123,7 +123,7 @@ public class RegisterAndLoginPageController implements Initializable {
     public void LoginToRegisterPage(ActionEvent event) {
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("RegisterPage.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
+            Scene scene = new Scene(fxmlLoader.load(), 600, 500);
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             stage.setTitle("Register to Hirearchy");
             stage.setScene(scene);
@@ -187,6 +187,7 @@ public class RegisterAndLoginPageController implements Initializable {
                 if(profession==0){
                     corporateCustomer = new CorporateCustomer(name,contact,email,profession,password,location);
                     done = entry.insertRecord(corporateCustomer);
+
                 }
                 else if(profession==1){
                     regularCustomer = new RegularCustomer(name,contact,email,profession,password,location);
