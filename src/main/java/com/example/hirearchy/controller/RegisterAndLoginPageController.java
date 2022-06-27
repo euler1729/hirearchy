@@ -241,7 +241,7 @@ public class RegisterAndLoginPageController implements Initializable {
                     homeForCustomer.showCustomerHomePage(event, 1);
                 }
                 else if(db.getProfession()==1){//For Regular Customer
-                    regularCustomerController = new RegularCustomerController(db.getName(),db.getContact(),db.getEmail(),db.getProfession(),"",db.getLocation());
+//                    regularCustomerController = new RegularCustomerController(db.getName(),db.getContact(),db.getEmail(),db.getProfession(),"",db.getLocation());
                     HomePageController homeForCustomer = new HomePageController();
                     homeForCustomer.showCustomerHomePage(event, 2);
                 }

@@ -16,54 +16,35 @@ import java.util.ResourceBundle;
 
 public class WorkerHomeController implements Initializable {
 
-//    @FXML
-//    public ComboBox<String> LocationDropDown1 = new ComboBox<>();
-//    @FXML
-//    public ComboBox<String> ProfessionDropDown1 = new ComboBox<>();
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
     }
 
-    private void loadOption(String opt, ActionEvent event) {
-        Scene scene;
-        Stage stage;
-        FXMLLoader fxmlLoader;
-        try{
-            fxmlLoader = new FXMLLoader(App.class.getResource(opt + ".fxml"));
-            scene = new Scene(fxmlLoader.load());
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch(IOException e){
-            e.getStackTrace();
-        }
-    }
+    mainController controller = new mainController();
 
     @FXML
     private void onOffersButtonClick (ActionEvent event){
-        loadOption("Customer", event);
+        controller.loadOption("Customer", event);
     }
 
     @FXML
     private void onProfileButtonClick (ActionEvent event){
-        loadOption("workerprofile", event);
+        controller.loadOption("workerprofile", event);
     }
 
     @FXML
     public void onFaqButtonClick(ActionEvent event){
-        loadOption("faq", event);
+        controller.loadOption("faq", event);
     }
 
     @FXML
     private void onAboutButtonClick (ActionEvent event){
-        loadOption("about", event);
+        controller.loadOption("about", event);
     }
 
     @FXML
     private void onLogoutButtonClick(ActionEvent event){
-        loadOption("LoginPage", event);
+        controller.loadOption("LoginPage", event);
     }
 }
