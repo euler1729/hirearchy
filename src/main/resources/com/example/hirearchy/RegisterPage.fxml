@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="920.0" styleClass="primary-color" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="920.0" styleClass="primary-color" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TextField layoutX="230.0" layoutY="187.0" prefHeight="54.0" prefWidth="418.0" promptText="Contact No." styleClass="text-field" stylesheets="@styles.css" />
       <TextField layoutX="230.0" layoutY="241.0" prefHeight="54.0" prefWidth="418.0" promptText="Email" styleClass="text-field" stylesheets="@styles.css" />
@@ -33,7 +29,7 @@
       <TextField layoutX="234.0" layoutY="399.0" prefHeight="54.0" prefWidth="418.0" promptText="Email Address" styleClass="text-field" stylesheets="@styles.css" />
       <ComboBox layoutX="229.0" layoutY="304.0" prefHeight="46.0" prefWidth="418.0" promptText="Register as" styleClass="button" stylesheets="@styles.css" />
       <ComboBox layoutX="230.0" layoutY="359.0" prefHeight="46.0" prefWidth="418.0" promptText="Location" styleClass="button" stylesheets="@styles.css" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="364.0" layoutY="-31.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="177.0" fitWidth="174.0" layoutX="364.0" layoutY="-31.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../Images/HireArchy-logos_white.png" />
          </image>
