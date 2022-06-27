@@ -1,61 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hirearchy.controller.mainController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="920.0" styleClass="primary-color" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <MenuButton layoutX="184.0" layoutY="90.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="219.0" text="Why should I choose Hirearchy?" />
-        <MenuButton layoutX="184.0" layoutY="116.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="219.0" text="How to contact us?" />
-        <MenuButton layoutX="184.0" layoutY="142.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="219.0" text="How does Hirearchy work?">
-            <items>
-                <MenuItem mnemonicParsing="false" text="It works by location, when a client is looking for service, we help them find the worker. Likewise for worker who is looking for work" />
-            </items>
-        </MenuButton>
-        <MenuButton layoutX="184.0" layoutY="168.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="219.0" text="How do I pay for the services?">
-            <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
-            </items>
-        </MenuButton>
-        <MenuButton layoutX="184.0" layoutY="194.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="219.0" text="Can I trust Hirearchy?">
-            <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
-            </items>
-        </MenuButton>
-        <MenuButton layoutX="184.0" layoutY="220.0" mnemonicParsing="false" text="MenuButton">
-            <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
-            </items>
-        </MenuButton>
-        <MenuButton layoutX="184.0" layoutY="246.0" mnemonicParsing="false" text="MenuButton">
-            <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
-            </items>
-        </MenuButton>
-        <MenuButton layoutX="184.0" layoutY="272.0" mnemonicParsing="false" text="MenuButton">
-            <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
-            </items>
-        </MenuButton>
-        <MenuButton layoutX="184.0" layoutY="298.0" mnemonicParsing="false" text="MenuButton">
-            <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
-            </items>
-        </MenuButton>
-        <MenuButton layoutX="184.0" layoutY="324.0" mnemonicParsing="false" text="MenuButton">
-            <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
-            </items>
-        </MenuButton>
-      <Button layoutX="184.0" layoutY="359.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="Back to Home" />
+        <ComboBox layoutX="229.0" layoutY="304.0" prefHeight="46.0" prefWidth="418.0" promptText="How do I pay for the services?" styleClass="button" stylesheets="@styles.css" />
+        <ComboBox layoutX="230.0" layoutY="359.0" prefHeight="46.0" prefWidth="418.0" promptText="Can I trust Hirearchy?" styleClass="button" stylesheets="@styles.css" />
+        <ComboBox layoutX="230.0" layoutY="250.0" prefHeight="46.0" prefWidth="418.0" promptText="How does Hirearchy work?" styleClass="button" stylesheets="@styles.css" />
+        <ComboBox layoutX="229.0" layoutY="196.0" prefHeight="46.0" prefWidth="418.0" promptText="How to contact us?" styleClass="button" stylesheets="@styles.css" />
+        <ComboBox layoutX="229.0" layoutY="141.0" prefHeight="46.0" prefWidth="418.0" promptText="Why should I choose Hirearchy?" styleClass="button" stylesheets="@styles.css" />
+        <Button layoutX="382.0" layoutY="550.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="138.0" text="Back to Home" textFill="WHITE" />
     </children>
 </AnchorPane>
