@@ -4,7 +4,10 @@ import com.example.hirearchy.controller.DB_Operations;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.UUID;
+
+import static com.example.hirearchy.controller.RegisterAndLoginPageController.professionArr;
 
 public abstract class PGSQL {
 
@@ -98,5 +101,26 @@ public abstract class PGSQL {
             return false;
         }
         return true;
+    }
+
+    protected static void Insert_history(DB_Operations customer,DB_Operations worker ) throws SQLException {
+        if(connection==null)Connect();
+        try{
+            LocalDate date = LocalDate.now();
+            String insert = "INSERT INTO history (customer_name, worker_name, worker_profession, date, customer_email, worker_email) " +
+                    "VALUES (?,?,?,?,?,?);";
+            PreparedStatement statement = connection.prepareStatement(insert);
+            statement.setObject(1,customer.getName());
+            statement.setObject(2,worker.getName());
+            statement.setObject(3,professionArr[worker.getProfession()]);
+            statement.setObject(4,date);
+            statement.setObject(5,customer.getEmail());
+            statement.setObject(6,worker.getEmail());
+            statement.executeUpdate();
+             connection.commit();
+        }catch(SQLException e){
+            connection.rollback();
+            e.getStackTrace();
+        }
     }
 }

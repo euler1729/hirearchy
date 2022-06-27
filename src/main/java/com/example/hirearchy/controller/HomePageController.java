@@ -1,5 +1,6 @@
 package com.example.hirearchy.controller;
 import com.example.hirearchy.App;
+import com.example.hirearchy.model.Worker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,12 +12,23 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.ResourceBundle;
+
+import static com.example.hirearchy.controller.RegisterAndLoginPageController.locationArr;
+import static com.example.hirearchy.controller.RegisterAndLoginPageController.professionArr;
 
 
 public class HomePageController {
 
-    public void showCustomerHomePage(ActionEvent event){
+    public void showCustomerHomePage(ActionEvent event, int type){
         try{
+//            String fxmlName;
+//            if(type == 2)fxmlName = "Customer";
+//            else fxmlName = "Customer"; // change when corp. customer fxml fixed
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Customer.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -25,7 +37,9 @@ public class HomePageController {
             stage.show();
         }
         catch(Exception e){
-            System.out.println(e.getMessage());
+//            e.getMessage();
+            e.getStackTrace();
+            System.out.println("error in showCustomerHomePage Method in HomePageController class");
         }
     }
 
@@ -39,7 +53,7 @@ public class HomePageController {
             stage.show();
         }
         catch(Exception e){
-            System.out.println(e.getMessage());
+            e.getStackTrace();
         }
     }
 

@@ -183,6 +183,7 @@ public class RegisterAndLoginPageController implements Initializable {
                 int location = locationMap.get(LocationDropdown.getValue());
                 String password = PasswordTextField.getText();
 
+
                 if(profession==0){
                     corporateCustomer = new CorporateCustomer(name,contact,email,profession,password,location);
                     done = entry.insertRecord(corporateCustomer);
@@ -199,11 +200,11 @@ public class RegisterAndLoginPageController implements Initializable {
                     System.out.println("Done");
                     if(profession<2){
                         HomePageController homeForCustomer = new HomePageController();
-                        homeForCustomer.showCustomerHomePage(event);
+                        homeForCustomer.showCustomerHomePage(event, profession + 1);
                     }
                     else {
-                        HomePageController homeForCustomer = new HomePageController();
-                        homeForCustomer.showWorkerHomePage(event);
+                        HomePageController homeForWorker = new HomePageController();
+                        homeForWorker.showWorkerHomePage(event);
                     }
                 }
                 else {
@@ -237,13 +238,17 @@ public class RegisterAndLoginPageController implements Initializable {
                 if(db.getProfession()==0){//For Corporate Customer
                     corporateCustomerController = new CorporateCustomerController(db.getName(),db.getContact(),db.getEmail(),db.getProfession(),"",db.getLocation());
                     HomePageController homeForCustomer = new HomePageController();
-                    homeForCustomer.showCustomerHomePage(event);
+                    homeForCustomer.showCustomerHomePage(event, 1);
                 }
                 else if(db.getProfession()==1){//For Regular Customer
-                    regularCustomerController = new RegularCustomerController(db.getName(),db.getContact(),db.getEmail(),db.getProfession(),"",db.getLocation());
+//                    regularCustomerController = new RegularCustomerController(db.getName(),db.getContact(),db.getEmail(),db.getProfession(),"",db.getLocation());
+                    HomePageController homeForCustomer = new HomePageController();
+                    homeForCustomer.showCustomerHomePage(event, 2);
                 }
                 else{//For Worker
                     workerController = new WorkerController(db.getName(),db.getContact(),db.getEmail(),db.getProfession(),"",db.getLocation());
+                    HomePageController homeForWorker = new HomePageController();
+                    homeForWorker.showWorkerHomePage(event);
                 }
 
             }
