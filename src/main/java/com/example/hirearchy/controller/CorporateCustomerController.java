@@ -16,70 +16,38 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class CorporateCustomerController extends Customer implements Initializable {
+public class CorporateCustomerController implements Initializable {
 
-    public CorporateCustomerController(String name, String contact_no, String email, int profession, String password, int location) {
-        super(name, contact_no, email, profession, password, location);
-    }
-
-    @Override
-    public void searchWorker() {
-
-    }
-
-    @Override
-    public boolean editProfile() {
-        return false;
-    }
-
-    @Override
-    public boolean showProfile() {
-        return false;
-    }
+    mainController controller = new mainController();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
     }
 
-    private void loadOption(String opt, ActionEvent event) {
-        Scene scene;
-        Stage stage;
-        FXMLLoader fxmlLoader;
-        try{
-            fxmlLoader = new FXMLLoader(App.class.getResource(opt + ".fxml"));
-            scene = new Scene(fxmlLoader.load(), 600, 500);
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch(IOException e){
-            e.getStackTrace();
-        }
-    }
-
     @FXML
     private void onHireButtonClick (ActionEvent event){
-        loadOption("Customer", event); // change when corp. customer fxml fixed
+        controller.loadOption("corporateCustomerHire", event);
     }
 
     @FXML
     private void onProfileButtonClick (ActionEvent event){
-        loadOption("corporatecustoer", event);
+        controller.loadOption("corporateProfile", event);
     }
 
     @FXML
     public void onFaqButtonClick(ActionEvent event){
-        loadOption("faq", event);
+        controller.loadOption("faq", event);
     }
 
     @FXML
     private void onAboutButtonClick (ActionEvent event){
-        loadOption("about", event);
+        controller.loadOption("about", event);
     }
 
     @FXML
     private void onLogoutButtonClick(ActionEvent event){
-        loadOption("LoginPage", event);
+        controller.loadOption("LoginPage", event);
     }
 
 //    public void onRegularCustomerSearchButtonClick(ActionEvent event) {
