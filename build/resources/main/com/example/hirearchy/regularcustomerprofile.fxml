@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="920.0" styleClass="secondary-color" stylesheets="@../../../../IdeaProjects/hirearchy/src/styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="920.0" styleClass="secondary-color" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hirearchy.controller.RegularCustomerController">
     <left>
-        <VBox prefHeight="200.0" prefWidth="240.0" styleClass="primary-color" stylesheets="@../../../../IdeaProjects/hirearchy/src/main/resources/com/example/hirearchy/tech.css" BorderPane.alignment="CENTER">
+        <VBox prefHeight="200.0" prefWidth="240.0" styleClass="primary-color" stylesheets="@styles.css" BorderPane.alignment="CENTER">
             <children>
                 <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                     <VBox.margin>
@@ -22,14 +22,14 @@
                     <children>
                         <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../../IdeaProjects/hirearchy/src/main/resources/Images/person_circle_icon_159926.png" />
+                                <Image url="@../../../Images/person_circle_icon_159926.png" />
                             </image>
                         </ImageView>
                     </children>
                 </VBox>
                 <VBox alignment="TOP_CENTER" prefHeight="277.0" prefWidth="240.0">
                     <children>
-                        <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="182.0" stylesheets="@../../../../IdeaProjects/hirearchy/src/main/resources/com/example/hirearchy/tech.css" text="Hire" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#onHireButtonClick" prefHeight="42.0" prefWidth="182.0" stylesheets="@styles.css" text="Hire" textFill="WHITE">
                             <font>
                                 <Font size="18.0" />
                             </font>
@@ -37,7 +37,7 @@
                                 <Insets bottom="10.0" top="5.0" />
                             </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="182.0" stylesheets="@../../../../IdeaProjects/hirearchy/src/main/resources/com/example/hirearchy/tech.css" text="Profile" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#onProfileButtonClick" prefHeight="42.0" prefWidth="182.0" stylesheets="@styles.css" text="Profile" textFill="WHITE">
                             <font>
                                 <Font size="18.0" />
                             </font>
@@ -45,7 +45,7 @@
                                 <Insets bottom="10.0" top="5.0" />
                             </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="182.0" stylesheets="@../../../../IdeaProjects/hirearchy/src/main/resources/com/example/hirearchy/tech.css" text="FAQ" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#onFaqButtonClick" prefHeight="42.0" prefWidth="182.0" stylesheets="@styles.css" text="FAQ" textFill="WHITE">
                             <font>
                                 <Font size="18.0" />
                             </font>
@@ -53,7 +53,7 @@
                                 <Insets bottom="10.0" top="5.0" />
                             </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="182.0" stylesheets="@../../../../IdeaProjects/hirearchy/src/main/resources/com/example/hirearchy/tech.css" text="About" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#onAboutButtonClick" prefHeight="42.0" prefWidth="182.0" stylesheets="@styles.css" text="About" textFill="WHITE">
                             <font>
                                 <Font size="18.0" />
                             </font>
@@ -61,7 +61,7 @@
                                 <Insets bottom="10.0" top="5.0" />
                             </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="182.0" stylesheets="@../../../../IdeaProjects/hirearchy/src/main/resources/com/example/hirearchy/tech.css" text="Logout" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#onLogoutButtonClick" prefHeight="42.0" prefWidth="182.0" stylesheets="@styles.css" text="Logout" textFill="WHITE">
                             <font>
                                 <Font size="18.0" />
                             </font>
@@ -77,7 +77,7 @@
     <right>
         <VBox prefHeight="640.0" prefWidth="693.0" BorderPane.alignment="CENTER">
             <children>
-                <AnchorPane prefHeight="646.0" prefWidth="680.0" styleClass="secondary-color" stylesheets="@../../../../IdeaProjects/hirearchy/src/main/resources/com/example/hirearchy/tech.css">
+                <AnchorPane prefHeight="646.0" prefWidth="680.0" styleClass="secondary-color" stylesheets="@styles.css">
                     <children>
                         <Label layoutX="67.0" layoutY="136.0" prefHeight="28.0" prefWidth="82.0" text="Name" textFill="WHITE">
                             <font>
@@ -133,7 +133,7 @@
                             </font>
                         </Label>
                         <TextField layoutX="244.0" layoutY="382.0" prefHeight="26.0" prefWidth="321.0" />
-                        <Button layoutX="278.0" layoutY="536.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="88.0" stylesheets="@../../../../IdeaProjects/hirearchy/src/main/resources/com/example/hirearchy/tech.css" text="Update" textFill="WHITE" />
+                        <Button layoutX="278.0" layoutY="536.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="88.0" stylesheets="@styles.css" text="Update" textFill="WHITE" />
                     </children>
                 </AnchorPane>
             </children>
