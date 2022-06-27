@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hirearchy.controller.mainController">
     <children>
         <MenuButton layoutX="184.0" layoutY="90.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="219.0" text="Why should I choose Hirearchy?" />
         <MenuButton layoutX="184.0" layoutY="116.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="219.0" text="How to contact us?" />
@@ -55,5 +56,6 @@
                 <MenuItem mnemonicParsing="false" text="Action 2" />
             </items>
         </MenuButton>
+      <Button layoutX="184.0" layoutY="359.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="Back to Home" />
     </children>
 </AnchorPane>

@@ -65,6 +65,7 @@ public class RegularCustomerController implements Initializable {
             createAlert(new String[]{"Invalid Input","Please Select Both Location and Profession."});
             return;
         }
+        rcList.clear();
         DB_Operations db = new DB_Operations();
         ArrayList<Worker> workers = db.search_custom(professionMap.get(ProfessionDropDown1.getValue()),locationMap.get(LocationDropDown1.getValue()));
         for(Worker w:workers){
@@ -92,16 +93,16 @@ public class RegularCustomerController implements Initializable {
 
     @FXML
     private void onHireButtonClick (ActionEvent event){
-        controller.loadOption("Worker", event);
+        controller.loadOption("Customer", event);
     }
 
     @FXML
     private void onProfileButtonClick (ActionEvent event){
-        controller.loadOption("workerprofile", event);
+        controller.loadOption("Customer", event);
     }
 
     @FXML
-    public void onFaqButtonClick(ActionEvent event){
+    private void onFaqButtonClick(ActionEvent event){
         controller.loadOption("faq", event);
     }
 

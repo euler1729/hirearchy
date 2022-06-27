@@ -30,23 +30,21 @@ public class HomePageController {
 //            if(type == 2)fxmlName = "Customer";
 //            else fxmlName = "Customer"; // change when corp. customer fxml fixed
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Customer.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
+            Scene scene = new Scene(fxmlLoader.load(), 720, 640);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setTitle("Welcome Home");
             stage.setScene(scene);
             stage.show();
         }
         catch(Exception e){
-//            e.getMessage();
             e.getStackTrace();
-            System.out.println("error in showCustomerHomePage Method in HomePageController class");
         }
     }
 
     public void showWorkerHomePage(ActionEvent event){
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Worker.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
+            Scene scene = new Scene(fxmlLoader.load(), 720, 640);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setTitle("Welcome Home");
             stage.setScene(scene);

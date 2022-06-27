@@ -24,6 +24,7 @@ import java.util.regex.Pattern;
 
 
 public class RegisterAndLoginPageController implements Initializable {
+
     // Scene transition
     private Stage stage;
     private Parent root;
@@ -63,8 +64,6 @@ public class RegisterAndLoginPageController implements Initializable {
         }
     }
 
-
-
     // dropdown options for register as
     @FXML
     public ComboBox<String> RegisterAsDropdown = new ComboBox<>();
@@ -87,14 +86,15 @@ public class RegisterAndLoginPageController implements Initializable {
     ObservableList<String> LocationsList = FXCollections.observableArrayList();
 
     //User Object
-    public RegularCustomer regularCustomer=null;
-    public CorporateCustomer corporateCustomer=null;
+    public static RegularCustomer regularCustomer = null;
+    public static CorporateCustomer corporateCustomer = null;
+    public static Worker workerUser = null;
 
 
     //Controller Object
-    public RegularCustomerController regularCustomerController = null;
-    public CorporateCustomerController corporateCustomerController = null;
-    public WorkerController workerController = null;
+//    public RegularCustomerController regularCustomerController = null;
+//    public CorporateCustomerController corporateCustomerController = null;
+//    public WorkerController workerController = null;
 
 
 
@@ -193,8 +193,8 @@ public class RegisterAndLoginPageController implements Initializable {
                     done = entry.insertRecord(regularCustomer);
                 }
                 else {
-                    workerController = new WorkerController(name, contact, email, profession, password, location);
-                    done = entry.insertRecord(workerController);
+                    workerUser = new Worker(name, contact, email, profession, password, location);
+                    done = entry.insertRecord(workerUser);
                 }
                 if(done){
                     System.out.println("Done");
@@ -236,17 +236,17 @@ public class RegisterAndLoginPageController implements Initializable {
             else{
                 System.out.println("working");
                 if(db.getProfession()==0){//For Corporate Customer
-                    corporateCustomerController = new CorporateCustomerController(db.getName(),db.getContact(),db.getEmail(),db.getProfession(),"",db.getLocation());
+                    corporateCustomer = new CorporateCustomer(db.getName(),db.getContact(),db.getEmail(),db.getProfession(),"",db.getLocation());
                     HomePageController homeForCustomer = new HomePageController();
                     homeForCustomer.showCustomerHomePage(event, 1);
                 }
                 else if(db.getProfession()==1){//For Regular Customer
-//                    regularCustomerController = new RegularCustomerController(db.getName(),db.getContact(),db.getEmail(),db.getProfession(),"",db.getLocation());
+                    regularCustomer = new RegularCustomer(db.getName(),db.getContact(),db.getEmail(),db.getProfession(),"",db.getLocation());
                     HomePageController homeForCustomer = new HomePageController();
                     homeForCustomer.showCustomerHomePage(event, 2);
                 }
                 else{//For Worker
-                    workerController = new WorkerController(db.getName(),db.getContact(),db.getEmail(),db.getProfession(),"",db.getLocation());
+                    workerUser = new Worker(db.getName(),db.getContact(),db.getEmail(),db.getProfession(),"",db.getLocation());
                     HomePageController homeForWorker = new HomePageController();
                     homeForWorker.showWorkerHomePage(event);
                 }
