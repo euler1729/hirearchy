@@ -26,11 +26,11 @@ public class HomePageController {
 
     public void showCustomerHomePage(ActionEvent event, int type){
         try{
-//            String fxmlName;
-//            if(type == 2)fxmlName = "Customer";
-//            else fxmlName = "Customer"; // change when corp. customer fxml fixed
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Customer.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 600, 500);
+            String fxmlName;
+            if(type == 2)fxmlName = "regularCustomerHire.fxml";
+            else fxmlName = "corporateCustomerHire.fxml"; // change when corp. customer fxml fixed
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxmlName));
+            Scene scene = new Scene(fxmlLoader.load());
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setTitle("Welcome Home");
             stage.setScene(scene);
@@ -44,7 +44,7 @@ public class HomePageController {
     public void showWorkerHomePage(ActionEvent event){
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Worker.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 600, 500);
+            Scene scene = new Scene(fxmlLoader.load());
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setTitle("Welcome Home");
             stage.setScene(scene);

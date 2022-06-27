@@ -90,13 +90,10 @@ public class RegisterAndLoginPageController implements Initializable {
     public static CorporateCustomer corporateCustomer = null;
     public static Worker workerUser = null;
 
-
     //Controller Object
 //    public RegularCustomerController regularCustomerController = null;
 //    public CorporateCustomerController corporateCustomerController = null;
 //    public WorkerController workerController = null;
-
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -110,7 +107,7 @@ public class RegisterAndLoginPageController implements Initializable {
     public void RegisterToLoginPage(ActionEvent event){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("LoginPage.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 600, 500);
+            Scene scene = new Scene(fxmlLoader.load());
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setTitle("Login to Hirearchy");
             stage.setScene(scene);
@@ -123,7 +120,7 @@ public class RegisterAndLoginPageController implements Initializable {
     public void LoginToRegisterPage(ActionEvent event) {
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("RegisterPage.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 600, 500);
+            Scene scene = new Scene(fxmlLoader.load());
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             stage.setTitle("Register to Hirearchy");
             stage.setScene(scene);

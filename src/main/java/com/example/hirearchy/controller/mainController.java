@@ -20,7 +20,7 @@ public class mainController {
         FXMLLoader fxmlLoader;
         try{
             fxmlLoader = new FXMLLoader(App.class.getResource(fileName + ".fxml"));
-            scene = new Scene(fxmlLoader.load(), 600, 500);
+            scene = new Scene(fxmlLoader.load());
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setTitle(fileName);
             stage.setScene(scene);
@@ -34,10 +34,10 @@ public class mainController {
     public void onBackButtonClick(ActionEvent event){
         String filename = "loginPage";
         if(regularCustomer != null){
-            filename = "Customer";
+            filename = "regularCustomerHire";
         }
         else if(corporateCustomer != null){
-            filename = "Customer";
+            filename = "corporateCustomerHire";
         }
         else if(workerUser != null){
             filename = "Worker";

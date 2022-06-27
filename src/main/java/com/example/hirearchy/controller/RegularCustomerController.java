@@ -59,6 +59,7 @@ public class RegularCustomerController implements Initializable {
 //        this.action = action;
 //    }
 
+    @FXML
     public void onRegularCustomerSearchButtonClick(ActionEvent event) {
         if(ProfessionDropDown1.getValue()==null && LocationDropDown1.getValue()==null){
             createAlert(new String[]{"Invalid Input","Please Select Both Location and Profession."});
@@ -93,12 +94,12 @@ public class RegularCustomerController implements Initializable {
 
     @FXML
     private void onHireButtonClick (ActionEvent event){
-        controller.loadOption("Customer", event);
+        controller.loadOption("regularCustomerHire", event);
     }
 
     @FXML
     private void onProfileButtonClick (ActionEvent event){
-        controller.loadOption("Customer", event);
+        controller.loadOption("regularcustomerprofile", event);
     }
 
     @FXML
