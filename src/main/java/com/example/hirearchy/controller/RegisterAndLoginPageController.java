@@ -194,7 +194,7 @@ public class RegisterAndLoginPageController implements Initializable {
                     done = entry.insertRecord(regularCustomer);
                 }
                 else {
-                    workerUser = new Worker(name, contact, email, profession, password, location);
+                    workerUser = new Worker(name, contact, email, profession, password, location,0,0);
                     done = entry.insertRecord(workerUser);
                 }
                 if(done){
@@ -248,7 +248,7 @@ public class RegisterAndLoginPageController implements Initializable {
                     homeForCustomer.showCustomerHomePage(event, 2);
                 }
                 else{//For Worker
-                    workerUser = new Worker(db.getName(),db.getContact(),db.getEmail(),db.getProfession(),"",db.getLocation());
+                    workerUser = new Worker(db.getName(),db.getContact(),db.getEmail(),db.getProfession(),"",db.getLocation(),db.getMonthly_rate(),db.getHourly_rate());
                     HomePageController homeForWorker = new HomePageController();
                     homeForWorker.showWorkerHomePage(event);
                 }

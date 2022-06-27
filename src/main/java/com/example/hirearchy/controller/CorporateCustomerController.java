@@ -1,35 +1,24 @@
 package com.example.hirearchy.controller;
 
-import com.example.hirearchy.App;
-import com.example.hirearchy.model.Customer;
+
 import com.example.hirearchy.model.Worker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
-
 import static com.example.hirearchy.controller.RegisterAndLoginPageController.*;
 import static com.example.hirearchy.controller.RegisterAndLoginPageController.locationMap;
 
 public class CorporateCustomerController implements Initializable {
 
     mainController controller = new mainController();
-
     @FXML
     public ComboBox<String> LocationDropDown2 = new ComboBox<>();
     @FXML
@@ -37,6 +26,21 @@ public class CorporateCustomerController implements Initializable {
     //Query condition field
     ObservableList<String> LocationsList2 = FXCollections.observableArrayList();
     ObservableList<String> ProfessionList2 = FXCollections.observableArrayList();
+    //table
+    @FXML
+    private TableView<TableEntry> ccTable;
+    @FXML
+    private TableColumn<TableEntry, String> name;
+    @FXML
+    private TableColumn<TableEntry, String> contact_no;
+    @FXML
+    private TableColumn<TableEntry, String> email;
+    @FXML
+    private TableColumn<TableEntry, String> locat;
+    @FXML
+    private TableColumn<TableEntry, Button> req_btn;
+    ObservableList<TableEntry> ccList = FXCollections.observableArrayList();
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -48,10 +52,12 @@ public class CorporateCustomerController implements Initializable {
         ProfessionDropDown2.setItems(ProfessionList2);
 
         // table
-        name.setCellValueFactory(new PropertyValueFactory<Worker, String>("name"));
+        name.setCellValueFactory(new PropertyValueFactory<TableEntry, String>("name"));
         contact_no.setCellValueFactory(new PropertyValueFactory<>("contact_no"));
         email.setCellValueFactory(new PropertyValueFactory<>("email"));
         locat.setCellValueFactory(new PropertyValueFactory<>("location"));
+        req_btn.setCellValueFactory(new PropertyValueFactory<>("Action"));
+
 //        action.setCellValueFactory(new PropertyValueFactory<>("button"));
 
         ccTable.setItems(ccList);
@@ -67,29 +73,10 @@ public class CorporateCustomerController implements Initializable {
         DB_Operations db = new DB_Operations();
         ArrayList<Worker> workers = db.search_custom(professionMap.get(ProfessionDropDown2.getValue()),locationMap.get(LocationDropDown2.getValue()));
         for(Worker w:workers){
-            ccList.add(new TableEntry(w.getName(),w.getEmail(),w.getContact_no(), w.getLocation(), w.getProfession()));
+            ccList.add(new TableEntry(w.getName(),w.getEmail(),w.getContact_no(), w.getLocation(), w.getProfession(), (int) w.getMonthly_rate(), (int) w.getHourly_rate()));
         }
     }
 
-    //table
-    @FXML
-    private TableView<TableEntry> ccTable;
-
-    //table
-
-    @FXML
-    private TableColumn<Worker, String> name;
-
-    @FXML
-    private TableColumn<Worker, String> contact_no;
-
-    @FXML
-    private TableColumn<Worker, String> email;
-
-    @FXML
-    private TableColumn<Worker, String> locat;
-
-    ObservableList<TableEntry> ccList = FXCollections.observableArrayList();
 
     @FXML
     private void onHireButtonClick (ActionEvent event){

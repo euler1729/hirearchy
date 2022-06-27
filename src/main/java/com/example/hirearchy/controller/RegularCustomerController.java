@@ -6,10 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
@@ -31,26 +28,23 @@ public class RegularCustomerController implements Initializable {
     //Query condition field
     ObservableList<String> LocationsList1 = FXCollections.observableArrayList();
     ObservableList<String> ProfessionList1 = FXCollections.observableArrayList();
-
+    // table
     @FXML
     private TableView<TableEntry> rcTable;
-
-    //table
-
     @FXML
-    private TableColumn<Worker, String> name;
-
+    private TableColumn<TableEntry, String> name;
     @FXML
-    private TableColumn<Worker, String> contact_no;
-
+    private TableColumn<TableEntry, String> contact_no;
     @FXML
-    private TableColumn<Worker, String> email;
-
+    private TableColumn<TableEntry, String> email;
     @FXML
-    private TableColumn<Worker, String> locat;
-
-//    @FXML
-//    private TableColumn<Worker, Button> action;
+    private TableColumn<TableEntry, String> locat;
+    @FXML
+    private TableColumn<TableEntry, Double> monthly_rate;
+    @FXML
+    private TableColumn<TableEntry,Double> hourly_rate;
+    @FXML
+    private TableColumn<TableEntry,Button>req_btn;
 
 
     ObservableList<TableEntry> rcList = FXCollections.observableArrayList();
@@ -69,7 +63,7 @@ public class RegularCustomerController implements Initializable {
         DB_Operations db = new DB_Operations();
         ArrayList<Worker> workers = db.search_custom(professionMap.get(ProfessionDropDown1.getValue()),locationMap.get(LocationDropDown1.getValue()));
         for(Worker w:workers){
-            rcList.add(new TableEntry(w.getName(),w.getEmail(),w.getContact_no(), w.getLocation(), w.getProfession()));
+            rcList.add(new TableEntry(w.getName(),w.getEmail(),w.getContact_no(), w.getLocation(), w.getProfession(),w.getMonthly_rate(),w.getHourly_rate()));
         }
     }
     @Override
@@ -82,10 +76,12 @@ public class RegularCustomerController implements Initializable {
         ProfessionDropDown1.setItems(ProfessionList1);
 
         //table
-        name.setCellValueFactory(new PropertyValueFactory<Worker, String>("name"));
+        name.setCellValueFactory(new PropertyValueFactory<TableEntry, String>("name"));
         contact_no.setCellValueFactory(new PropertyValueFactory<>("contact_no"));
         email.setCellValueFactory(new PropertyValueFactory<>("email"));
         locat.setCellValueFactory(new PropertyValueFactory<>("location"));
+        monthly_rate.setCellValueFactory(new PropertyValueFactory<>("monthly_rate"));
+        hourly_rate.setCellValueFactory(new PropertyValueFactory<>("hourly_rate"));
 //        action.setCellValueFactory(new PropertyValueFactory<>("button"));
 
         rcTable.setItems(rcList);

@@ -4,19 +4,17 @@
 .secondary-color{
     -fx-background-color: #00002C;
 }
+
 .button{
     -fx-background-color: #242551;
     -fx-background-radius: 30;
 }
 .text-input{
-    -fx-background-color: rgba(0, 0, 0, 0) ;
+    -fx-background-color: #00002C ;
     -fx-border-width: 0 0 1 0;
     -fx-border-color: #242551;
 }
-.combo-box .cell{
-    -fx-text-fill: white;
-    -fx-font: 16px "Arial";
-}
+
 .my-list-cell {
     -fx-text-fill: blue;
     -fx-font: 16px "Arial";
@@ -27,5 +25,9 @@
     -fx-background-color: #00002C;
 }
 .text-field{
+    -fx-text-fill: white;
+}
+.combo-box .list-cell{
+    -fx-background-color: #00002C ;
     -fx-text-fill: white;
 }

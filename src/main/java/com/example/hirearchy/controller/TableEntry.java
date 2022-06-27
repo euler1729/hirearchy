@@ -11,19 +11,35 @@ public class TableEntry {
     private String email;
     private String profession;
     private Button button;
+    private double monthly_rate;
+    private double hourly_rate;
 
-    TableEntry(String name, String email, String contact_no, Integer location, Integer profession){
+    public double getMonthly_rate() {
+        return monthly_rate;
+    }
+
+    TableEntry(String name, String email, String contact_no, Integer location, Integer profession, double monthly_rate, double hourly_rate){
         this.name = name;
         this. email = email;
         this. contact_no = contact_no;
         int l = 0, p = 0;
         if(locationMap.get(location) != null)l = locationMap.get(location);
-        if(professionMap.get(profession) != null)l = professionMap.get(profession);
+        if(professionMap.get(profession) != null)p = professionMap.get(profession);
         this.location = locationArr[l];
         this.profession = professionArr[p];
-        this.button = new Button("Action");
+        this.monthly_rate = monthly_rate;
+        this.hourly_rate = hourly_rate;
+        this.button = new Button("send");
     }
-
+    public void setMonthly_rate(double monthly_rate) {
+        this.monthly_rate = monthly_rate;
+    }
+    public double getHourly_rate() {
+        return hourly_rate;
+    }
+    public void setHourly_rate(double hourly_rate) {
+        this.hourly_rate = hourly_rate;
+    }
     public String getName() {
         return name;
     }

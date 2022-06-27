@@ -217,7 +217,9 @@ public class DB_Operations extends PGSQL {
                         resultSet.getString("email"),
                         resultSet.getInt("profession"),
                         "",
-                        resultSet.getInt("location")
+                        resultSet.getInt("location"),
+                        resultSet.getInt("monthly_rate"),
+                        resultSet.getInt("hourly_rate")
                 );
                 worker.add(info);
             }

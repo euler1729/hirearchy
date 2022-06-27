@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="920.0" styleClass="secondary-color" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="920.0" styleClass="secondary-color" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hirearchy.controller.WorkerHomeController">
    <left>
       <VBox prefHeight="200.0" prefWidth="240.0" styleClass="primary-color" stylesheets="@styles.css" BorderPane.alignment="CENTER">
          <children>
@@ -30,7 +30,7 @@
                <children>
                   <VBox alignment="TOP_CENTER" prefHeight="277.0" prefWidth="240.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="182.0" stylesheets="@styles.css" text="Offers" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#onOffersButtonClick" prefHeight="42.0" prefWidth="182.0" stylesheets="@styles.css" text="Offers" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -38,7 +38,7 @@
                               <Insets bottom="10.0" top="5.0" />
                            </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="182.0" stylesheets="@styles.css" text="Profile" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#onProfileButtonClick" prefHeight="42.0" prefWidth="182.0" stylesheets="@styles.css" text="Profile" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -46,7 +46,7 @@
                               <Insets bottom="10.0" top="5.0" />
                            </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="182.0" stylesheets="@styles.css" text="FAQ" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#onFaqButtonClick" prefHeight="42.0" prefWidth="182.0" stylesheets="@styles.css" text="FAQ" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -54,7 +54,7 @@
                               <Insets bottom="10.0" top="5.0" />
                            </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="182.0" stylesheets="@styles.css" text="About" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#onAboutButtonClick" prefHeight="42.0" prefWidth="182.0" stylesheets="@styles.css" text="About" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -62,7 +62,7 @@
                               <Insets bottom="10.0" top="5.0" />
                            </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="182.0" stylesheets="@styles.css" text="Logout" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#onLogoutButtonClick" prefHeight="42.0" prefWidth="182.0" stylesheets="@styles.css" text="Logout" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -85,9 +85,10 @@
                   <TableView layoutX="76.0" layoutY="91.0" prefHeight="473.0" prefWidth="530.0" style="-fx-background-color: #00002C;">
                      <columns>
                         <TableColumn prefWidth="96.0" text="Name" />
-                        <TableColumn prefWidth="104.79998779296875" text="Contact" />
-                        <TableColumn prefWidth="137.5999755859375" text="Email" />
-                        <TableColumn prefWidth="169.59991455078125" text="Location" />
+                        <TableColumn prefWidth="91.20001220703125" text="Contact" />
+                        <TableColumn prefWidth="136.79998779296875" text="Email" />
+                        <TableColumn prefWidth="112.79998779296875" text="Location" />
+                        <TableColumn prefWidth="92.800048828125" text="Request" />
                      </columns>
                   </TableView>
                </children>
