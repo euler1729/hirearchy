@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="920.0" styleClass="secondary-color" stylesheets="@../../../../IdeaProjects/hirearchy/src/styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
     <left>
         <VBox prefHeight="200.0" prefWidth="240.0" styleClass="primary-color" stylesheets="@../../../../IdeaProjects/hirearchy/src/main/resources/com/example/hirearchy/tech.css" BorderPane.alignment="CENTER">
@@ -91,13 +90,13 @@
                                 <Font size="20.0" />
                             </font>
                         </Label>
-                        <TextField layoutX="244.0" layoutY="178.0" prefHeight="26.0" prefWidth="321.0" />
+                        <TextField layoutX="244.0" layoutY="168.0" prefHeight="26.0" prefWidth="321.0" />
                         <Label layoutX="67.0" layoutY="196.0" prefHeight="28.0" prefWidth="82.0" text="Email" textFill="WHITE">
                             <font>
                                 <Font size="20.0" />
                             </font>
                         </Label>
-                        <TextField layoutX="244.0" layoutY="208.0" prefHeight="26.0" prefWidth="321.0" />
+                        <TextField layoutX="244.0" layoutY="198.0" prefHeight="26.0" prefWidth="321.0" />
                         <Label layoutX="67.0" layoutY="226.0" prefHeight="28.0" prefWidth="82.0" text="Location" textFill="WHITE">
                             <font>
                                 <Font size="20.0" />
@@ -110,42 +109,30 @@
                             </font>
                         </Label>
                         <TextField layoutX="244.0" layoutY="258.0" prefHeight="26.0" prefWidth="321.0" />
-                        <Label layoutX="67.0" layoutY="286.0" prefHeight="28.0" prefWidth="82.0" text="Location" textFill="WHITE">
+                        <Label layoutX="67.0" layoutY="286.0" prefHeight="28.0" prefWidth="82.0" text="Joined" textFill="WHITE">
                             <font>
                                 <Font size="20.0" />
                             </font>
                         </Label>
                         <TextField layoutX="244.0" layoutY="288.0" prefHeight="26.0" prefWidth="321.0" />
-                        <Label layoutX="67.0" layoutY="316.0" prefHeight="28.0" prefWidth="82.0" text="Joined" textFill="WHITE">
+                        <Label layoutX="67.0" layoutY="320.0" prefHeight="30.0" prefWidth="139.0" text="Monthly_rate" textFill="WHITE">
                             <font>
                                 <Font size="20.0" />
                             </font>
                         </Label>
-                        <TextField layoutX="244.0" layoutY="318.0" prefHeight="26.0" prefWidth="321.0" />
-                        <Label layoutX="67.0" layoutY="344.0" prefHeight="28.0" prefWidth="82.0" text="Name" textFill="WHITE">
+                        <TextField layoutX="244.0" layoutY="322.0" prefHeight="26.0" prefWidth="321.0" />
+                        <Label layoutX="64.0" layoutY="350.0" prefHeight="30.0" prefWidth="116.0" text="Hourly_rate" textFill="WHITE">
                             <font>
                                 <Font size="20.0" />
                             </font>
                         </Label>
-                        <TextField layoutX="244.0" layoutY="346.0" prefHeight="26.0" prefWidth="321.0" />
-                        <Label layoutX="67.0" layoutY="372.0" prefHeight="30.0" prefWidth="139.0" text="Monthly_rate" textFill="WHITE">
+                        <TextField layoutX="244.0" layoutY="352.0" prefHeight="26.0" prefWidth="321.0" />
+                        <Label layoutX="67.0" layoutY="380.0" prefHeight="30.0" prefWidth="109.0" text="Description" textFill="WHITE">
                             <font>
                                 <Font size="20.0" />
                             </font>
                         </Label>
-                        <TextField layoutX="244.0" layoutY="374.0" prefHeight="26.0" prefWidth="321.0" />
-                        <Label layoutX="67.0" layoutY="402.0" prefHeight="30.0" prefWidth="116.0" text="Hourly_rate" textFill="WHITE">
-                            <font>
-                                <Font size="20.0" />
-                            </font>
-                        </Label>
-                        <TextField layoutX="244.0" layoutY="404.0" prefHeight="26.0" prefWidth="321.0" />
-                        <Label layoutX="67.0" layoutY="430.0" prefHeight="30.0" prefWidth="109.0" text="Description" textFill="WHITE">
-                            <font>
-                                <Font size="20.0" />
-                            </font>
-                        </Label>
-                        <TextField layoutX="244.0" layoutY="432.0" prefHeight="26.0" prefWidth="321.0" />
+                        <TextField layoutX="244.0" layoutY="382.0" prefHeight="26.0" prefWidth="321.0" />
                         <Button layoutX="278.0" layoutY="536.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="88.0" stylesheets="@../../../../IdeaProjects/hirearchy/src/main/resources/com/example/hirearchy/tech.css" text="Update" textFill="WHITE" />
                     </children>
                 </AnchorPane>
