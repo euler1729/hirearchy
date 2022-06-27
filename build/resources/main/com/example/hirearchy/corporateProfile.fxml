@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="920.0" styleClass="secondary-color" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="920.0" styleClass="secondary-color" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hirearchy.controller.CorporateCustomerController">
     <left>
         <VBox prefHeight="200.0" prefWidth="240.0" styleClass="primary-color" stylesheets="@styles.css" BorderPane.alignment="CENTER">
             <children>
@@ -30,7 +30,7 @@
                     <children>
                         <VBox alignment="TOP_CENTER" prefHeight="277.0" prefWidth="240.0">
                             <children>
-                                <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="182.0" stylesheets="@styles.css" text="Hire" textFill="WHITE">
+                                <Button mnemonicParsing="false" onAction="#onHireButtonClick" prefHeight="42.0" prefWidth="182.0" stylesheets="@styles.css" text="Hire" textFill="WHITE">
                                     <font>
                                         <Font size="18.0" />
                                     </font>
@@ -38,7 +38,7 @@
                                         <Insets bottom="10.0" top="5.0" />
                                     </VBox.margin>
                                 </Button>
-                                <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="182.0" stylesheets="@styles.css" text="Profile" textFill="WHITE">
+                                <Button mnemonicParsing="false" onAction="#onProfileButtonClick" prefHeight="42.0" prefWidth="182.0" stylesheets="@styles.css" text="Profile" textFill="WHITE">
                                     <font>
                                         <Font size="18.0" />
                                     </font>
@@ -46,7 +46,7 @@
                                         <Insets bottom="10.0" top="5.0" />
                                     </VBox.margin>
                                 </Button>
-                                <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="182.0" stylesheets="@styles.css" text="FAQ" textFill="WHITE">
+                                <Button mnemonicParsing="false" onAction="#onFaqButtonClick" prefHeight="42.0" prefWidth="182.0" stylesheets="@styles.css" text="FAQ" textFill="WHITE">
                                     <font>
                                         <Font size="18.0" />
                                     </font>
@@ -54,7 +54,7 @@
                                         <Insets bottom="10.0" top="5.0" />
                                     </VBox.margin>
                                 </Button>
-                                <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="182.0" stylesheets="@styles.css" text="About" textFill="WHITE">
+                                <Button mnemonicParsing="false" onAction="#onAboutButtonClick" prefHeight="42.0" prefWidth="182.0" stylesheets="@styles.css" text="About" textFill="WHITE">
                                     <font>
                                         <Font size="18.0" />
                                     </font>
@@ -62,7 +62,7 @@
                                         <Insets bottom="10.0" top="5.0" />
                                     </VBox.margin>
                                 </Button>
-                                <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="182.0" stylesheets="@styles.css" text="Logout" textFill="WHITE">
+                                <Button mnemonicParsing="false" onAction="#onLogoutButtonClick" prefHeight="42.0" prefWidth="182.0" stylesheets="@styles.css" text="Logout" textFill="WHITE">
                                     <font>
                                         <Font size="18.0" />
                                     </font>
