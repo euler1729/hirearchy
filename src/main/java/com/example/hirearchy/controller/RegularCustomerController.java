@@ -94,7 +94,7 @@ public class RegularCustomerController implements Initializable {
 
     @FXML
     private void onProfileButtonClick (ActionEvent event){
-        controller.loadOption("workerprofile", event);
+        controller.loadOption("regular", event);
     }
 
     @FXML

@@ -17,8 +17,9 @@ public class mainController {
         FXMLLoader fxmlLoader;
         try{
             fxmlLoader = new FXMLLoader(App.class.getResource(opt + ".fxml"));
-            scene = new Scene(fxmlLoader.load());
+            scene = new Scene(fxmlLoader.load(),920,640);
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle(opt);
             stage.setScene(scene);
             stage.show();
         } catch(IOException e){
