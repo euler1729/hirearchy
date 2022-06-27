@@ -104,6 +104,7 @@ public class RegisterAndLoginPageController implements Initializable {
     }
 
     //Routing to Login Page
+    @FXML
     public void RegisterToLoginPage(ActionEvent event){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("LoginPage.fxml"));
@@ -117,6 +118,7 @@ public class RegisterAndLoginPageController implements Initializable {
         }
     }
     //Routing to Register Page
+    @FXML
     public void LoginToRegisterPage(ActionEvent event) {
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("RegisterPage.fxml"));
@@ -167,6 +169,7 @@ public class RegisterAndLoginPageController implements Initializable {
     }
 
     //Button for Requesting Registration
+    @FXML
     public void onRegisterButtonClick(ActionEvent event){
         try{
             boolean valid = validateForm();
@@ -219,6 +222,7 @@ public class RegisterAndLoginPageController implements Initializable {
         }
     }
     //Button for request to Login
+    @FXML
     public void onLoginButtonClick(ActionEvent event){
         try{
             if(validateForm(EmailTextField.getText(), PasswordTextField.getText())){

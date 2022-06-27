@@ -32,14 +32,14 @@ public class mainController {
 
     @FXML
     public void onBackButtonClick(ActionEvent event){
-        String filename = "loginPage";
+        String filename;
         if(regularCustomer != null){
             filename = "regularCustomerHire";
         }
         else if(corporateCustomer != null){
             filename = "corporateCustomerHire";
         }
-        else if(workerUser != null){
+        else {
             filename = "Worker";
         }
         loadOption(filename, event);
