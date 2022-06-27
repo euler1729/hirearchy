@@ -16,7 +16,7 @@
                 <Font name="Impact" size="25.0" />
             </font>
         </Text>
-        <TextArea layoutX="113.0" layoutY="146.0" prefHeight="364.0" prefWidth="445.0" styleClass="text-area" stylesheets="@styles.css" text="From the beginning of our journey that started&#10;in 2008, we have always cared about our users.&#10;We work to enhance job sectors for people &#10;who have a particular area of expertise, by &#10;connecting them to the people who are in dire&#10;need of help from them. We have always taken&#10;steps to pay the workers the right amount and&#10;to find the absolute right person for the &#10;customer. The amount of trust and support we&#10;get from our users is what gets us moving. &#10;&#10;">
+        <TextArea editable="false" layoutX="113.0" layoutY="146.0" prefHeight="364.0" prefWidth="445.0" styleClass="text-area" stylesheets="@styles.css" text="From the beginning of our journey that started&#10;in 2008, we have always cared about our users.&#10;We work to enhance job sectors for people &#10;who have a particular area of expertise, by &#10;connecting them to the people who are in dire&#10;need of help from them. We have always taken&#10;steps to pay the workers the right amount and&#10;to find the absolute right person for the &#10;customer. The amount of trust and support we&#10;get from our users is what gets us moving. &#10;&#10;">
             <font>
                 <Font size="19.0" />
             </font>
@@ -27,7 +27,7 @@
                 <Font name="Impact" size="15.0" />
             </font>
         </TextField>
-        <TextArea layoutX="679.0" layoutY="202.0" prefHeight="307.0" prefWidth="200.0" text="&#10;&#10;&#10;Our work is to find the right&#10;person for you. We connect&#10;the worker with the &#10;customer, using location&#10;and the need of yours." />
+        <TextArea editable="false" layoutX="679.0" layoutY="202.0" prefHeight="307.0" prefWidth="200.0" text="&#10;&#10;&#10;Our work is to find the right&#10;person for you. We connect&#10;the worker with the &#10;customer, using location&#10;and the need of yours." />
         <ImageView fitHeight="149.0" fitWidth="200.0" layoutX="679.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../../Images/about.jpg" />
