@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="920.0" styleClass="secondary-color" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hirearchy.controller.CorporateCustomerController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="920.0" styleClass="secondary-color" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hirearchy.controller.ccEditProfile">
     <left>
         <VBox prefHeight="200.0" prefWidth="240.0" styleClass="primary-color" stylesheets="@styles.css" BorderPane.alignment="CENTER">
             <ImageView fitHeight="240.0" fitWidth="273.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
@@ -25,49 +25,44 @@
                     <Insets top="50.0" />
                 </VBox.margin>
                 <VBox alignment="TOP_CENTER" prefHeight="277.0" prefWidth="240.0">
-                    <Button mnemonicParsing="false" onAction="#onHireButtonClick" prefHeight="42.0" prefWidth="182.0"
-                            stylesheets="@styles.css" text="Hire" textFill="WHITE">
+                    <Button mnemonicParsing="false" onAction="#onHireButtonClick" prefHeight="42.0" prefWidth="182.0" stylesheets="@styles.css" text="Hire" textFill="WHITE">
                         <font>
-                            <Font size="18.0"/>
+                            <Font size="18.0" />
                         </font>
                         <VBox.margin>
-                            <Insets bottom="10.0" top="5.0"/>
+                            <Insets bottom="10.0" top="5.0" />
                         </VBox.margin>
                     </Button>
-                    <Button mnemonicParsing="false" onAction="#onProfileButtonClick" prefHeight="42.0" prefWidth="182.0"
-                            stylesheets="@styles.css" text="Profile" textFill="WHITE">
+                    <Button mnemonicParsing="false" onAction="#onProfileButtonClick" prefHeight="42.0" prefWidth="182.0" stylesheets="@styles.css" text="Profile" textFill="WHITE">
                         <font>
-                            <Font size="18.0"/>
+                            <Font size="18.0" />
                         </font>
                         <VBox.margin>
-                            <Insets bottom="10.0" top="5.0"/>
+                            <Insets bottom="10.0" top="5.0" />
                         </VBox.margin>
                     </Button>
-                    <Button mnemonicParsing="false" onAction="#onFaqButtonClick" prefHeight="42.0" prefWidth="182.0"
-                            stylesheets="@styles.css" text="FAQ" textFill="WHITE">
+                    <Button mnemonicParsing="false" onAction="#onFaqButtonClick" prefHeight="42.0" prefWidth="182.0" stylesheets="@styles.css" text="FAQ" textFill="WHITE">
                         <font>
-                            <Font size="18.0"/>
+                            <Font size="18.0" />
                         </font>
                         <VBox.margin>
-                            <Insets bottom="10.0" top="5.0"/>
+                            <Insets bottom="10.0" top="5.0" />
                         </VBox.margin>
                     </Button>
-                    <Button mnemonicParsing="false" onAction="#onAboutButtonClick" prefHeight="42.0" prefWidth="182.0"
-                            stylesheets="@styles.css" text="About" textFill="WHITE">
+                    <Button mnemonicParsing="false" onAction="#onAboutButtonClick" prefHeight="42.0" prefWidth="182.0" stylesheets="@styles.css" text="About" textFill="WHITE">
                         <font>
-                            <Font size="18.0"/>
+                            <Font size="18.0" />
                         </font>
                         <VBox.margin>
-                            <Insets bottom="10.0" top="5.0"/>
+                            <Insets bottom="10.0" top="5.0" />
                         </VBox.margin>
                     </Button>
-                    <Button mnemonicParsing="false" onAction="#onLogoutButtonClick" prefHeight="42.0" prefWidth="182.0"
-                            stylesheets="@styles.css" text="Logout" textFill="WHITE">
+                    <Button mnemonicParsing="false" onAction="#onLogoutButtonClick" prefHeight="42.0" prefWidth="182.0" stylesheets="@styles.css" text="Logout" textFill="WHITE">
                         <font>
-                            <Font size="18.0"/>
+                            <Font size="18.0" />
                         </font>
                         <VBox.margin>
-                            <Insets bottom="10.0" top="5.0"/>
+                            <Insets bottom="10.0" top="5.0" />
                         </VBox.margin>
                     </Button>
                 </VBox>
@@ -77,81 +72,43 @@
     <right>
         <VBox prefHeight="640.0" prefWidth="693.0" BorderPane.alignment="CENTER">
             <AnchorPane prefHeight="646.0" prefWidth="680.0" style="-fx-background-color: #000c19;">
-                <Label layoutX="67.0" layoutY="136.0" prefHeight="30.0" prefWidth="121.0" text="Organization"
-                       textFill="#d4a95e">
+                <Label layoutX="67.0" layoutY="136.0" prefHeight="30.0" prefWidth="121.0" text="Organization" textFill="#d4a95e">
                     <font>
-                        <Font size="20.0"/>
+                        <Font size="20.0" />
                     </font>
                 </Label>
-                <TextField layoutX="244.0" layoutY="138.0" prefHeight="26.0" prefWidth="321.0" styleClass="text-input"
-                           stylesheets="@styles.css"/>
-                <Label layoutX="67.0" layoutY="166.0" prefHeight="28.0" prefWidth="82.0" text="Contact"
-                       textFill="#d4a95e">
+                <TextField fx:id="OrgNameTextField" layoutX="244.0" layoutY="138.0" prefHeight="26.0" prefWidth="321.0" styleClass="text-input" stylesheets="@styles.css" />
+                <Label layoutX="67.0" layoutY="166.0" prefHeight="28.0" prefWidth="82.0" text="Contact" textFill="#d4a95e">
                     <font>
-                        <Font size="20.0"/>
+                        <Font size="20.0" />
                     </font>
                 </Label>
-                <TextField layoutX="244.0" layoutY="168.0" prefHeight="26.0" prefWidth="321.0" styleClass="text-input"
-                           stylesheets="@styles.css"/>
-                <Label layoutX="67.0" layoutY="196.0" prefHeight="28.0" prefWidth="82.0" text="Email"
-                       textFill="#d4a95e">
+                <TextField fx:id="ContactNoTextField" layoutX="244.0" layoutY="168.0" prefHeight="26.0" prefWidth="321.0" styleClass="text-input" stylesheets="@styles.css" />
+                <Label layoutX="67.0" layoutY="196.0" prefHeight="28.0" prefWidth="82.0" text="Email" textFill="#d4a95e">
                     <font>
-                        <Font size="20.0"/>
+                        <Font size="20.0" />
                     </font>
                 </Label>
-                <TextField layoutX="244.0" layoutY="198.0" prefHeight="26.0" prefWidth="321.0" styleClass="text-input"
-                           stylesheets="@styles.css"/>
-                <Label layoutX="67.0" layoutY="226.0" prefHeight="28.0" prefWidth="82.0" text="Location"
-                       textFill="#d4a95e">
+                <TextField fx:id="EmailTextField" layoutX="244.0" layoutY="198.0" prefHeight="26.0" prefWidth="321.0" styleClass="text-input" stylesheets="@styles.css" />
+                <Label layoutX="67.0" layoutY="226.0" prefHeight="28.0" prefWidth="82.0" text="Location" textFill="#d4a95e">
                     <font>
-                        <Font size="20.0"/>
+                        <Font size="20.0" />
                     </font>
                 </Label>
-                <TextField layoutX="244.0" layoutY="228.0" prefHeight="26.0" prefWidth="321.0" styleClass="text-input"
-                           stylesheets="@styles.css"/>
-                <Label layoutX="67.0" layoutY="256.0" prefHeight="30.0" prefWidth="105.0" text="Profession"
-                       textFill="#d4a95e">
+                <TextField fx:id="LocationTextField" layoutX="244.0" layoutY="228.0" prefHeight="26.0" prefWidth="321.0" styleClass="text-input" stylesheets="@styles.css" />
+                <Label layoutX="67.0" layoutY="256.0" prefHeight="30.0" prefWidth="105.0" text="Profession" textFill="#d4a95e">
                     <font>
-                        <Font size="20.0"/>
+                        <Font size="20.0" />
                     </font>
                 </Label>
-                <TextField layoutX="244.0" layoutY="258.0" prefHeight="26.0" prefWidth="321.0" styleClass="text-input"
-                           stylesheets="@styles.css"/>
-                <Label layoutX="67.0" layoutY="286.0" prefHeight="28.0" prefWidth="82.0" text="Joined"
-                       textFill="#d4a95e">
+                <TextField fx:id="ProfessionTextField" layoutX="244.0" layoutY="258.0" prefHeight="26.0" prefWidth="321.0" styleClass="text-input" stylesheets="@styles.css" />
+                <Label layoutX="67.0" layoutY="286.0" prefHeight="30.0" prefWidth="112.0" text="Password" textFill="#d4a95e">
                     <font>
-                        <Font size="20.0"/>
+                        <Font size="20.0" />
                     </font>
                 </Label>
-                <TextField layoutX="244.0" layoutY="288.0" prefHeight="26.0" prefWidth="321.0" styleClass="text-input"
-                           stylesheets="@styles.css"/>
-                <Label layoutX="67.0" layoutY="320.0" prefHeight="30.0" prefWidth="139.0" text="Monthly_rate"
-                       textFill="#d4a95e">
-                    <font>
-                        <Font size="20.0"/>
-                    </font>
-                </Label>
-                <TextField layoutX="244.0" layoutY="319.0" prefHeight="29.0" prefWidth="322.0" styleClass="text-input"
-                           stylesheets="@styles.css"/>
-                <Label layoutX="64.0" layoutY="350.0" prefHeight="30.0" prefWidth="116.0" text="Hourly_rate"
-                       textFill="#d4a95e">
-                    <font>
-                        <Font size="20.0"/>
-                    </font>
-                </Label>
-                <TextField layoutX="244.0" layoutY="352.0" prefHeight="26.0" prefWidth="321.0" styleClass="text-input"
-                           stylesheets="@styles.css"/>
-                <Label layoutX="65.0" layoutY="380.0" prefHeight="30.0" prefWidth="109.0" text="Description"
-                       textFill="#d4a95e">
-                    <font>
-                        <Font size="20.0"/>
-                    </font>
-                </Label>
-                <TextField layoutX="244.0" layoutY="382.0" prefHeight="26.0" prefWidth="321.0" styleClass="text-input"
-                           stylesheets="@styles.css"/>
-                <Button layoutX="278.0" layoutY="536.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="88.0"
-                        stylesheets="@styles.css"
-                        text="Update" textFill="WHITE"/>
+                <TextField fx:id="PasswordTextField" layoutX="244.0" layoutY="288.0" prefHeight="26.0" prefWidth="321.0" styleClass="text-input" stylesheets="@styles.css" />
+                <Button layoutX="278.0" layoutY="536.0" mnemonicParsing="false" onAction="#onUpdateButtonClick" prefHeight="43.0" prefWidth="88.0" stylesheets="@styles.css" text="Update" textFill="WHITE" />
             </AnchorPane>
         </VBox>
     </right>

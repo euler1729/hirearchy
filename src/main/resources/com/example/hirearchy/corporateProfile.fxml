@@ -77,38 +77,38 @@
                         <Font size="20.0" />
                     </font>
                 </Label>
-                <TextField layoutX="244.0" layoutY="138.0" prefHeight="26.0" prefWidth="321.0" styleClass="text-input" stylesheets="@styles.css" />
+                <TextField fx:id="OrgNameTextField" layoutX="244.0" layoutY="138.0" prefHeight="26.0" prefWidth="321.0" styleClass="text-input" stylesheets="@styles.css" />
                 <Label layoutX="67.0" layoutY="166.0" prefHeight="28.0" prefWidth="82.0" text="Contact" textFill="#d4a95e">
                     <font>
                         <Font size="20.0" />
                     </font>
                 </Label>
-                <TextField layoutX="244.0" layoutY="168.0" prefHeight="26.0" prefWidth="321.0" styleClass="text-input" stylesheets="@styles.css" />
+                <TextField fx:id="ContactNoTextField" layoutX="244.0" layoutY="168.0" prefHeight="26.0" prefWidth="321.0" styleClass="text-input" stylesheets="@styles.css" />
                 <Label layoutX="67.0" layoutY="196.0" prefHeight="28.0" prefWidth="82.0" text="Email" textFill="#d4a95e">
                     <font>
                         <Font size="20.0" />
                     </font>
                 </Label>
-                <TextField layoutX="244.0" layoutY="198.0" prefHeight="26.0" prefWidth="321.0" styleClass="text-input" stylesheets="@styles.css" />
+                <TextField fx:id="EmailTextField" layoutX="244.0" layoutY="198.0" prefHeight="26.0" prefWidth="321.0" styleClass="text-input" stylesheets="@styles.css" />
                 <Label layoutX="67.0" layoutY="226.0" prefHeight="28.0" prefWidth="82.0" text="Location" textFill="#d4a95e">
                     <font>
                         <Font size="20.0" />
                     </font>
                 </Label>
-                <TextField layoutX="244.0" layoutY="228.0" prefHeight="26.0" prefWidth="321.0" styleClass="text-input" stylesheets="@styles.css" />
+                <TextField fx:id="LocationTextField" layoutX="244.0" layoutY="228.0" prefHeight="26.0" prefWidth="321.0" styleClass="text-input" stylesheets="@styles.css" />
                 <Label layoutX="67.0" layoutY="256.0" prefHeight="30.0" prefWidth="105.0" text="Profession" textFill="#d4a95e">
                     <font>
                         <Font size="20.0" />
                     </font>
                 </Label>
-                <TextField layoutX="244.0" layoutY="258.0" prefHeight="26.0" prefWidth="321.0" styleClass="text-input" stylesheets="@styles.css" />
+                <TextField fx:id="ProfessionTextField" layoutX="244.0" layoutY="258.0" prefHeight="26.0" prefWidth="321.0" styleClass="text-input" stylesheets="@styles.css" />
                 <Label layoutX="67.0" layoutY="286.0" prefHeight="30.0" prefWidth="112.0" text="Password" textFill="#d4a95e">
                     <font>
                         <Font size="20.0" />
                     </font>
                 </Label>
-                <TextField layoutX="244.0" layoutY="288.0" prefHeight="26.0" prefWidth="321.0" styleClass="text-input" stylesheets="@styles.css" />
-                <Button layoutX="278.0" layoutY="536.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="88.0" stylesheets="@styles.css" text="Update" textFill="WHITE" />
+                <TextField fx:id="PasswordTextField" layoutX="244.0" layoutY="288.0" prefHeight="26.0" prefWidth="321.0" styleClass="text-input" stylesheets="@styles.css" />
+                <Button layoutX="278.0" layoutY="536.0" mnemonicParsing="false" onAction="#onUpdateButtonClick" prefHeight="43.0" prefWidth="88.0" stylesheets="@styles.css" text="Update" textFill="WHITE" />
             </AnchorPane>
         </VBox>
     </right>
