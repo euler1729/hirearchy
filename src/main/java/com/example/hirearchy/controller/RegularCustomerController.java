@@ -44,15 +44,9 @@ public class RegularCustomerController implements Initializable {
     private TableColumn<TableEntry, Double> monthly_rate;
     @FXML
     private TableColumn<TableEntry,Double> hourly_rate;
-    @FXML
-    private TableColumn<TableEntry,Button>req_btn;
 
 
     ObservableList<TableEntry> rcList = FXCollections.observableArrayList();
-
-//    public RegularCustomerController(TableColumn<Worker, Button> action) {
-//        this.action = action;
-//    }
 
     @FXML
     public void onRegularCustomerSearchButtonClick(ActionEvent event) {
@@ -83,47 +77,8 @@ public class RegularCustomerController implements Initializable {
         locat.setCellValueFactory(new PropertyValueFactory<>("location"));
         monthly_rate.setCellValueFactory(new PropertyValueFactory<>("monthly_rate"));
         hourly_rate.setCellValueFactory(new PropertyValueFactory<>("hourly_rate"));
-//        action.setCellValueFactory(new PropertyValueFactory<>("button"));
-        TableColumn actionCol = new TableColumn("Action");
-        actionCol.setCellValueFactory(new PropertyValueFactory<>("DUMMY"));
-
-        Callback<TableColumn<TableEntry, String>, TableCell<TableEntry, String>> cellFactory
-                = //
-                new Callback<TableColumn<TableEntry, String>, TableCell<TableEntry, String>>() {
-                    @Override
-                    public TableCell call(final TableColumn<TableEntry, String> param) {
-                        final TableCell<TableEntry, String> cell = new TableCell<TableEntry, String>() {
-
-                            final Button btn = new Button("Just Do It");
-
-                            @Override
-                            public void updateItem(String item, boolean empty) {
-                                super.updateItem(item, empty);
-                                if (empty) {
-                                    setGraphic(btn);
-                                    setText("yes");
-                                } else {
-                                    btn.setOnAction(event -> {
-//                                        Person person = getTableView().getItems().get(getIndex());
-//                                        System.out.println(person.getFirstName()
-//                                                + "   " + person.getLastName());
-                                        System.out.println("button clicked");
-                                    });
-                                    setGraphic(btn);
-                                    setText("yes");
-                                }
-                            }
-                        };
-                        return cell;
-                    }
-                };
-
-        actionCol.setCellFactory(cellFactory);
 
         rcTable.setItems(rcList);
-        rcTable.getColumns().add(actionCol);
-
-//        rcTable.setItems(rcList);
     }
 
 
