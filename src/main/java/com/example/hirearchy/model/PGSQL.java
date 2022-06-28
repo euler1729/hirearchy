@@ -69,15 +69,14 @@ public abstract class PGSQL {
             Statement statement = connection.createStatement();
             resultSet = statement.executeQuery(qry);
         }catch(Exception exp) {
-            System.out.println(Arrays.toString(exp.getStackTrace()));
-            System.out.println("PGSQL line 74");
+            exp.printStackTrace();
             return null;
         }
         return resultSet;
     }
     protected static ResultSet Query(String qry) throws SQLException{
         if(connection==null) Connect();
-        ResultSet resultSet = null;
+        ResultSet resultSet;
         Statement statement = null;
         try{
             statement = connection.createStatement();
@@ -128,18 +127,32 @@ public abstract class PGSQL {
         if(connection==null) Connect();
         try{
             LocalDate date = LocalDate.now();
-            String insrt = "INSERT INTO history (customer_email, worker_email,date) VALUES (?,?,?)";
+            DB_Operations cus = new DB_Operations();
+            DB_Operations wor = new DB_Operations();
+            ResultSet cusSet = Query("SELECT * FROM user_info WHERE email=\'"+customerEmail+"\'");
+            while(cusSet.next()){
+                cus.setName(cusSet.getString("name"));
+                cus.setEmail(cusSet.getString("email"));
+            }
+            ResultSet workSet  = Query("SELECT * FROM user_info WHERE email=\'"+workerEmail+"\'");
+            while(workSet.next()){
+                wor.setName(workSet.getString("name"));
+                wor.setEmail(workSet.getString("email"));
+            }
+            String insrt = "INSERT INTO history (customer_name,customer_email,worker_name, worker_email,worker_profession,date) VALUES (?,?,?,?,?,?)";
             PreparedStatement statement = connection.prepareStatement(insrt);
 
-            statement.setObject(1,customerEmail);
-            statement.setObject(2,workerEmail);
-            statement.setObject(3,date);
+            statement.setObject(1,cus.getName());
+            statement.setObject(2,cus.getEmail());
+            statement.setObject(3,wor.getName());
+            statement.setObject(4,wor.getEmail());
+            statement.setObject(5,wor.getProfession());
+            statement.setObject(6,date);
             statement.executeUpdate();
             connection.commit();
         }catch (SQLException e){
             connection.rollback();
             System.out.println(e.getMessage());
-            System.out.println("error at PGQL line 140");
         }
     }
 }

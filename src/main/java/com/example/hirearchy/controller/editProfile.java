@@ -4,6 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
+import static com.example.hirearchy.controller.RegisterAndLoginPageController.corporateCustomer;
+import static com.example.hirearchy.controller.RegisterAndLoginPageController.regularCustomer;
+
 public class editProfile {
     // edit profile
     @FXML
@@ -28,6 +31,9 @@ public class editProfile {
 
     @FXML
     private void onProfileButtonClick (ActionEvent event){
+        System.out.println("profile");
+        System.out.println(regularCustomer.getName());
+        NameTextField.setText(regularCustomer.getName());
         controller.loadOption("regularcustomerprofile", event);
     }
 

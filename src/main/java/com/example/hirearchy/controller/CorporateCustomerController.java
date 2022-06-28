@@ -51,6 +51,7 @@ public class CorporateCustomerController implements Initializable {
             return;
         }
         DB_Operations db = new DB_Operations();
+        System.out.println(corporateCustomer.getEmail()+" "+corporateEmailSearch.getText());
         db.Insert_history2(corporateCustomer.getEmail(),corporateEmailSearch.getText());
     }
 

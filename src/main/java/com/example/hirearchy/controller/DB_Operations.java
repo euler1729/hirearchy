@@ -8,6 +8,7 @@ import java.math.BigInteger;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.UUID;
 
 import static com.example.hirearchy.controller.RegisterAndLoginPageController.professionMap;
@@ -32,11 +33,11 @@ public class DB_Operations extends PGSQL {
     //Constructors
     public DB_Operations(){
         this.uuid = null;
-        this.name = null;
-        this.contact = null;
-        this.email = null;
-        this.profession = -1;
-        this.location = -1;
+        this.name = "";
+        this.contact = "";
+        this.email = "";
+        this.profession = 1;
+        this.location = 1;
         this.password = null;
         this.joined = null;
     }
@@ -274,7 +275,7 @@ public class DB_Operations extends PGSQL {
         }
     }
     public ArrayList<DB_Operations> get_worker_history(String email){
-        String qry = "SELECT customer_name,customer_email,date FROM history WHERE worker_email="+email;
+        String qry = "SELECT * FROM history WHERE worker_email=\'"+email+"\'";
         System.out.println(qry);
         ArrayList<DB_Operations> list = new ArrayList<>();
         try{
@@ -282,10 +283,11 @@ public class DB_Operations extends PGSQL {
             if(resultSet==null) return null;
             while (resultSet.next()){
                 DB_Operations info = new DB_Operations();
-                info.setId(BigInteger.valueOf(resultSet.getInt("id")));
+//                info.setId(BigInteger.valueOf(resultSet.getInt("id")));
                 info.setName(resultSet.getString("customer_name"));
                 info.setEmail(resultSet.getString("customer_email"));
-                info.setDate(resultSet.getDate("date"));
+                System.out.println(info.getName()+" "+info.getEmail());
+//                info.setDate(resultSet.getDate("date"));
                 list.add(info);
             }
         } catch (SQLException e) {
@@ -294,7 +296,7 @@ public class DB_Operations extends PGSQL {
         return list;
     }
     public ArrayList<DB_Operations> get_customer_history(String email){
-        String qry = "SELECT worker_name,worker_email,worker_profession,date FROM history WHERE customer_email="+email;
+        String qry = "SELECT * FROM history WHERE customer_email=\'"+email+"\'";
         System.out.println(qry);
         ArrayList<DB_Operations> list = new ArrayList<>();
         try{
@@ -317,9 +319,9 @@ public class DB_Operations extends PGSQL {
 //    public void accept(String )
     public void Insert_history2(String customerEmail, String workerEmail){
         try{
-            Insert_history22(customerEmail,workerEmail);
             System.out.println(customerEmail+" "+workerEmail);
-        } catch (SQLException e) {
+            Insert_history22(customerEmail.toLowerCase(),workerEmail.toLowerCase());
+        } catch (Exception e) {
             System.out.println("error at DB_OP line 322");
             e.printStackTrace();
         }

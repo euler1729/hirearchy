@@ -14,6 +14,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
+import java.util.jar.Attributes;
 
 import static com.example.hirearchy.controller.RegisterAndLoginPageController.*;
 
@@ -21,6 +22,19 @@ import static com.example.hirearchy.controller.RegisterAndLoginPageController.*;
 public class RegularCustomerController implements Initializable {
 
     mainController controller = new mainController();
+    // edit profile
+    @FXML
+    public TextField NameTextField;
+    @FXML
+    public TextField ContactNoTextField;
+    @FXML
+    public TextField EmailTextField;
+    @FXML
+    public TextField LocationTextField;
+    @FXML
+    public TextField ProfessionTextField;
+    @FXML
+    public TextField PasswordTextField;
 
     @FXML
     public ComboBox<String> LocationDropDown1 = new ComboBox<>();
@@ -61,6 +75,7 @@ public class RegularCustomerController implements Initializable {
             rcList.add(new TableEntry(w.getName(),w.getEmail(),w.getContact_no(), w.getLocation(), w.getProfession(),w.getMonthly_rate(),w.getHourly_rate()));
         }
     }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         for(int i=2; i<professionArr.length; ++i) {
@@ -82,6 +97,8 @@ public class RegularCustomerController implements Initializable {
     }
 
 
+
+
     @FXML
     private void onHireButtonClick (ActionEvent event){
         controller.loadOption("regularCustomerHire", event);
@@ -89,7 +106,7 @@ public class RegularCustomerController implements Initializable {
 
     @FXML
     private void onProfileButtonClick (ActionEvent event){
-        controller.loadOption("regularcustomerprofile", event);
+
     }
 
     @FXML

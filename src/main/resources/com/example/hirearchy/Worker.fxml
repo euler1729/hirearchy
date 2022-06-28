@@ -25,7 +25,7 @@
                <Insets top="50.0" />
             </VBox.margin>
             <VBox alignment="TOP_CENTER" prefHeight="277.0" prefWidth="240.0">
-               <Button mnemonicParsing="false" onAction="#onOffersButtonClick" prefHeight="42.0" prefWidth="182.0" stylesheets="@styles.css" text="Offers" textFill="WHITE">
+               <Button  mnemonicParsing="false" onAction="#onOffersButtonClick" prefHeight="42.0" prefWidth="182.0" stylesheets="@styles.css" text="Offers" textFill="WHITE">
                   <font>
                      <Font size="18.0" />
                   </font>
@@ -72,14 +72,15 @@
    <right>
       <VBox prefHeight="640.0" prefWidth="693.0" BorderPane.alignment="CENTER">
          <AnchorPane prefHeight="646.0" prefWidth="680.0" style="-fx-background-color: #000c19;" styleClass="primary-color" stylesheets="@styles.css">
-            <TableView layoutX="76.0" layoutY="91.0" prefHeight="473.0" prefWidth="530.0" style="-fx-background-color: #00002C;">
+            <TableView fx:id="kkTable" layoutX="76.0" layoutY="91.0" prefHeight="473.0" prefWidth="530.0" style="-fx-background-color: #00002C;" stylesheets="@styles.css">
                <columns>
-                  <TableColumn prefWidth="96.0" text="Name" />
-                  <TableColumn prefWidth="152.79998779296875" text="Contact" />
-                  <TableColumn prefWidth="163.20001220703125" text="Email" />
-                  <TableColumn prefWidth="118.39996337890625" text="Location" />
+                  <TableColumn fx:id="name" prefWidth="96.0" text="Name" />
+                  <TableColumn fx:id="contact_no" prefWidth="152.79998779296875" text="Contact" />
+                  <TableColumn fx:id="email" prefWidth="163.20001220703125" text="Email" />
+                  <TableColumn fx:id="locat" prefWidth="118.39996337890625" text="Location" />
                </columns>
             </TableView>
+            <Button onAction="#seeOfferClick" layoutX="328.0" layoutY="37.0" mnemonicParsing="false" text="See Offeres" textFill="WHITE" />
          </AnchorPane>
       </VBox>
    </right>
