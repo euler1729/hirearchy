@@ -2,22 +2,8 @@ package com.example.hirearchy.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
 
-public class editProfile {
-    // edit profile
-    @FXML
-    private TextField NameTextField;
-    @FXML
-    private TextField ContactNoTextField;
-    @FXML
-    private TextField EmailTextField;
-    @FXML
-    private TextField LocationTextField;
-    @FXML
-    private TextField ProfessionTextField;
-    @FXML
-    private TextField PasswordTextField;
+public class ccEditProfile {
 
     mainController controller = new mainController();
 
@@ -28,7 +14,7 @@ public class editProfile {
 
     @FXML
     private void onProfileButtonClick (ActionEvent event){
-        controller.loadOption("regularcustomerprofile", event);
+        controller.loadOption("corporateProfile", event);
     }
 
     @FXML
