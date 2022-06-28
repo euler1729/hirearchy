@@ -23,6 +23,8 @@ public class CorporateCustomerController implements Initializable {
     public ComboBox<String> LocationDropDown2 = new ComboBox<>();
     @FXML
     public ComboBox<String> ProfessionDropDown2 = new ComboBox<>();
+    @FXML
+    public TextField corporateEmailSearch;
     //Query condition field
     ObservableList<String> LocationsList2 = FXCollections.observableArrayList();
     ObservableList<String> ProfessionList2 = FXCollections.observableArrayList();
@@ -37,10 +39,20 @@ public class CorporateCustomerController implements Initializable {
     private TableColumn<TableEntry, String> email;
     @FXML
     private TableColumn<TableEntry, String> locat;
-    @FXML
-    private TableColumn req_btn = new TableColumn("send");
+
     ObservableList<TableEntry> ccList = FXCollections.observableArrayList();
 
+    public void onCorporateHireClick(ActionEvent event){
+        if(corporateEmailSearch.getText()==null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Invalid Input!");
+            alert.show();
+            return;
+        }
+        DB_Operations db = new DB_Operations();
+        db.Insert_history2(corporateCustomer.getEmail(),corporateEmailSearch.getText());
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -56,7 +68,6 @@ public class CorporateCustomerController implements Initializable {
         contact_no.setCellValueFactory(new PropertyValueFactory<>("contact_no"));
         email.setCellValueFactory(new PropertyValueFactory<>("email"));
         locat.setCellValueFactory(new PropertyValueFactory<>("location"));
-        req_btn.setCellValueFactory(new PropertyValueFactory<>("Action"));
 
 //        action.setCellValueFactory(new PropertyValueFactory<>("button"));
 

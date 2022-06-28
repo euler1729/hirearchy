@@ -315,6 +315,15 @@ public class DB_Operations extends PGSQL {
         return list;
     }
 //    public void accept(String )
+    public void Insert_history2(String customerEmail, String workerEmail){
+        try{
+            Insert_history22(customerEmail,workerEmail);
+            System.out.println(customerEmail+" "+workerEmail);
+        } catch (SQLException e) {
+            System.out.println("error at DB_OP line 322");
+            e.printStackTrace();
+        }
+    }
     public static void db_connect(){
         Connect();
     }

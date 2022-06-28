@@ -4,7 +4,6 @@ import com.example.hirearchy.controller.DB_Operations;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.UUID;
 
@@ -123,6 +122,24 @@ public abstract class PGSQL {
         }catch(SQLException e){
             connection.rollback();
             e.getStackTrace();
+        }
+    }
+    public void Insert_history22(String customerEmail, String workerEmail) throws SQLException {
+        if(connection==null) Connect();
+        try{
+            LocalDate date = LocalDate.now();
+            String insrt = "INSERT INTO history (customer_email, worker_email,date) VALUES (?,?,?)";
+            PreparedStatement statement = connection.prepareStatement(insrt);
+
+            statement.setObject(1,customerEmail);
+            statement.setObject(2,workerEmail);
+            statement.setObject(3,date);
+            statement.executeUpdate();
+            connection.commit();
+        }catch (SQLException e){
+            connection.rollback();
+            System.out.println(e.getMessage());
+            System.out.println("error at PGQL line 140");
         }
     }
 }

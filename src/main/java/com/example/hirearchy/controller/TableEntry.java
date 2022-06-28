@@ -23,10 +23,10 @@ public class TableEntry {
         this. email = email;
         this. contact_no = contact_no;
         int l = 0, p = 0;
-        if(locationMap.get(location) != null)l = locationMap.get(location);
-        if(professionMap.get(profession) != null)p = professionMap.get(profession);
-        this.location = locationArr[l];
-        this.profession = professionArr[p];
+//        if(locationMap.get(location) != null)l = locationMap.get(location);
+//        if(professionMap.get(profession) != null)p = professionMap.get(profession);
+        this.location = locationArr[location];
+        this.profession = professionArr[profession];
         this.monthly_rate = monthly_rate;
         this.hourly_rate = hourly_rate;
         this.button = new Button("send");
