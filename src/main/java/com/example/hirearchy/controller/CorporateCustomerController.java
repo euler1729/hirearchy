@@ -38,7 +38,7 @@ public class CorporateCustomerController implements Initializable {
     @FXML
     private TableColumn<TableEntry, String> locat;
     @FXML
-    private TableColumn<TableEntry, Button> req_btn;
+    private TableColumn req_btn = new TableColumn("send");
     ObservableList<TableEntry> ccList = FXCollections.observableArrayList();
 
 
@@ -52,7 +52,7 @@ public class CorporateCustomerController implements Initializable {
         ProfessionDropDown2.setItems(ProfessionList2);
 
         // table
-        name.setCellValueFactory(new PropertyValueFactory<TableEntry, String>("name"));
+        name.setCellValueFactory(new PropertyValueFactory<>("name"));
         contact_no.setCellValueFactory(new PropertyValueFactory<>("contact_no"));
         email.setCellValueFactory(new PropertyValueFactory<>("email"));
         locat.setCellValueFactory(new PropertyValueFactory<>("location"));
@@ -73,7 +73,7 @@ public class CorporateCustomerController implements Initializable {
         DB_Operations db = new DB_Operations();
         ArrayList<Worker> workers = db.search_custom(professionMap.get(ProfessionDropDown2.getValue()),locationMap.get(LocationDropDown2.getValue()));
         for(Worker w:workers){
-            ccList.add(new TableEntry(w.getName(),w.getEmail(),w.getContact_no(), w.getLocation(), w.getProfession(), (int) w.getMonthly_rate(), (int) w.getHourly_rate()));
+            ccList.add(new TableEntry(w.getName(),w.getEmail(),w.getContact_no(), w.getLocation(), w.getProfession(), w.getMonthly_rate(), w.getHourly_rate()));
         }
     }
 

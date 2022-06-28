@@ -5,6 +5,7 @@ import com.example.hirearchy.controller.DB_Operations;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.UUID;
 
 import static com.example.hirearchy.controller.RegisterAndLoginPageController.professionArr;
@@ -62,14 +63,15 @@ public abstract class PGSQL {
     }
     protected static ResultSet authenticate(String email, String password) throws SQLException {
         if(connection==null) Connect();
-        ResultSet resultSet = null;
+        ResultSet resultSet;
         try{
             String qry = "SELECT * FROM user_info WHERE email=\'"+email+"\' AND hash=\'"+password+"\'";
             System.out.println(qry);
             Statement statement = connection.createStatement();
             resultSet = statement.executeQuery(qry);
         }catch(Exception exp) {
-            exp.getStackTrace();
+            System.out.println(Arrays.toString(exp.getStackTrace()));
+            System.out.println("PGSQL line 74");
             return null;
         }
         return resultSet;

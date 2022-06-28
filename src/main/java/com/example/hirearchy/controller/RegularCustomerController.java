@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -83,8 +84,46 @@ public class RegularCustomerController implements Initializable {
         monthly_rate.setCellValueFactory(new PropertyValueFactory<>("monthly_rate"));
         hourly_rate.setCellValueFactory(new PropertyValueFactory<>("hourly_rate"));
 //        action.setCellValueFactory(new PropertyValueFactory<>("button"));
+        TableColumn actionCol = new TableColumn("Action");
+        actionCol.setCellValueFactory(new PropertyValueFactory<>("DUMMY"));
+
+        Callback<TableColumn<TableEntry, String>, TableCell<TableEntry, String>> cellFactory
+                = //
+                new Callback<TableColumn<TableEntry, String>, TableCell<TableEntry, String>>() {
+                    @Override
+                    public TableCell call(final TableColumn<TableEntry, String> param) {
+                        final TableCell<TableEntry, String> cell = new TableCell<TableEntry, String>() {
+
+                            final Button btn = new Button("Just Do It");
+
+                            @Override
+                            public void updateItem(String item, boolean empty) {
+                                super.updateItem(item, empty);
+                                if (empty) {
+                                    setGraphic(btn);
+                                    setText("yes");
+                                } else {
+                                    btn.setOnAction(event -> {
+//                                        Person person = getTableView().getItems().get(getIndex());
+//                                        System.out.println(person.getFirstName()
+//                                                + "   " + person.getLastName());
+                                        System.out.println("button clicked");
+                                    });
+                                    setGraphic(btn);
+                                    setText("yes");
+                                }
+                            }
+                        };
+                        return cell;
+                    }
+                };
+
+        actionCol.setCellFactory(cellFactory);
 
         rcTable.setItems(rcList);
+        rcTable.getColumns().add(actionCol);
+
+//        rcTable.setItems(rcList);
     }
 
 

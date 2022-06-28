@@ -14,14 +14,14 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="920.0" styleClass="secondary-color" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hirearchy.controller.RegularCustomerController">
     <left>
-        <VBox prefHeight="200.0" prefWidth="240.0" styleClass="primary-color" stylesheets="@styles.css" BorderPane.alignment="CENTER">
+        <VBox prefHeight="640.0" prefWidth="235.0" styleClass="primary-color" stylesheets="@styles.css" BorderPane.alignment="CENTER">
             <children>
-            <ImageView fitHeight="200.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="236.0" fitWidth="234.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../Images/HireArchy-logos_white.png" />
                </image>
                <VBox.margin>
-                  <Insets left="30.0" />
+                  <Insets />
                </VBox.margin>
             </ImageView>
                 <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
@@ -80,26 +80,28 @@
     </left>
     <right>
         <VBox prefHeight="640.0" prefWidth="693.0" BorderPane.alignment="CENTER">
-            <children>
-                <AnchorPane prefHeight="646.0" prefWidth="680.0" style="-fx-background-color: #000c19;" styleClass="primary-color">
-                    <children>
-                        <ComboBox fx:id="ProfessionDropDown1" layoutX="92.0" layoutY="71.0" prefWidth="150.0" promptText="Looking for?" styleClass="button" stylesheets="@styles.css" />
-                        <ComboBox fx:id="LocationDropDown1" layoutX="284.0" layoutY="74.0" prefWidth="150.0" promptText="Location" styleClass="button" />
-                        <Button layoutX="529.0" layoutY="74.0" mnemonicParsing="false" onAction="#onRegularCustomerSearchButtonClick" prefHeight="33.0" prefWidth="66.0" stylesheets="@styles.css" text="Search" textFill="WHITE" />
-                        <TableView fx:id="rcTable" layoutX="36.0" layoutY="174.0" prefHeight="370.0" prefWidth="618.0" style="-fx-background-color: #00002C;">
-                            <columns>
-                                <TableColumn fx:id="name" prefWidth="88.00006103515625" text="Name" />
-                                <TableColumn fx:id="contact_no" prefWidth="87.199951171875" text="Contact" />
-                                <TableColumn fx:id="email" prefWidth="109.5999755859375" text="Email" />
-                                <TableColumn fx:id="locat" prefWidth="79.20001220703125" text="Location" />
-                        <TableColumn prefWidth="85.5999755859375" text="Monthly rate" />
-                        <TableColumn prefWidth="91.2000732421875" text="Hourly rate" />
-                        <TableColumn prefWidth="82.39990234375" text="Request" />
-                            </columns>
-                        </TableView>
-                    </children>
-                </AnchorPane>
-            </children>
+            <AnchorPane prefHeight="646.0" prefWidth="680.0" style="-fx-background-color: #000c19;"
+                        styleClass="primary-color">
+                <ComboBox fx:id="ProfessionDropDown1" layoutX="92.0" layoutY="71.0" prefWidth="150.0"
+                          promptText="Looking for?" styleClass="button" stylesheets="@styles.css"/>
+                <ComboBox fx:id="LocationDropDown1" layoutX="284.0" layoutY="74.0" prefWidth="150.0"
+                          promptText="Location" styleClass="button"/>
+                <Button layoutX="529.0" layoutY="74.0" mnemonicParsing="false"
+                        onAction="#onRegularCustomerSearchButtonClick" prefHeight="33.0" prefWidth="66.0"
+                        stylesheets="@styles.css" text="Search" textFill="WHITE"/>
+                <TableView fx:id="rcTable" layoutX="36.0" layoutY="174.0" prefHeight="370.0" prefWidth="618.0"
+                           style="-fx-background-color: #00002C;">
+                    <columns>
+                        <TableColumn fx:id="name" prefWidth="88.00006103515625" text="Name"/>
+                        <TableColumn fx:id="contact_no" prefWidth="87.199951171875" text="Contact"/>
+                        <TableColumn fx:id="email" prefWidth="109.5999755859375" text="Email"/>
+                        <TableColumn fx:id="locat" prefWidth="79.20001220703125" text="Location"/>
+                        <TableColumn fx:id="monthly_rate" prefWidth="85.5999755859375" text="Monthly rate"/>
+                        <TableColumn fx:id="hourly_rate" prefWidth="91.2000732421875" text="Hourly rate"/>
+                        <TableColumn fx:id="req_btn" prefWidth="82.39990234375" text="Request"/>
+                    </columns>
+                </TableView>
+            </AnchorPane>
         </VBox>
     </right>
 </BorderPane>
