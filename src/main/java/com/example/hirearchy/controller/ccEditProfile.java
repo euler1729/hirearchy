@@ -2,6 +2,7 @@ package com.example.hirearchy.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 
 public class ccEditProfile {
 
@@ -30,5 +31,25 @@ public class ccEditProfile {
     @FXML
     private void onLogoutButtonClick(ActionEvent event){
         controller.loadOption("LoginPage", event);
+    }
+
+
+    // edit profile
+    @FXML
+    public TextField OrgNameTextField;
+    @FXML
+    public TextField ContactNoTextField;
+    @FXML
+    public TextField EmailTextField;
+    @FXML
+    public TextField LocationTextField;
+    @FXML
+    public TextField ProfessionTextField;
+    @FXML
+    public TextField PasswordTextField;
+
+    @FXML
+    public void onUpdateButtonClick(ActionEvent event){
+
     }
 }

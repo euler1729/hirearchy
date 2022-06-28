@@ -7,17 +7,17 @@ import javafx.scene.control.TextField;
 public class editProfile {
     // edit profile
     @FXML
-    private TextField NameTextField;
+    public TextField NameTextField;
     @FXML
-    private TextField ContactNoTextField;
+    public TextField ContactNoTextField;
     @FXML
-    private TextField EmailTextField;
+    public TextField EmailTextField;
     @FXML
-    private TextField LocationTextField;
+    public TextField LocationTextField;
     @FXML
-    private TextField ProfessionTextField;
+    public TextField ProfessionTextField;
     @FXML
-    private TextField PasswordTextField;
+    public TextField PasswordTextField;
 
     mainController controller = new mainController();
 
