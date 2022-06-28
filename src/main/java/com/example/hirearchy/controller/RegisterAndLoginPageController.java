@@ -90,11 +90,6 @@ public class RegisterAndLoginPageController implements Initializable {
     public static CorporateCustomer corporateCustomer = null;
     public static Worker workerUser = null;
 
-    //Controller Object
-//    public RegularCustomerController regularCustomerController = null;
-//    public CorporateCustomerController corporateCustomerController = null;
-//    public WorkerController workerController = null;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         RegisterAsOptionsList.addAll(Arrays.asList(professionArr));
